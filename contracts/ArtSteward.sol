@@ -28,7 +28,7 @@ contract ArtSteward {
     
     mapping (address => bool) public patrons;
     mapping (address => uint256) public timeHeld;
-    mapping (address => uint256) public paid;
+    mapping (address => uint256) public paid; // NOTE: not used [accident]
 
     uint256 public timeAcquired;
     
@@ -100,7 +100,7 @@ contract ArtSteward {
     function foreclosureTime() public view returns (uint256) {
         // patronage per second
         uint256 pps = price.mul(patronageNumerator).div(patronageDenominator).div(365 days);
-        return now + depositAbleToWithdraw().div(pps);
+        return now + depositAbleToWithdraw().div(pps); // zero division if price is zero.
     }
 
     /* actions */
