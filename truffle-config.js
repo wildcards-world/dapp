@@ -1,6 +1,6 @@
 const path = require("path");
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const mnemonic = ''; // 12 word mnemonic 
+const mnemonic = 'sustain seek diet attend ready neutral damage join food extra monkey usage'; // 12 word mnemonic 
 const mainnetProviderUrl = 'https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba'; 
 const rinkebyProviderUrl = 'https://rinkeby.infura.io/v3/e811479f4c414e219e7673b6671c2aba';
 
