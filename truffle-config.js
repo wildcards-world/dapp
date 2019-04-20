@@ -10,20 +10,20 @@ module.exports = {
   plugins: [ "truffle-security" ],
   contracts_build_directory: path.join(__dirname, "app/src/contracts"),
   networks: {
-    mainnet: {
-      network_id: 1,
-      provider: new HDWalletProvider(mnemonic, mainnetProviderUrl, 0),
-      gas: 4700000,
-      gasPrice: 5000000000, // 5 gwei
-      skipDryRun: true,
-    },
-    rinkeby: {
-      network_id: 4,
-      provider: new HDWalletProvider(mnemonic, rinkebyProviderUrl, 0),
-      gas: 4700000,
-      gasPrice: 10000000000, // 10 gwei
-      skipDryRun: true,
-    },
+    // mainnet: {
+    //   network_id: 1,
+    //   provider: new HDWalletProvider(mnemonic, mainnetProviderUrl, 0),
+    //   gas: 4700000,
+    //   gasPrice: 5000000000, // 5 gwei
+    //   skipDryRun: true,
+    // },
+    // rinkeby: {
+    //   network_id: 4,
+    //   provider: new HDWalletProvider(mnemonic, rinkebyProviderUrl, 0),
+    //   gas: 4700000,
+    //   gasPrice: 10000000000, // 10 gwei
+    //   skipDryRun: true,
+    // },
     development: {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 8545,            // Standard Ethereum port (default: none)
