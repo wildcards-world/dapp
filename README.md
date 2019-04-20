@@ -1,8 +1,13 @@
 ##  ETHCapetown first hackaton of Africa: Team "Nargile Bebe"'s project for aiding wildlife and endangered species through Blockchain
 
-Utilizing non-fungible tokens to aid wildlife conservation.
-
 An endangered species project that showcases a digital animal that is always on sale through Harberger Taxed property rights. The owner of the animal always has to set a sale price, upon which it can be bought by anyone at any time. A continuous tax is levied as patronage towards the charity calculated on the owner's price they set. If the deposit does not cover the patronage owed, the smart contract steward can foreclose the animal and take back ownership.
+
+### Team Members
+[a link](https://github.com/shenferhat)
+[a link](https://github.com/DenhamPreen)
+[a link](http://github.com/moose-code)
+[a link](https://github.com/stentonian)
+
 
 ### Tech
 
