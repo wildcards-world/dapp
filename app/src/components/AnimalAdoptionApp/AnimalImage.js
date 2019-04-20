@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AnimalImageFile from '../../img/rhino13.jpg'
+//import AnimalImageFile from '../../img/rhino13.jpg'
 
 class AnimalImage extends Component {
     

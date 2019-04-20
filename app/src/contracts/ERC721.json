@@ -308,9 +308,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\nimport \"./interfaces/IERC721.sol\";\nimport \"./interfaces/IERC721Receiver.sol\";\nimport \"./utils/SafeMath.sol\";\nimport \"./utils/Address.sol\";\nimport \"./utils/Counters.sol\";\nimport \"./ERC165.sol\";\n\n/**\n * @title ERC721 Non-Fungible Token Standard basic implementation\n * @dev see https://eips.ethereum.org/EIPS/eip-721\n */\ncontract ERC721 is ERC165, IERC721 {\n    using SafeMath for uint256;\n    using Address for address;\n    using Counters for Counters.Counter;\n\n    bool init = false;\n\n    // Equals to `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`\n    // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`\n    bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;\n\n    // Mapping from token ID to owner\n    mapping (uint256 => address) private _tokenOwner;\n\n    // Mapping from token ID to approved address\n    mapping (uint256 => address) private _tokenApprovals;\n\n    // Mapping from owner to number of owned token\n    mapping (address => Counters.Counter) private _ownedTokensCount;\n\n    // Mapping from owner to operator approvals\n    mapping (address => mapping (address => bool)) private _operatorApprovals;\n\n    address public steward;\n\n    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;\n    /*\n     * 0x80ac58cd ===\n     *     bytes4(keccak256('balanceOf(address)')) ^\n     *     bytes4(keccak256('ownerOf(uint256)')) ^\n     *     bytes4(keccak256('approve(address,uint256)')) ^\n     *     bytes4(keccak256('getApproved(uint256)')) ^\n     *     bytes4(keccak256('setApprovalForAll(address,bool)')) ^\n     *     bytes4(keccak256('isApprovedForAll(address,address)')) ^\n     *     bytes4(keccak256('transferFrom(address,address,uint256)')) ^\n     *     bytes4(keccak256('safeTransferFrom(address,address,uint256)')) ^\n     *     bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))\n     */\n\n    constructor () public {\n        // register the supported interfaces to conform to ERC721 via ERC165\n        _registerInterface(_INTERFACE_ID_ERC721);\n    }\n\n    /**\n     * @dev Gets the balance of the specified address\n     * @param owner address to query the balance of\n     * @return uint256 representing the amount owned by the passed address\n     */\n    function balanceOf(address owner) public view returns (uint256) {\n        require(owner != address(0));\n        return _ownedTokensCount[owner].current();\n    }\n\n    /**\n     * @dev Gets the owner of the specified token ID\n     * @param tokenId uint256 ID of the token to query the owner of\n     * @return address currently marked as the owner of the given token ID\n     */\n    function ownerOf(uint256 tokenId) public view returns (address) {\n        address owner = _tokenOwner[tokenId];\n        require(owner != address(0));\n        return owner;\n    }\n\n    /**\n     * @dev Approves another address to transfer the given token ID\n     * The zero address indicates there is no approved address.\n     * There can only be one approved address per token at a given time.\n     * Can only be called by the token owner or an approved operator.\n     * @param to address to be approved for the given token ID\n     * @param tokenId uint256 ID of the token to be approved\n     */\n    function approve(address to, uint256 tokenId) public {\n        address owner = ownerOf(tokenId);\n        require(to != owner);\n        require(msg.sender == owner || isApprovedForAll(owner, msg.sender));\n\n        _tokenApprovals[tokenId] = to;\n        emit Approval(owner, to, tokenId);\n    }\n\n    /**\n     * @dev Gets the approved address for a token ID, or zero if no address set\n     * Reverts if the token ID does not exist.\n     * @param tokenId uint256 ID of the token to query the approval of\n     * @return address currently approved for the given token ID\n     */\n    function getApproved(uint256 tokenId) public view returns (address) {\n        require(_exists(tokenId));\n        return _tokenApprovals[tokenId];\n    }\n\n    /**\n     * @dev Sets or unsets the approval of a given operator\n     * An operator is allowed to transfer all tokens of the sender on their behalf\n     * @param to operator address to set the approval\n     * @param approved representing the status of the approval to be set\n     */\n    function setApprovalForAll(address to, bool approved) public {\n        require(to != msg.sender);\n        _operatorApprovals[msg.sender][to] = approved;\n        emit ApprovalForAll(msg.sender, to, approved);\n    }\n\n    /**\n     * @dev Tells whether an operator is approved by a given owner\n     * @param owner owner address which you want to query the approval of\n     * @param operator operator address which you want to query the approval of\n     * @return bool whether the given operator is approved by the given owner\n     */\n    function isApprovedForAll(address owner, address operator) public view returns (bool) {\n        return _operatorApprovals[owner][operator];\n    }\n\n    /**\n     * @dev Transfers the ownership of a given token ID to another address\n     * Usage of this method is discouraged, use `safeTransferFrom` whenever possible\n     * Requires the msg.sender to be the owner, approved, or operator\n     * @param from current owner of the token\n     * @param to address to receive the ownership of the given token ID\n     * @param tokenId uint256 ID of the token to be transferred\n     */\n    function transferFrom(address from, address to, uint256 tokenId) public {\n        require(_isApprovedOrOwner(msg.sender, tokenId));\n\n        _transferFrom(from, to, tokenId);\n    }\n\n    /**\n     * @dev Safely transfers the ownership of a given token ID to another address\n     * If the target address is a contract, it must implement `onERC721Received`,\n     * which is called upon a safe transfer, and return the magic value\n     * `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`; otherwise,\n     * the transfer is reverted.\n     * Requires the msg.sender to be the owner, approved, or operator\n     * @param from current owner of the token\n     * @param to address to receive the ownership of the given token ID\n     * @param tokenId uint256 ID of the token to be transferred\n     */\n    function safeTransferFrom(address from, address to, uint256 tokenId) public {\n        safeTransferFrom(from, to, tokenId, \"\");\n    }\n\n    /**\n     * @dev Safely transfers the ownership of a given token ID to another address\n     * If the target address is a contract, it must implement `onERC721Received`,\n     * which is called upon a safe transfer, and return the magic value\n     * `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`; otherwise,\n     * the transfer is reverted.\n     * Requires the msg.sender to be the owner, approved, or operator\n     * @param from current owner of the token\n     * @param to address to receive the ownership of the given token ID\n     * @param tokenId uint256 ID of the token to be transferred\n     * @param _data bytes data to send along with a safe transfer check\n     */\n    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory _data) public {\n        transferFrom(from, to, tokenId);\n        require(_checkOnERC721Received(from, to, tokenId, _data));\n    }\n\n    /**\n     * @dev Returns whether the specified token exists\n     * @param tokenId uint256 ID of the token to query the existence of\n     * @return bool whether the token exists\n     */\n    function _exists(uint256 tokenId) internal view returns (bool) {\n        address owner = _tokenOwner[tokenId];\n        return owner != address(0);\n    }\n\n    /**\n     * @dev Returns whether the given spender can transfer a given token ID\n     * @param spender address of the spender to query\n     * @param tokenId uint256 ID of the token to be transferred\n     * @return bool whether the msg.sender is approved for the given token ID,\n     * is an operator of the owner, or is the owner of the token\n     */\n    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view returns (bool) {\n        // address owner = ownerOf(tokenId);\n        // return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));\n\n        // MODIFIED:\n        // Only the steward is allowed to transfer\n        return (spender == steward); \n    }\n\n    /**\n     * @dev Internal function to mint a new token\n     * Reverts if the given token ID already exists\n     * @param to The address that will own the minted token\n     * @param tokenId uint256 ID of the token to be minted\n     */\n    function _mint(address to, uint256 tokenId) internal {\n        require(to != address(0));\n        require(!_exists(tokenId));\n\n        _tokenOwner[tokenId] = to;\n        _ownedTokensCount[to].increment();\n\n        emit Transfer(address(0), to, tokenId);\n    }\n\n    /**\n     * @dev Internal function to burn a specific token\n     * Reverts if the token does not exist\n     * Deprecated, use _burn(uint256) instead.\n     * @param owner owner of the token to burn\n     * @param tokenId uint256 ID of the token being burned\n     */\n    function _burn(address owner, uint256 tokenId) internal {\n        require(ownerOf(tokenId) == owner);\n\n        _clearApproval(tokenId);\n\n        _ownedTokensCount[owner].decrement();\n        _tokenOwner[tokenId] = address(0);\n\n        emit Transfer(owner, address(0), tokenId);\n    }\n\n    /**\n     * @dev Internal function to burn a specific token\n     * Reverts if the token does not exist\n     * @param tokenId uint256 ID of the token being burned\n     */\n    function _burn(uint256 tokenId) internal {\n        _burn(ownerOf(tokenId), tokenId);\n    }\n\n    /**\n     * @dev Internal function to transfer ownership of a given token ID to another address.\n     * As opposed to transferFrom, this imposes no restrictions on msg.sender.\n     * @param from current owner of the token\n     * @param to address to receive the ownership of the given token ID\n     * @param tokenId uint256 ID of the token to be transferred\n     */\n    function _transferFrom(address from, address to, uint256 tokenId) internal {\n        require(ownerOf(tokenId) == from);\n        require(to != address(0));\n\n        _clearApproval(tokenId);\n\n        _ownedTokensCount[from].decrement();\n        _ownedTokensCount[to].increment();\n\n        _tokenOwner[tokenId] = to;\n\n        emit Transfer(from, to, tokenId);\n    }\n\n    /**\n     * @dev Internal function to invoke `onERC721Received` on a target address\n     * The call is not executed if the target address is not a contract\n     * @param from address representing the previous owner of the given token ID\n     * @param to target address that will receive the tokens\n     * @param tokenId uint256 ID of the token to be transferred\n     * @param _data bytes optional data to send along with the call\n     * @return bool whether the call correctly returned the expected magic value\n     */\n    function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory _data)\n        internal returns (bool)\n    {\n        if (!to.isContract()) {\n            return true;\n        }\n\n        bytes4 retval = IERC721Receiver(to).onERC721Received(msg.sender, from, tokenId, _data);\n        return (retval == _ERC721_RECEIVED);\n    }\n\n    /**\n     * @dev Private function to clear current approval of a given token ID\n     * @param tokenId uint256 ID of the token to be transferred\n     */\n    function _clearApproval(uint256 tokenId) private {\n        if (_tokenApprovals[tokenId] != address(0)) {\n            _tokenApprovals[tokenId] = address(0);\n        }\n    }\n}",
-  "sourcePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC721.sol",
+  "sourcePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC721.sol",
   "ast": {
-    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC721.sol",
+    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC721.sol",
     "exportedSymbols": {
       "ERC721": [
         1212
@@ -331,7 +331,7 @@
         "src": "0:23:2"
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./interfaces/IERC721.sol",
         "id": 682,
         "nodeType": "ImportDirective",
@@ -342,7 +342,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Receiver.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Receiver.sol",
         "file": "./interfaces/IERC721Receiver.sol",
         "id": 683,
         "nodeType": "ImportDirective",
@@ -353,7 +353,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/utils/SafeMath.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/utils/SafeMath.sol",
         "file": "./utils/SafeMath.sol",
         "id": 684,
         "nodeType": "ImportDirective",
@@ -364,7 +364,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/utils/Address.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/utils/Address.sol",
         "file": "./utils/Address.sol",
         "id": 685,
         "nodeType": "ImportDirective",
@@ -375,7 +375,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/utils/Counters.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/utils/Counters.sol",
         "file": "./utils/Counters.sol",
         "id": 686,
         "nodeType": "ImportDirective",
@@ -386,7 +386,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC165.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC165.sol",
         "file": "./ERC165.sol",
         "id": 687,
         "nodeType": "ImportDirective",
@@ -7396,7 +7396,7 @@
     "src": "0:11577:2"
   },
   "legacyAST": {
-    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC721.sol",
+    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC721.sol",
     "exportedSymbols": {
       "ERC721": [
         1212
@@ -7417,7 +7417,7 @@
         "src": "0:23:2"
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./interfaces/IERC721.sol",
         "id": 682,
         "nodeType": "ImportDirective",
@@ -7428,7 +7428,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Receiver.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Receiver.sol",
         "file": "./interfaces/IERC721Receiver.sol",
         "id": 683,
         "nodeType": "ImportDirective",
@@ -7439,7 +7439,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/utils/SafeMath.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/utils/SafeMath.sol",
         "file": "./utils/SafeMath.sol",
         "id": 684,
         "nodeType": "ImportDirective",
@@ -7450,7 +7450,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/utils/Address.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/utils/Address.sol",
         "file": "./utils/Address.sol",
         "id": 685,
         "nodeType": "ImportDirective",
@@ -7461,7 +7461,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/utils/Counters.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/utils/Counters.sol",
         "file": "./utils/Counters.sol",
         "id": 686,
         "nodeType": "ImportDirective",
@@ -7472,7 +7472,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC165.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC165.sol",
         "file": "./ERC165.sol",
         "id": 687,
         "nodeType": "ImportDirective",
@@ -14487,7 +14487,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-20T17:16:59.471Z",
+  "updatedAt": "2019-04-20T18:47:33.048Z",
   "devdoc": {
     "details": "see https://eips.ethereum.org/EIPS/eip-721",
     "methods": {
