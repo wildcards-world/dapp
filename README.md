@@ -6,7 +6,7 @@ An endangered species project that showcases a digital animal that is always on 
 [Şen](https://github.com/shenferhat) & 
 [Denham](https://github.com/DenhamPreen) & 
 [Jonjon](http://github.com/moose-code) & 
-[Sean](https://github.com/stentonian) & 
+[Sean](https://github.com/stentonian) 
 
 
 ### Tech
