@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/app/src/contracts/
+
 
 # testing
 /coverage

@@ -9,7 +9,7 @@ class AnimalImage extends Component {
 
     render() {
         const imageStyle = {
-            height: '80vh',
+            height: '70vh',
             width: '100%',
             objectFit: 'cover'
         }

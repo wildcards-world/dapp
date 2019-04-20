@@ -2,10 +2,10 @@ import React, { Component, Fragment } from "react";
 import { Card, Button, Modal, TextButton, Box, Flex, OutlineButton, Text, Heading, Icon } from 'rimble-ui'
 import PropTypes from 'prop-types'
 import AnimalImage from './AnimalImage'
-import Rhino1 from '../../img/rhino1.jpg'
-import Rhino2 from '../../img/rhino2.jpg'
+import Rhino1 from '../../img/rhino4.jpg'
+import Rhino2 from '../../img/rhino1.jpg'
 import Rhino3 from '../../img/rhino3.jpg'
-import Rhino4 from '../../img/rhino4.jpg'
+import Rhino4 from '../../img/rhino2.jpg'
 import Rhino5 from '../../img/rhino5.jpg'
 import Rhino6 from '../../img/rhino6.jpg'
 import Rhino7 from '../../img/rhino7.jpg'
@@ -94,7 +94,7 @@ class AnimalCard extends Component {
                         <Heading.h3 style={nameStyle} bg={'rgba(0,0,0,0.5)'} p={3}>
                             {this.props.Rhino.name}
                         </Heading.h3>         
-                        <Heading.h1 style={priceStyle} color={'#ED4645'} p={3}>
+                        <Heading.h1 style={priceStyle} color={'#fff'} p={3}>
                             Eth {this.props.Rhino.price}
                         </Heading.h1>         
 

@@ -3,8 +3,11 @@ import { render } from 'react-dom'
 import PropTypes from 'prop-types'
 import FooterBarNav from './FooterBarNav'
 import AnimalCard from './AnimalCard'
+import ClosingInformationCard from './ClosingInformationCard'
+import OpeningInformationCard from './OpeningInformationCard'
 
-import Swiper from 'react-id-swiper';
+// import Swiper from 'react-id-swiper';
+import Swiper from 'react-id-swiper/lib/ReactIdSwiper.full';
 import './../../App.css'
 
 class AnimalCardContainer extends Component {
@@ -224,10 +227,16 @@ class AnimalCardContainer extends Component {
 
         return (
 
-            // <div style={containerViewPort}>
-            <div>
+            <div style={containerViewPort}>
+            {/* div> */}
                 <Swiper {...params}>
-                    {this.renderCards()}                  
+                    <div key={'finalkey'}>
+                        <OpeningInformationCard/>  
+                    </div>           
+                    {this.renderCards()}     
+                    <div key={'finalkey'}>
+                        <ClosingInformationCard/>  
+                    </div>           
                 </Swiper>
                 <FooterBarNav />
             </div>
