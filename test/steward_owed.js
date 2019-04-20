@@ -1,13 +1,15 @@
+/*
 const { BN, shouldFail, ether, expectEvent, balance, time } = require('openzeppelin-test-helpers');
 
+
 const Artwork = artifacts.require('./ERC721Full.sol');
-const ArtSteward = artifacts.require('./ArtSteward.sol');
+const ArtSteward = artifacts.require('./Rhino.sol');
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
 
 // todo: test over/underflows
 
-contract('ArtSteward', (accounts) => {
+contract('Rhino owed', (accounts) => {
 
   let artwork;
   let steward;
@@ -476,4 +478,4 @@ contract('ArtSteward', (accounts) => {
     assert.equal(timeLastCollected.toString(), previousBlockTime.toString());
     assert.equal(owner, accounts[2]);
   });
-});
+}); */

@@ -1,11 +1,11 @@
 const { BN, shouldFail, ether, expectEvent, balance, time } = require('openzeppelin-test-helpers');
 
 const Artwork = artifacts.require('./ERC721Full.sol');
-const ArtSteward = artifacts.require('./ArtSteward.sol');
+const ArtSteward = artifacts.require('./Rhino.sol');
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
 
-contract('ArtSteward', (accounts) => {
+contract('Rhino', (accounts) => {
 
   let artwork;
   let steward;
