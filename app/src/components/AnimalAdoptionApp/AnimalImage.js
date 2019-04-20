@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-//import AnimalImageFile from '../../img/rhino13.jpg'
 
 class AnimalImage extends Component {
     
-
     constructor(props){
         super(props);
     }
 
     render() {
         const imageStyle = {
-            height: '100%',
-            width: '100%'
+            height: '80vh',
+            width: '100%',
+            objectFit: 'cover'
         }
 
         return (
