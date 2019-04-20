@@ -1,3 +1,5 @@
+Note: This repository was originally cloned from [thisartworkisalwaysonsale](https://github.com/simondlr/thisartworkisalwaysonsale)
+
 ## This Artwork Is Always On Sale (TAIAOS)
 
 ![TAIAOS](https://raw.githubusercontent.com/simondlr/thisartworkisalwaysonsale/master/app/src/components/TAIAOS4.png)
