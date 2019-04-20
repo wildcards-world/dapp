@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Card, Button, Modal, TextButton, Box, Flex, OutlineButton, Text, Heading } from 'rimble-ui'
+import { Card, Button, Modal, TextButton, Box, Flex, OutlineButton, Text, Heading, Icon } from 'rimble-ui'
 import PropTypes from 'prop-types'
 import AnimalImage from './AnimalImage'
 import Rhino1 from '../../img/rhino1.jpg'
@@ -15,6 +15,7 @@ import Rhino10 from '../../img/rhino10.jpg'
 import { drizzleConnect } from "drizzle-react";
 import BuyForm from "./../BuyForm";
 import ContractData from "./../ContractData";
+import { isAbsolute } from "path";
 
 class AnimalCard extends Component {
     constructor(props) {
@@ -54,15 +55,34 @@ class AnimalCard extends Component {
         var Rhino = this.props.Rhino;
 
         const containerViewPort = {
-            backgroundImage: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
+            backgroundImage: 'linear-gradient(to top, #dfe9f3 0%, white 100%)',
+            // backgroundImage: 'linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)',
+            // background: ;
             width: '100vw',
             height: '100vh'
         }
         const animalCardStyle = {
-            height: '80vh',
+            boxShadow: '0px 10px 20px rgba(0,0,0,0.6)',
+            height: '70vh',
             width: '80vw',
             backgroundColor: "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
-            margin: 'auto',
+            position: 'absolute',
+            top: '5vh',
+            left: '10vw'
+        }
+        const nameStyle = {
+            color: 'White'
+            , position: 'absolute'
+            , top: 5
+            , left: 15
+            , borderRadius: '4px'
+        }
+        const priceStyle = {
+            position: 'absolute'
+            , fontWeight: 'bold'
+            , bottom: 5
+            , right: 15
+            , borderRadius: '4px'
         }
 
         return (
@@ -70,11 +90,19 @@ class AnimalCard extends Component {
                 <Card style={animalCardStyle} mx={'auto'} p={0} mt={2}>
                     <AnimalImage
                         img={this.state.rhinoImages[Rhino.id]}
-                    />
-                    Name: {this.props.Rhino.name}
-                    <Button onClick={this.openModal} fullWidth>
-                        Adopt Rhino
-                    </Button>
+                    />                    
+                        <Heading.h3 style={nameStyle} bg={'rgba(0,0,0,0.5)'} p={3}>
+                            {this.props.Rhino.name}
+                        </Heading.h3>         
+                        <Heading.h1 style={priceStyle} color={'#ED4645'} p={3}>
+                            Eth {this.props.Rhino.price}
+                        </Heading.h1>         
+
+                    <center>
+                        <Button style={{marginTop: '3vh'}} onClick={this.openModal} icon="AddBox" mx={'auto'}  iconpos="right" bg='#444'>
+                            Adopt Rhino
+                        </Button>
+                    </center>
                 </Card>
                 <Modal isOpen={this.state.isOpen} >
                     <Card p={0} style={{ width: '76vw' }} style={{ transform: 'translate(' + Rhino.id * 100 + 'vw,0)' }}>
@@ -98,13 +126,13 @@ class AnimalCard extends Component {
                                 {window.ethereum !== undefined ? (
                                     <Fragment>
                                         <p>You will pay <ContractData contract="ArtSteward" method="price" toEth /> ETH.<br /> Add your own sale price and amount you want to deposit for patronage: </p>
-                                        <BuyForm contract="Rhino" method="buy" labels={["Your Initial Sale Price"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
+                                        <BuyForm contract="ArtSteward"  method="buy" labels={["Your Initial Sale Price"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
                                     </Fragment>
                                 ) : (
                                         <Fragment>
                                             [In order to buy the artwork and become a patron you need to have a web3/Ethereum-enabled browser. Please download
-            the <a href="https://metamask.io">MetaMask Chrome extension</a> or open in an Ethereum mobile browser.]
-          </Fragment>
+                                        the <a href="https://metamask.io">MetaMask Chrome extension</a> or open in an Ethereum mobile browser.]
+                                    </Fragment>
                                     )}
                             </Fragment>
                         </Box>

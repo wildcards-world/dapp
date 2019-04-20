@@ -196,7 +196,7 @@ class AnimalCardContainer extends Component {
         }
         return this.state.cards.map((specificCard, index) => {
             return (
-                <div>
+                <div key={'mykey' + index}>
                     <AnimalCard Rhino={specificCard}/>
                 </div>
             );
@@ -213,7 +213,6 @@ class AnimalCardContainer extends Component {
             }
         };
 
-        const altBackgroundStore = 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)';
         const containerViewPort = {
             backgroundImage: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
             width: '100%',
