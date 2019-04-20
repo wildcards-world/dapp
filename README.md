@@ -1,5 +1,3 @@
-Note: This repository was originally cloned from [thisartworkisalwaysonsale](https://github.com/simondlr/thisartworkisalwaysonsale)
-
 ##  ETHCapetown first hackaton of Africa: Team "Nargile Bebe"'s project for aiding wildlife and endangered species through Blockchain
 
 Utilizing non-fungible tokens to aid wildlife conservation.
