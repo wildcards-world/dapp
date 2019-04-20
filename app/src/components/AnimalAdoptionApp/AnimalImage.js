@@ -17,14 +17,15 @@ class AnimalImage extends Component {
 
         return (
             <div>            
-              <img src={AnimalImageFile} className='' alt='Endagered Animal'  style={imageStyle}/>
+              <img src={this.props.img} className='' alt='Endagered Animal'  style={imageStyle}/>
+              {/* <img src='/img/Rhino.png' className='' alt='Endagered Animal'  style={imageStyle}/> */}
             </div>
         );
     }
 }
 
 AnimalImage.propTypes = {
-    // winnings: PropTypes.number.isRequired,
+    img: PropTypes.string.isRequired,
 };
 
 export default AnimalImage;
