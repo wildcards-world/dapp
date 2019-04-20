@@ -288,9 +288,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\nimport \"./IERC165.sol\";\n\n/**\n * @title ERC721 Non-Fungible Token Standard basic interface\n * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\n */\ncontract IERC721 is IERC165 {\n    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);\n    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);\n    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);\n\n    function setup() public;\n\n    function balanceOf(address owner) public view returns (uint256 balance);\n    function ownerOf(uint256 tokenId) public view returns (address owner);\n\n    function approve(address to, uint256 tokenId) public;\n    function getApproved(uint256 tokenId) public view returns (address operator);\n\n    function setApprovalForAll(address operator, bool _approved) public;\n    function isApprovedForAll(address owner, address operator) public view returns (bool);\n\n    function transferFrom(address from, address to, uint256 tokenId) public;\n    function safeTransferFrom(address from, address to, uint256 tokenId) public;\n\n    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public;\n}",
-  "sourcePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+  "sourcePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
   "ast": {
-    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
     "exportedSymbols": {
       "IERC721": [
         2525
@@ -311,7 +311,7 @@
         "src": "0:23:9"
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC165.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC165.sol",
         "file": "./IERC165.sol",
         "id": 2422,
         "nodeType": "ImportDirective",
@@ -1552,7 +1552,7 @@
     "src": "0:1243:9"
   },
   "legacyAST": {
-    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
     "exportedSymbols": {
       "IERC721": [
         2525
@@ -1573,7 +1573,7 @@
         "src": "0:23:9"
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC165.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC165.sol",
         "file": "./IERC165.sol",
         "id": 2422,
         "nodeType": "ImportDirective",
@@ -2819,7 +2819,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-20T17:16:59.533Z",
+  "updatedAt": "2019-04-20T18:47:33.114Z",
   "devdoc": {
     "details": "see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
     "methods": {
