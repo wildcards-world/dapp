@@ -125,8 +125,8 @@ class AnimalCard extends Component {
                             <Fragment>
                                 {window.ethereum !== undefined ? (
                                     <Fragment>
-                                        <p>You will pay <ContractData contract="ArtSteward" method="price" toEth /> ETH.<br /> Add your own sale price and amount you want to deposit for patronage: </p>
-                                        <BuyForm contract="ArtSteward"  method="buy" labels={["Your Initial Sale Price"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
+                                        <p>You will pay <ContractData contract="Rhino" method="price" toEth /> ETH.<br /> Add your own sale price and amount you want to deposit for patronage: </p>
+                                        <BuyForm contract="Rhino"  method="buy" labels={["Your Initial Sale Price"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
                                     </Fragment>
                                 ) : (
                                         <Fragment>

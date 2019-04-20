@@ -344,9 +344,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\nimport \"./IERC721.sol\";\n\n/**\n * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension\n * @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\n */\ncontract IERC721Enumerable is IERC721 {\n    function totalSupply() public view returns (uint256);\n    function tokenOfOwnerByIndex(address owner, uint256 index) public view returns (uint256 tokenId);\n\n    function tokenByIndex(uint256 index) public view returns (uint256);\n}",
-  "sourcePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
+  "sourcePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
   "ast": {
-    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
+    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
     "exportedSymbols": {
       "IERC721Enumerable": [
         2552
@@ -367,7 +367,7 @@
         "src": "0:23:10"
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./IERC721.sol",
         "id": 2528,
         "nodeType": "ImportDirective",
@@ -665,7 +665,7 @@
     "src": "0:483:10"
   },
   "legacyAST": {
-    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
+    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
     "exportedSymbols": {
       "IERC721Enumerable": [
         2552
@@ -686,7 +686,7 @@
         "src": "0:23:10"
       },
       {
-        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
+        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./IERC721.sol",
         "id": 2528,
         "nodeType": "ImportDirective",
@@ -989,7 +989,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-20T21:44:06.219Z",
+  "updatedAt": "2019-04-20T23:27:29.921Z",
   "devdoc": {
     "details": "See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
     "methods": {
