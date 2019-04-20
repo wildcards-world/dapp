@@ -28,13 +28,13 @@ class FooterBarNav extends Component {
         return (
             <div style={footerStyle}>
                 <Flex>
-                    <Box p={3} width={1 / 2} color="white">
+                    <Box p={3} width={1 / 2} color="white" onClick={this.props.clickHideCollection}>
                         <center>
                         {/* <img src={Binos} className='' alt='intothewild'  style={imageStyle}/> */}
                             <Icon name="Home" />
                         </center>
                     </Box>
-                    <Box p={3} width={1 / 2} color="white">
+                    <Box p={3} width={1 / 2} color="white" onClick={this.props.clickShowCollection}>
                         <center>
                             <Icon name="LibraryBooks" />
                         </center>
@@ -46,7 +46,9 @@ class FooterBarNav extends Component {
 }
 
 FooterBarNav.propTypes = {
-    // winnings: PropTypes.number.isRequired,
+    clickShowCollection: PropTypes.func.isRequired,
+    clickHideCollection: PropTypes.func.isRequired,
+    
 };
 
 export default FooterBarNav;
