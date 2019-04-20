@@ -3,10 +3,10 @@
 An endangered species project that showcases a digital animal that is always on sale through Harberger Taxed property rights. The owner of the animal always has to set a sale price, upon which it can be bought by anyone at any time. A continuous tax is levied as patronage towards the charity calculated on the owner's price they set. If the deposit does not cover the patronage owed, the smart contract steward can foreclose the animal and take back ownership.
 
 ### Team Members
-[Şen](https://github.com/shenferhat)
-[Denham](https://github.com/DenhamPreen)
-[Jonjon](http://github.com/moose-code)
-[Sean](https://github.com/stentonian)
+[Şen](https://github.com/shenferhat) & 
+[Denham](https://github.com/DenhamPreen) & 
+[Jonjon](http://github.com/moose-code) & 
+[Sean](https://github.com/stentonian) & 
 
 
 ### Tech
