@@ -38,7 +38,7 @@ class FooterBarNav extends Component {
 }
 
 FooterBarNav.propTypes = {
-    winnings: PropTypes.number.isRequired,
+    // winnings: PropTypes.number.isRequired,
 };
 
 export default FooterBarNav;

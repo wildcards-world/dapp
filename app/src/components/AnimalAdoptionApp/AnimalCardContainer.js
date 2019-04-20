@@ -14,7 +14,7 @@ class AnimalCardContainer extends Component {
             showStore: true,
             cards: [
                 {   
-                    id: 1, 
+                    id: 0, 
                     name: "Vitalik", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -31,7 +31,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 2, 
+                    id: 1, 
                     name: "Andrew", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -48,7 +48,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 3, 
+                    id: 2, 
                     name: "Simon", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -65,7 +65,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 4, 
+                    id: 3, 
                     name: "Griff", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -82,7 +82,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 5, 
+                    id: 4, 
                     name: "Anastasia", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -99,7 +99,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 6, 
+                    id: 5, 
                     name: "Justin", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -116,7 +116,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 7, 
+                    id: 6, 
                     name: "Michael", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -133,7 +133,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 8, 
+                    id: 7, 
                     name: "Gustav", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -150,7 +150,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 9, 
+                    id: 8, 
                     name: "George", // let user set this on first buy
                     age: 12,
                     lineage: "african",
@@ -167,7 +167,7 @@ class AnimalCardContainer extends Component {
                     revenue_generated: 9
                 },
                 {   
-                    id: 10, 
+                    id: 9, 
                     name: "Sean", // let user set this on first buy
                     age: 12,
                     lineage: "african",
