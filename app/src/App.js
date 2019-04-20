@@ -25,9 +25,9 @@ class Metadata extends Component {
   constructor() {
     super();
     this.data = {
-      name: "This Artwork Is Always On Sale",
-      description: "A Digital Artwork That Is Always On Sale",
-      image: "https://thisartworkisalwaysonsale.com/static/media/TAIAOS4.3cd60b66.png"
+      name: "Wild Cards",
+      description: "The token of endangerd animals",
+      image: "https://static.thenounproject.com/png/6866-200.png"
     };
   }
   render() {
