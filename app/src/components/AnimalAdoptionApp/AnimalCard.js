@@ -149,7 +149,7 @@ class AnimalCard extends Component {
                         {this.props.Rhino.name}
                     </Heading.h3>
                     <Heading.h1 style={priceStyle} color={'#fff'} p={3}>
-                        Eth {this.props.Rhino.price}
+                        Eth <ContractData contract={rhinocontract} method="price" toEth />
                     </Heading.h1>
                     
                     <center>
