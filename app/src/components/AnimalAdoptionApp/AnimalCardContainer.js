@@ -245,7 +245,7 @@ class AnimalCardContainer extends Component {
 
                 : 
                 <Swiper {...params}>
-                    <div key={'finalkey'}>
+                    <div key={'openingkey'}>
                         <OpeningInformationCard/>  
                     </div>           
                     {this.renderCards()}     
