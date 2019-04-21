@@ -108,7 +108,7 @@ class AnimalCard extends Component {
         return (
             <div style={containerViewPort}>
                 <Card style={animalCardStyle} mx={'auto'} p={0} mt={2} >
-                <div style={{ display: this.state.display, zIndex: 1000, position: 'absolute', top: '0', 'backgroundColor': 'rgba(250,250,250,0.7)', width: '100%', height: '100%' }}>
+                <div style={{ display: this.state.display, zIndex: 1000, position: 'absolute', top: '0', 'backgroundColor': 'rgba(250,250,250,0.7)', width: '100%', height: '100%' }} onClick={this.morecloseModalMore}   >
                         <TextButton
                             icononly
                             icon={'Close'}
