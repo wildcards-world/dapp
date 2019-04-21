@@ -15,11 +15,11 @@ class BaseComponent extends Component {
     return (
       <div className="App">
         <AnimalAdoptionEntry/>
-        <IntroSection />
+        {/* <IntroSection />
         <BuyingArtSection />
         <ActionSection />
         <AboutArtSection />
-        <ArtistSection />
+        <ArtistSection /> */}
       </div>
     );
   }

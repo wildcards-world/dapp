@@ -5,6 +5,7 @@ import FooterBarNav from './FooterBarNav'
 import AnimalCard from './AnimalCard'
 import ClosingInformationCard from './ClosingInformationCard'
 import OpeningInformationCard from './OpeningInformationCard'
+import CollectionPage from './CollectionPage/CollectionPage'
 
 // import Swiper from 'react-id-swiper';
 import Swiper from 'react-id-swiper/lib/ReactIdSwiper.full';
@@ -239,8 +240,8 @@ class AnimalCardContainer extends Component {
             {
                 this.state.showCollection ? 
             
-                // <CollectionPage/>
-                <div>CollectionPage</div>
+                <CollectionPage/>
+                // <div>CollectionPage</div>
 
                 : 
                 <Swiper {...params}>
