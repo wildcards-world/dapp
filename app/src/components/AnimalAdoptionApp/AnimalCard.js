@@ -85,6 +85,7 @@ class AnimalCard extends Component {
             , right: 15
             , borderRadius: '4px'
         }
+        var rhinocontract =  "Rhino" + (Rhino.id + 1)
 
         return (
             <div style={containerViewPort}>
@@ -125,8 +126,12 @@ class AnimalCard extends Component {
                             </Text>
                             <Fragment>
                                     <Fragment>
+
                                         <p>To have {this.props.Rhino.name} part of your safari collection you will need to pay <ContractData contract="ArtSteward" method="price" toEth /> ETH.<br /> Set your own sale price and some more to cover your Rhinos expenses: </p>
+
                                         <AdoptAnimalForm contract="ArtSteward"  method="buy" labels={["Next Sale Price"]} valueLabel="Ownership Expenses Budget" sendArgs={{}} />
+
+
                                     </Fragment>
                             </Fragment>
                         </Box>
