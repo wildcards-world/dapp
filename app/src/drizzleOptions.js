@@ -1,6 +1,7 @@
 import ArtSteward from "./contracts/ArtSteward.json";
 import ERC721Full from "./contracts/ERC721Full.json";
 import Rhino from "./contracts/Rhino.json";
+import Rhino4 from "./contracts/Rhino4.json";
 
 
 // todo: read env var for fallback
@@ -16,6 +17,7 @@ const options = {
   },
   contracts: [
     Rhino,
+    Rhino4,
     ArtSteward, 
     ERC721Full
   ],

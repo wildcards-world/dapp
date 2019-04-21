@@ -230,7 +230,7 @@ class AnimalCardContainer extends Component {
             <div style={containerViewPort}>
             {/* div> */}
                 <Swiper {...params}>
-                    <div key={'finalkey'}>
+                    <div key={'openingkey'}>
                         <OpeningInformationCard/>  
                     </div>           
                     {this.renderCards()}     
