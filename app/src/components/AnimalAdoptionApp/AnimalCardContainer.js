@@ -15,6 +15,7 @@ class AnimalCardContainer extends Component {
         super(props);
         this.state = {
             showStore: true,
+            showCollection : false,
             cards: [
                 {   
                     id: 0, 
@@ -206,6 +207,13 @@ class AnimalCardContainer extends Component {
         });
     }
 
+    clickShowCollection = () => {
+        this.setState({ showCollection : true });
+    }
+    clickHideCollection = () => {
+        this.setState({ showCollection : false });
+    }
+
     render() {
 
         const params = {
@@ -228,7 +236,13 @@ class AnimalCardContainer extends Component {
         return (
 
             <div style={containerViewPort}>
-            {/* div> */}
+            {
+                this.state.showCollection ? 
+            
+                // <CollectionPage/>
+                <div>CollectionPage</div>
+
+                : 
                 <Swiper {...params}>
                     <div key={'openingkey'}>
                         <OpeningInformationCard/>  
@@ -238,7 +252,11 @@ class AnimalCardContainer extends Component {
                         <ClosingInformationCard/>  
                     </div>           
                 </Swiper>
-                <FooterBarNav />
+            }
+                <FooterBarNav 
+                    clickShowCollection = {this.clickShowCollection}
+                    clickHideCollection = {this.clickHideCollection}
+                />
             </div>
         );
     }

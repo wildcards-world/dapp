@@ -106,7 +106,7 @@ class AnimalCard extends Component {
                     </center>
                 </Card>
                 <Modal isOpen={this.state.isOpen} >
-                    <Card p={0} style={{ width: '76vw' }} style={{ transform: 'translate(' + Rhino.id * 100 + 'vw,0)' }}>
+                    <Card p={0} style={{ width: '76vw' }} style={{ transform: 'translate(' + (Rhino.id + 1) * 100 + 'vw,0)' }}>
                         <TextButton
                             icononly
                             icon={'Close'}
