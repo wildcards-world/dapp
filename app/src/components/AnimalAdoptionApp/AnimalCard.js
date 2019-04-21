@@ -14,6 +14,7 @@ import Rhino9 from '../../img/rhino9.jpg'
 import Rhino10 from '../../img/rhino10.jpg'
 import { drizzleConnect } from "drizzle-react";
 import BuyForm from "./../BuyForm";
+import AdoptAnimalForm from "./AdoptAnimalForm";
 import ContractData from "./../ContractData";
 import { isAbsolute } from "path";
 
@@ -120,27 +121,15 @@ class AnimalCard extends Component {
                         <Box p={4} mb={3}>
                             <Heading.h3>Confirm Adoption</Heading.h3>
                             <Text>
-                                Are you sure you want to Adopt?
-              </Text>
+                                Please Confirm that you would like to adopt {this.props.Rhino.name}
+                            </Text>
                             <Fragment>
-                                {window.ethereum !== undefined ? (
                                     <Fragment>
-                                        <p>You will pay <ContractData contract="ArtSteward" method="price" toEth /> ETH.<br /> Add your own sale price and amount you want to deposit for patronage: </p>
-                                        <BuyForm contract="ArtSteward"  method="buy" labels={["Your Initial Sale Price"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
+                                        <p>To have {this.props.Rhino.name} part of your safari collection you will need to pay <ContractData contract="ArtSteward" method="price" toEth /> ETH.<br /> Set your own sale price and some more to cover your Rhinos expenses: </p>
+                                        <AdoptAnimalForm contract="ArtSteward"  method="buy" labels={["The cost for someone to buy from you"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
                                     </Fragment>
-                                ) : (
-                                        <Fragment>
-                                            [In order to buy the artwork and become a patron you need to have a web3/Ethereum-enabled browser. Please download
-                                        the <a href="https://metamask.io">MetaMask Chrome extension</a> or open in an Ethereum mobile browser.]
-                                    </Fragment>
-                                    )}
                             </Fragment>
                         </Box>
-
-                        <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
-                            <OutlineButton>Cancel</OutlineButton>
-                            <Button ml={3}>Confirm</Button>
-                        </Flex>
                     </Card>
                 </Modal>
             </div>
