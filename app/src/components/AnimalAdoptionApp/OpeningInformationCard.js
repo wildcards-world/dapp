@@ -8,6 +8,7 @@ import { drizzleConnect } from "drizzle-react";
 import BuyForm from "./../BuyForm";
 import ContractData from "./../ContractData";
 import LandroverSafari from '../../img/extras/intothewild.png'
+import LogoImg from '../../img/logo/rhino-final.png'
 
 class OpeningInformationCard extends Component {
     constructor(props) {
@@ -39,6 +40,12 @@ class OpeningInformationCard extends Component {
         const extraTextStyle = {
             color: 'White'
             , borderRadius: '4px'
+            , textAlign: 'center'
+        }
+        const swipeTextStyle = {
+            color: '#eee'
+            , borderRadius: '4px'
+            , textAlign: 'center'
         }
         const HeadingStyle = {
             fontWeight: 'bold'
@@ -52,21 +59,35 @@ class OpeningInformationCard extends Component {
             ,position : 'absolute'
             , bottom: '2vh'
         }
+        const logoStyle = {
+            height: '100%',
+            width: '32vw',
+            objectFit: 'cover'
+        }
 
         return (
             <div style={containerViewPort}>
                 <Card style={noticeCardStyle} mx={'auto'} p={0} mt={2}>
-                        <Heading.h1 style={HeadingStyle} color={'#fff'} p={3}>
+                        <Heading.h1 style={HeadingStyle} color={'#fff'} p={2}>
                             <center>
-                                Wild Cards
+                                WILD CARDS
                             </center>
                         </Heading.h1>         
-                        <Heading.h3 style={extraTextStyle} bg={'rgba(0,0,0,0.5)'} p={3}>
+                        <center>
+                            <img src={LogoImg} className='' alt='intothewild'  style={logoStyle}/>
+                        </center>
+                        <Heading.h3 style={extraTextStyle}  p={1.4}>
+                            Wild Cards is an always for sale tokenisation of endangered animals
+                        </Heading.h3>   
+                        <Heading.h4 style={swipeTextStyle} p={0}>
+                            Swipe right to view species  
+                        </Heading.h4>   
+                        {/* <Heading.h3 style={extraTextStyle} bg={'rgba(0,0,0,0.5)'} p={3}>
                             There are no more Rhinos
                         </Heading.h3>         
                         <Heading.h4 p={3}>
                             Make a difference and donate to the Wild life fund
-                        </Heading.h4>
+                        </Heading.h4> */}
                         <img src={LandroverSafari} className='' alt='intothewild'  style={imageStyle}/>
                     {/* <center>
                         <Button style={{marginTop: '3vh'}} onClick={this.openModal} icon="AddBox" mx={'auto'}  iconpos="right" bg='#444'>

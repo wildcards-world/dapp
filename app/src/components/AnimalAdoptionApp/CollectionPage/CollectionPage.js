@@ -87,25 +87,25 @@ class CollectionPage extends Component {
                         <Box width={1 / 3} color="black" onClick={this.props.clickHideCollection}>
                             <img src={Rhino} className='' alt='intothewild' style={imageStyle} />
                         </Box>
-                        <Box p={1} width={2 / 3} color="black" onClick={this.props.clickHideCollection}>
+                        <Box px={1} width={2 / 3} color="black" onClick={this.props.clickHideCollection}>
                             <Heading.h3 px={1} >
                                 
                                     Vitalik
                                 
                             </Heading.h3 >
-                            <Text p={1} style={{ color: '#333' }}>
+                            <Text px={1} style={{ color: '#333' }}>
                                 0x04deF7535192CE302e87...
                             </Text>
                             <Flex >
                                 <Box width={1 / 2} color="black" onClick={this.props.clickHideCollection}>
-                                    <Heading.h3  px={1}>
+                                    <Heading.h3  px={0.5}>
                                         
                                             Eth 110
                                  
                                     </Heading.h3 >
                                 </Box>
                                 <Box width={1 / 2} color="black" onClick={this.props.clickHideCollection}>
-                                    <Heading.h3 px={1} >
+                                    <Heading.h3 px={0.5} >
                                         
                                             Male
                                  
@@ -123,7 +123,7 @@ class CollectionPage extends Component {
                         <Box width={1 / 3} color="black" onClick={this.props.clickHideCollection}>
                             <img src={Rhino2} className='' alt='intothewild' style={imageStyle} />
                         </Box>
-                        <Box p={1} width={2 / 3} color="black" onClick={this.props.clickHideCollection}>
+                        <Box px={1} width={2 / 3} color="black" onClick={this.props.clickHideCollection}>
                             <Heading.h3 px={1} >
                                 
                                     Andrew
