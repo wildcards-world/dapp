@@ -3,7 +3,7 @@ import "./interfaces/IERC721Full.sol";
 import "./utils/SafeMath.sol";
 
 /** @title This contract is trying to save Rhinos. */
-contract Rhino {
+contract Rhino7{
 
     /*
     This smart contract collects patronage from current owner through a Harberger tax model and
