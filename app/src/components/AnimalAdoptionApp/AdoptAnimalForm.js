@@ -3,7 +3,8 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import { Card, Button, Modal, TextButton, Box, Flex, OutlineButton, Text, Heading, Icon } from 'rimble-ui'
 
 /*
 Edited from drizzle react components, ContractFrom.
@@ -104,7 +105,9 @@ class BuyForm extends Component {
             : input.name;
           // check if input type is struct and if so loop out struct fields as well
           return (
-            <Input
+              <center>
+
+            <Input              
               key={input.name}
               type={inputType}
               name={input.name}
@@ -112,12 +115,15 @@ class BuyForm extends Component {
               placeholder={inputLabel}
               onChange={this.handleInputChange}
               startAdornment={<InputAdornment position="start">ETH</InputAdornment>} 
-            />
+              />
+              </center>
           );
         })}
         {valueLabel &&
           <Fragment>
           <br />
+          <center>
+
           <Input 
           key={valueLabel} 
           type='number' 
@@ -126,19 +132,25 @@ class BuyForm extends Component {
           placeholder={valueLabel} 
           onChange={this.handleInputChange} 
           startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
+          </center>
           <br />
           <br />
           </Fragment>
         }
+         <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
+                            <OutlineButton>Cancel</OutlineButton>
         <Button
+          ml ={3}
           variant="contained"
           key="submit"
           className="pure-button"
           type="button"
           onClick={this.handleSubmit}
+          fullWidth
         >
           Adopt Rhino
         </Button>
+        </Flex>
       </form>
     );
   }
