@@ -23,6 +23,8 @@ class AnimalCard extends Component {
         super(props);
         this.state = {
             isOpen: false
+            , isOpenMore: false
+            , display: 'none'
             , rhinoImages: [
                 Rhino1
                 , Rhino2
@@ -49,6 +51,22 @@ class AnimalCard extends Component {
         e.preventDefault()
         this.setState((state, props) => ({
             isOpen: true
+        }))
+    }
+
+    closeModalMore = (e) => {
+        e.preventDefault()
+        this.setState((state, props) => ({
+            isOpenMore: false,
+            display: 'none'
+        }))
+    }
+
+    openModalMore = (e) => {
+        e.preventDefault()
+        this.setState((state, props) => ({
+            isOpenMore: true,
+            display:'block'
         }))
     }
 
@@ -85,26 +103,61 @@ class AnimalCard extends Component {
             , right: 15
             , borderRadius: '4px'
         }
-        var rhinocontract =  "Rhino" + (Rhino.id + 1)
+        var rhinocontract = "Rhino" + (Rhino.id + 1)
 
         return (
             <div style={containerViewPort}>
-                <Card style={animalCardStyle} mx={'auto'} p={0} mt={2}>
+                <Card style={animalCardStyle} mx={'auto'} p={0} mt={2} onClick={this.openModalMore}>
+                <div style={{ display: this.state.display, zIndex: 1000, position: 'absolute', top: '0', 'backgroundColor': 'rgba(250,250,250,0.7)', width: '100%', height: '100%' }}>
+                        <TextButton
+                            icononly
+                            icon={'Close'}
+                            color={'moon-gray'}
+                            position={'absolute'}
+                            top={0}
+                            right={0}
+                            mt={3}
+                            mr={3}
+                            onClick={this.closeModalMore}
+                        />
+                        <Box p={4} mb={3}>
+                            <Heading.h4>More Information of {Rhino.name} </Heading.h4>
+                            <Text>
+                                Owner: {Rhino.current_owner} <br />
+                                Time Held: {Rhino.time_held} <br />
+                                Highest Paid Price: {Rhino.highest_price} <br />
+                                Generated Revenue: {Rhino.revenue_generated} <br />
+
+                            </Text>
+                            <Fragment>
+                                <p>
+                                    Age: {Rhino.age} <br />
+                                    Lineage: {Rhino.lineage} <br />
+                                    Weight: {Rhino.weight}kg <br />
+                                    Gender: {Rhino.is_female ? "Female" : "Male"} <br />
+                                </p>
+
+                            </Fragment>
+
+
+                        </Box>
+                    </div>
                     <AnimalImage
                         img={this.state.rhinoImages[Rhino.id]}
-                    />                    
-                        <Heading.h3 style={nameStyle} bg={'rgba(0,0,0,0.5)'} p={3}>
-                            {this.props.Rhino.name}
-                        </Heading.h3>         
-                        <Heading.h1 style={priceStyle} color={'#fff'} p={3}>
-                            Eth {this.props.Rhino.price}
-                        </Heading.h1>         
-
+                    />
+                    <Heading.h3 style={nameStyle} bg={'rgba(0,0,0,0.5)'} p={3}>
+                        {this.props.Rhino.name}
+                    </Heading.h3>
+                    <Heading.h1 style={priceStyle} color={'#fff'} p={3}>
+                        Eth {this.props.Rhino.price}
+                    </Heading.h1>
+                    
                     <center>
-                        <Button style={{marginTop: '3vh'}} onClick={this.openModal} icon="AddBox" mx={'auto'}  iconpos="right" bg='#444'>
+                        <Button style={{ marginTop: '3vh' }} onClick={this.openModal} icon="AddBox" mx={'auto'} iconpos="right" bg='#444'>
                             Adopt Rhino
                         </Button>
                     </center>
+
                 </Card>
                 <Modal isOpen={this.state.isOpen} >
                     <Card p={0} style={{ width: '76vw' }} style={{ transform: 'translate(' + (Rhino.id + 1) * 100 + 'vw,0)' }}>
@@ -125,17 +178,52 @@ class AnimalCard extends Component {
                                 Please Confirm that you would like to adopt {this.props.Rhino.name}
                             </Text>
                             <Fragment>
-                                    <Fragment>
+                                <Fragment>
 
-                                        <p>To have {this.props.Rhino.name} part of your safari collection you will need to pay <ContractData contract={rhinocontract} method="price" toEth /> ETH.<br /> Set your own sale price and some more to cover your Rhinos expenses: </p>
-                                        <AdoptAnimalForm contract={rhinocontract}  method="buy" labels={["The cost for someone to buy from you"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
+                                    <p>To have {this.props.Rhino.name} part of your safari collection you will need to pay <ContractData contract={rhinocontract} method="price" toEth /> ETH.<br /> Set your own sale price and some more to cover your Rhinos expenses: </p>
+                                    <AdoptAnimalForm contract={rhinocontract} method="buy" labels={["The cost for someone to buy from you"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
 
 
-                                    </Fragment>
+                                </Fragment>
+                            </Fragment>
+                        </Box>
+
+                    </Card>
+                </Modal>
+                {/* <div style={{display: this.state.isOpenMore ? "inline-block" : 'none', zIndex: 9}} >
+                    <Card p={0} style={{ width: '76vw' }} style={{ transform: 'translate(' + (Rhino.id + 1) * 100 + 'vw,0)' }}>
+                        <TextButton
+                            icononly
+                            icon={'Close'}
+                            color={'moon-gray'}
+                            position={'absolute'}
+                            top={0}
+                            right={0}
+                            mt={3}
+                            mr={3}
+                            onClick={this.closeModalMore}
+                        />
+                        <Box p={4} mb={3}>
+                            <Heading.h4>More Information of {Rhino.name} </Heading.h4>
+                            <Text>
+                                Owner: {Rhino.current_owner} <br />
+                                Time Held: {Rhino.time_held} <br />
+                                Highest Paid Price: {Rhino.highest_price} <br />   
+                                Generated Revenue: {Rhino.revenue_generated} <br />   
+                                                             
+                            </Text>
+                            <Fragment>
+                                <p>
+                                    Age: {Rhino.age} <br />
+                                    Lineage: {Rhino.lineage} <br />
+                                    Weight: {Rhino.weight}kg <br />
+                                    Gender: {Rhino.is_female ? "Female" : "Male"} <br />
+                                </p>
+
                             </Fragment>
                         </Box>
                     </Card>
-                </Modal>
+                </div> */}
             </div>
         );
     }
