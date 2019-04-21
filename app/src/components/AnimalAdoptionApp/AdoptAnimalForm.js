@@ -108,6 +108,7 @@ class BuyForm extends Component {
               <center>
 
             <Input              
+              style={{width: '100%'}}
               key={input.name}
               type={inputType}
               name={input.name}
@@ -125,6 +126,7 @@ class BuyForm extends Component {
           <center>
 
           <Input 
+          style={{width: '100%'}}
           key={valueLabel} 
           type='number' 
           name='value' 

@@ -130,6 +130,7 @@ class AnimalCard extends Component {
                                         <p>To have {this.props.Rhino.name} part of your safari collection you will need to pay <ContractData contract={rhinocontract} method="price" toEth /> ETH.<br /> Set your own sale price and some more to cover your Rhinos expenses: </p>
                                         <AdoptAnimalForm contract={rhinocontract}  method="buy" labels={["The cost for someone to buy from you"]} valueLabel="Your Initial Deposit" sendArgs={{}} />
 
+
                                     </Fragment>
                             </Fragment>
                         </Box>
