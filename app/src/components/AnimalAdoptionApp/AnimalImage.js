@@ -16,7 +16,7 @@ class AnimalImage extends Component {
 
         return (
             <div>            
-              <img src={this.props.img} className='' alt='Endagered Animal'  style={imageStyle}/>
+              <img src={this.props.img} className='' alt='Endagered Animal'  style={imageStyle} onClick={this.props.openModal}/>
               {/* <img src='/img/Rhino.png' className='' alt='Endagered Animal'  style={imageStyle}/> */}
             </div>
         );
@@ -25,6 +25,7 @@ class AnimalImage extends Component {
 
 AnimalImage.propTypes = {
     img: PropTypes.string.isRequired,
+    openModal: PropTypes.func.isRequired
 };
 
 export default AnimalImage;

@@ -391,19 +391,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\nimport \"./IERC721.sol\";\nimport \"./IERC721Enumerable.sol\";\nimport \"./IERC721Metadata.sol\";\n\n/**\n * @title ERC-721 Non-Fungible Token Standard, full implementation interface\n * @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\n */\ncontract IERC721Full is IERC721, IERC721Enumerable, IERC721Metadata {\n    // solhint-disable-previous-line no-empty-blocks\n}",
-  "sourcePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
+  "sourcePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
   "ast": {
-    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
+    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
     "exportedSymbols": {
       "IERC721Full": [
-        3189
+        8189
       ]
     },
-    "id": 3190,
+    "id": 8190,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3179,
+        "id": 8179,
         "literals": [
           "solidity",
           "^",
@@ -411,38 +411,38 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "0:23:20"
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./IERC721.sol",
-        "id": 3180,
+        "id": 8180,
         "nodeType": "ImportDirective",
-        "scope": 3190,
-        "sourceUnit": 3151,
-        "src": "25:23:12",
+        "scope": 8190,
+        "sourceUnit": 8151,
+        "src": "25:23:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
         "file": "./IERC721Enumerable.sol",
-        "id": 3181,
+        "id": 8181,
         "nodeType": "ImportDirective",
-        "scope": 3190,
-        "sourceUnit": 3178,
-        "src": "49:33:12",
+        "scope": 8190,
+        "sourceUnit": 8178,
+        "src": "49:33:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Metadata.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Metadata.sol",
         "file": "./IERC721Metadata.sol",
-        "id": 3182,
+        "id": 8182,
         "nodeType": "ImportDirective",
-        "scope": 3190,
-        "sourceUnit": 3213,
-        "src": "83:31:12",
+        "scope": 8190,
+        "sourceUnit": 8213,
+        "src": "83:31:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -452,95 +452,95 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3183,
+              "id": 8183,
               "name": "IERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3150,
-              "src": "298:7:12",
+              "referencedDeclaration": 8150,
+              "src": "298:7:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721_$3150",
+                "typeIdentifier": "t_contract$_IERC721_$8150",
                 "typeString": "contract IERC721"
               }
             },
-            "id": 3184,
+            "id": 8184,
             "nodeType": "InheritanceSpecifier",
-            "src": "298:7:12"
+            "src": "298:7:20"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3185,
+              "id": 8185,
               "name": "IERC721Enumerable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3177,
-              "src": "307:17:12",
+              "referencedDeclaration": 8177,
+              "src": "307:17:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Enumerable_$3177",
+                "typeIdentifier": "t_contract$_IERC721Enumerable_$8177",
                 "typeString": "contract IERC721Enumerable"
               }
             },
-            "id": 3186,
+            "id": 8186,
             "nodeType": "InheritanceSpecifier",
-            "src": "307:17:12"
+            "src": "307:17:20"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3187,
+              "id": 8187,
               "name": "IERC721Metadata",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3212,
-              "src": "326:15:12",
+              "referencedDeclaration": 8212,
+              "src": "326:15:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Metadata_$3212",
+                "typeIdentifier": "t_contract$_IERC721Metadata_$8212",
                 "typeString": "contract IERC721Metadata"
               }
             },
-            "id": 3188,
+            "id": 8188,
             "nodeType": "InheritanceSpecifier",
-            "src": "326:15:12"
+            "src": "326:15:20"
           }
         ],
         "contractDependencies": [
-          3044,
-          3150,
-          3177,
-          3212
+          8044,
+          8150,
+          8177,
+          8212
         ],
         "contractKind": "contract",
         "documentation": "@title ERC-721 Non-Fungible Token Standard, full implementation interface\n@dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
         "fullyImplemented": false,
-        "id": 3189,
+        "id": 8189,
         "linearizedBaseContracts": [
-          3189,
-          3212,
-          3177,
-          3150,
-          3044
+          8189,
+          8212,
+          8177,
+          8150,
+          8044
         ],
         "name": "IERC721Full",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 3190,
-        "src": "274:124:12"
+        "scope": 8190,
+        "src": "274:124:20"
       }
     ],
-    "src": "0:398:12"
+    "src": "0:398:20"
   },
   "legacyAST": {
-    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
+    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
     "exportedSymbols": {
       "IERC721Full": [
-        3189
+        8189
       ]
     },
-    "id": 3190,
+    "id": 8190,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3179,
+        "id": 8179,
         "literals": [
           "solidity",
           "^",
@@ -548,38 +548,38 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "0:23:20"
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./IERC721.sol",
-        "id": 3180,
+        "id": 8180,
         "nodeType": "ImportDirective",
-        "scope": 3190,
-        "sourceUnit": 3151,
-        "src": "25:23:12",
+        "scope": 8190,
+        "sourceUnit": 8151,
+        "src": "25:23:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
         "file": "./IERC721Enumerable.sol",
-        "id": 3181,
+        "id": 8181,
         "nodeType": "ImportDirective",
-        "scope": 3190,
-        "sourceUnit": 3178,
-        "src": "49:33:12",
+        "scope": 8190,
+        "sourceUnit": 8178,
+        "src": "49:33:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC721Metadata.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC721Metadata.sol",
         "file": "./IERC721Metadata.sol",
-        "id": 3182,
+        "id": 8182,
         "nodeType": "ImportDirective",
-        "scope": 3190,
-        "sourceUnit": 3213,
-        "src": "83:31:12",
+        "scope": 8190,
+        "sourceUnit": 8213,
+        "src": "83:31:20",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -589,82 +589,82 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3183,
+              "id": 8183,
               "name": "IERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3150,
-              "src": "298:7:12",
+              "referencedDeclaration": 8150,
+              "src": "298:7:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721_$3150",
+                "typeIdentifier": "t_contract$_IERC721_$8150",
                 "typeString": "contract IERC721"
               }
             },
-            "id": 3184,
+            "id": 8184,
             "nodeType": "InheritanceSpecifier",
-            "src": "298:7:12"
+            "src": "298:7:20"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3185,
+              "id": 8185,
               "name": "IERC721Enumerable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3177,
-              "src": "307:17:12",
+              "referencedDeclaration": 8177,
+              "src": "307:17:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Enumerable_$3177",
+                "typeIdentifier": "t_contract$_IERC721Enumerable_$8177",
                 "typeString": "contract IERC721Enumerable"
               }
             },
-            "id": 3186,
+            "id": 8186,
             "nodeType": "InheritanceSpecifier",
-            "src": "307:17:12"
+            "src": "307:17:20"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3187,
+              "id": 8187,
               "name": "IERC721Metadata",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3212,
-              "src": "326:15:12",
+              "referencedDeclaration": 8212,
+              "src": "326:15:20",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Metadata_$3212",
+                "typeIdentifier": "t_contract$_IERC721Metadata_$8212",
                 "typeString": "contract IERC721Metadata"
               }
             },
-            "id": 3188,
+            "id": 8188,
             "nodeType": "InheritanceSpecifier",
-            "src": "326:15:12"
+            "src": "326:15:20"
           }
         ],
         "contractDependencies": [
-          3044,
-          3150,
-          3177,
-          3212
+          8044,
+          8150,
+          8177,
+          8212
         ],
         "contractKind": "contract",
         "documentation": "@title ERC-721 Non-Fungible Token Standard, full implementation interface\n@dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
         "fullyImplemented": false,
-        "id": 3189,
+        "id": 8189,
         "linearizedBaseContracts": [
-          3189,
-          3212,
-          3177,
-          3150,
-          3044
+          8189,
+          8212,
+          8177,
+          8150,
+          8044
         ],
         "name": "IERC721Full",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 3190,
-        "src": "274:124:12"
+        "scope": 8190,
+        "src": "274:124:20"
       }
     ],
-    "src": "0:398:12"
+    "src": "0:398:20"
   },
   "compiler": {
     "name": "solc",
@@ -672,7 +672,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-21T04:30:14.682Z",
+  "updatedAt": "2019-04-21T06:24:34.519Z",
   "devdoc": {
     "details": "See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
     "methods": {

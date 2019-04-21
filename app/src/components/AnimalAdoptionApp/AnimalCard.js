@@ -54,18 +54,18 @@ class AnimalCard extends Component {
         }))
     }
 
-    closeModalMore = (e) => {
-        e.preventDefault()
+    morecloseModalMore = (e) => {
+        // e.preventDefault()
         this.setState((state, props) => ({
-            isOpenMore: false,
+            // isOpenMore: false,
             display: 'none'
         }))
     }
 
-    openModalMore = (e) => {
-        e.preventDefault()
+    moreopenModalMore = (e) => {
+        // e.preventDefault()
         this.setState((state, props) => ({
-            isOpenMore: true,
+            // isOpenMore: true,
             display:'block'
         }))
     }
@@ -107,7 +107,7 @@ class AnimalCard extends Component {
 
         return (
             <div style={containerViewPort}>
-                <Card style={animalCardStyle} mx={'auto'} p={0} mt={2} onClick={this.openModalMore}>
+                <Card style={animalCardStyle} mx={'auto'} p={0} mt={2} >
                 <div style={{ display: this.state.display, zIndex: 1000, position: 'absolute', top: '0', 'backgroundColor': 'rgba(250,250,250,0.7)', width: '100%', height: '100%' }}>
                         <TextButton
                             icononly
@@ -118,7 +118,7 @@ class AnimalCard extends Component {
                             right={0}
                             mt={3}
                             mr={3}
-                            onClick={this.closeModalMore}
+                            onClick={this.morecloseModalMore}
                         />
                         <Box p={4} mb={3}>
                             <Heading.h4>More Information of {Rhino.name} </Heading.h4>
@@ -142,7 +142,7 @@ class AnimalCard extends Component {
 
                         </Box>
                     </div>
-                    <AnimalImage
+                    <AnimalImage openModal={this.moreopenModalMore}   
                         img={this.state.rhinoImages[Rhino.id]}
                     />
                     <Heading.h3 style={nameStyle} bg={'rgba(0,0,0,0.5)'} p={3}>

@@ -33,9 +33,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\nimport \"./interfaces/IERC165.sol\";\n\n/**\n * @title ERC165\n * @author Matt Condon (@shrugs)\n * @dev Implements ERC165 using a lookup table.\n */\ncontract ERC165 is IERC165 {\n    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;\n    /*\n     * 0x01ffc9a7 ===\n     *     bytes4(keccak256('supportsInterface(bytes4)'))\n     */\n\n    /**\n     * @dev a mapping of interface id to whether or not it's supported\n     */\n    mapping(bytes4 => bool) private _supportedInterfaces;\n\n    /**\n     * @dev A contract implementing SupportsInterfaceWithLookup\n     * implement ERC165 itself\n     */\n    constructor () internal {\n        _registerInterface(_INTERFACE_ID_ERC165);\n    }\n\n    /**\n     * @dev implement supportsInterface(bytes4) using a lookup table\n     */\n    function supportsInterface(bytes4 interfaceId) external view returns (bool) {\n        return _supportedInterfaces[interfaceId];\n    }\n\n    /**\n     * @dev internal method for registering an interface\n     */\n    function _registerInterface(bytes4 interfaceId) internal {\n        require(interfaceId != 0xffffffff);\n        _supportedInterfaces[interfaceId] = true;\n    }\n}",
-  "sourcePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC165.sol",
+  "sourcePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC165.sol",
   "ast": {
-    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC165.sol",
+    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC165.sol",
     "exportedSymbols": {
       "ERC165": [
         679
@@ -56,12 +56,12 @@
         "src": "0:23:1"
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC165.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC165.sol",
         "file": "./interfaces/IERC165.sol",
         "id": 631,
         "nodeType": "ImportDirective",
         "scope": 680,
-        "sourceUnit": 3045,
+        "sourceUnit": 8045,
         "src": "25:34:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -75,10 +75,10 @@
               "id": 632,
               "name": "IERC165",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3044,
+              "referencedDeclaration": 8044,
               "src": "186:7:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC165_$3044",
+                "typeIdentifier": "t_contract$_IERC165_$8044",
                 "typeString": "contract IERC165"
               }
             },
@@ -88,7 +88,7 @@
           }
         ],
         "contractDependencies": [
-          3044
+          8044
         ],
         "contractKind": "contract",
         "documentation": "@title ERC165\n@author Matt Condon (@shrugs)\n@dev Implements ERC165 using a lookup table.",
@@ -96,7 +96,7 @@
         "id": 679,
         "linearizedBaseContracts": [
           679,
-          3044
+          8044
         ],
         "name": "ERC165",
         "nodeType": "ContractDefinition",
@@ -406,7 +406,7 @@
             "scope": 679,
             "src": "788:133:1",
             "stateMutability": "view",
-            "superFunction": 3043,
+            "superFunction": 8043,
             "visibility": "external"
           },
           {
@@ -481,10 +481,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3442,
-                        3443
+                        8442,
+                        8443
                       ],
-                      "referencedDeclaration": 3442,
+                      "referencedDeclaration": 8442,
                       "src": "1067:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -649,7 +649,7 @@
     "src": "0:1160:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/ERC165.sol",
+    "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/ERC165.sol",
     "exportedSymbols": {
       "ERC165": [
         679
@@ -670,12 +670,12 @@
         "src": "0:23:1"
       },
       {
-        "absolutePath": "/Users/johanthan/Code/Wildcards-backend/contracts/interfaces/IERC165.sol",
+        "absolutePath": "/home/denham/Desktop/Blockchain/Wildcards-backend/contracts/interfaces/IERC165.sol",
         "file": "./interfaces/IERC165.sol",
         "id": 631,
         "nodeType": "ImportDirective",
         "scope": 680,
-        "sourceUnit": 3045,
+        "sourceUnit": 8045,
         "src": "25:34:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -689,10 +689,10 @@
               "id": 632,
               "name": "IERC165",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3044,
+              "referencedDeclaration": 8044,
               "src": "186:7:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC165_$3044",
+                "typeIdentifier": "t_contract$_IERC165_$8044",
                 "typeString": "contract IERC165"
               }
             },
@@ -702,7 +702,7 @@
           }
         ],
         "contractDependencies": [
-          3044
+          8044
         ],
         "contractKind": "contract",
         "documentation": "@title ERC165\n@author Matt Condon (@shrugs)\n@dev Implements ERC165 using a lookup table.",
@@ -710,7 +710,7 @@
         "id": 679,
         "linearizedBaseContracts": [
           679,
-          3044
+          8044
         ],
         "name": "ERC165",
         "nodeType": "ContractDefinition",
@@ -1020,7 +1020,7 @@
             "scope": 679,
             "src": "788:133:1",
             "stateMutability": "view",
-            "superFunction": 3043,
+            "superFunction": 8043,
             "visibility": "external"
           },
           {
@@ -1095,10 +1095,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3442,
-                        3443
+                        8442,
+                        8443
                       ],
-                      "referencedDeclaration": 3442,
+                      "referencedDeclaration": 8442,
                       "src": "1067:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1268,7 +1268,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-21T04:30:14.566Z",
+  "updatedAt": "2019-04-21T06:24:34.225Z",
   "devdoc": {
     "author": "Matt Condon (@shrugs)",
     "details": "Implements ERC165 using a lookup table.",
