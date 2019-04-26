@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  contracts:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Login to dockerhub
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+          name: run all tests
+          command: |
+            
+
+workflows:
+  version: 2
+  my-workflow:
+    jobs:
+      - contracts
