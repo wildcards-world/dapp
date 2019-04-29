@@ -13,7 +13,7 @@ jobs:
       - run:
           name: run all tests
           command: |
-            
+            echo "hello"
 
 workflows:
   version: 2
