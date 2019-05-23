@@ -29,15 +29,15 @@ class FooterBarNav extends Component<{ clickShowCollection: any, clickHideCollec
       <div style={footerStyle}>
         <Flex>
           <Box p={3} width={1 / 2} color="white" onClick={this.props.clickHideCollection}>
-            <span>
+            <div style={{ textAlign: 'center' }}>
               {/* <img src={Binos} className='' alt='intothewild'  style={imageStyle}/> */}
               <Icon name="Home" />
-            </span>
+            </div>
           </Box>
           <Box p={3} width={1 / 2} color="white" onClick={this.props.clickShowCollection}>
-            <span>
+            <div style={{ textAlign: 'center' }}>
               <Icon name="LibraryBooks" />
-            </span>
+            </div>
           </Box>
         </Flex>
       </div>

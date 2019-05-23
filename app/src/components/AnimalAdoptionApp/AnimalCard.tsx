@@ -161,11 +161,11 @@ class AnimalCard extends Component<{ Rhino: any }, CardState> {
             Eth <ContractData contract={rhinocontract} method="price" toEth />
           </Heading.h1>
 
-          <span>
+          <div style={{ textAlign: 'center' }}>
             <Button style={{ marginTop: '3vh' }} onClick={this.openModal} icon="AddBox" mx={'auto'} iconpos="right" bg='#444'>
               Adopt Rhino
                         </Button>
-          </span>
+          </div>
 
         </Card>
         <Modal isOpen={this.state.isOpen} >

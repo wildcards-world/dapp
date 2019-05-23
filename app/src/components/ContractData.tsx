@@ -10,6 +10,12 @@ class ContractData extends Component<{
   , toDate: any
   , hideIndicator: any
 }, { dataKey: any }> {
+
+  static contextTypes = {
+    drizzle: PropTypes.object
+  }
+
+  context: any;
   utils: any
   contracts: any
   constructor(props: any, context: any) {
@@ -18,7 +24,7 @@ class ContractData extends Component<{
     // Fetch initial value from chain and return cache key for reactive updates.
     var methodArgs = this.props.methodArgs ? this.props.methodArgs : [];
 
-    this.utils = context.drizzle.web3.utilsi;
+    this.utils = context.drizzle.web3.utils;
     this.contracts = context.drizzle.contracts;
     this.state = {
       dataKey: this.contracts[this.props.contract].methods[

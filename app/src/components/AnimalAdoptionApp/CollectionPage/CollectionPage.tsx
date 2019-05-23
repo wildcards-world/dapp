@@ -78,9 +78,9 @@ class CollectionPage extends Component<{ clickHideCollection: any }, {}> {
                     <Flex>
                         <Box p={1} width={1} color="white" onClick={this.props.clickHideCollection}>
                             <Heading.h3  >
-                                <span>
+                                <div style={{ textAlign: 'center' }}>
                                     Collection
-                                </span>
+                                </div>
                             </Heading.h3 >
                         </Box>
                     </Flex>

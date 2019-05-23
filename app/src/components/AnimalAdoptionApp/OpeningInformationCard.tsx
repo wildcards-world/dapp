@@ -69,13 +69,13 @@ class OpeningInformationCard extends Component {
       <div style={containerViewPort}>
         <Card style={noticeCardStyle} mx={'auto'} p={0} mt={2}>
           <Heading.h1 style={HeadingStyle} color={'#fff'} p={2}>
-            <span>
+            <div style={{ textAlign: 'center' }}>
               WILD CARDS
-                            </span>
+                            </div>
           </Heading.h1>
-          <span>
+          <div style={{ textAlign: 'center' }}>
             <img src={LogoImg} className='' alt='intothewild' style={logoStyle} />
-          </span>
+          </div>
           <Heading.h3 style={extraTextStyle} p={1.4}>
             Wild Cards is an always for sale tokenisation of endangered animals
                         </Heading.h3>

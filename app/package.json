@@ -14,6 +14,7 @@
     "drizzle-react": "^1.2.0",
     "drizzle-react-components": "^1.2.1",
     "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-id-swiper": "^2.1.2",

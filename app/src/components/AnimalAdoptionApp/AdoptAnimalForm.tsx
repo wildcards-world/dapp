@@ -22,6 +22,12 @@ class BuyForm extends Component<{ contract: any, contracts: any, method: any, se
   inputs: any[]
   state: any
 
+  static contextTypes = {
+    drizzle: PropTypes.object
+  }
+
+  context: any;
+
   constructor(props: any, context: any) {
     super(props);
 
@@ -110,7 +116,7 @@ class BuyForm extends Component<{ contract: any, contracts: any, method: any, se
             : input.name;
           // check if input type is struct and if so loop out struct fields as well
           return (
-            <span>
+            <div style={{ textAlign: 'center' }}>
 
               <Input
                 style={{ width: '100%' }}
@@ -122,13 +128,13 @@ class BuyForm extends Component<{ contract: any, contracts: any, method: any, se
                 onChange={this.handleInputChange}
                 startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
               />
-            </span>
+            </div>
           );
         })}
         {valueLabel &&
           <Fragment>
             <br />
-            <span>
+            <div style={{ textAlign: 'center' }}>
 
               <Input
                 style={{ width: '100%' }}
@@ -139,7 +145,7 @@ class BuyForm extends Component<{ contract: any, contracts: any, method: any, se
                 placeholder={valueLabel}
                 onChange={this.handleInputChange}
                 startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
-            </span>
+            </div>
             <br />
             <br />
           </Fragment>
