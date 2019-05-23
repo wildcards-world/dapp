@@ -1,14 +1,23 @@
 import { drizzleConnect } from "drizzle-react";
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
 
-// todo: show ux when transacted
+/*
+Edited from drizzle react components, ContractFrom.
+Overkill. Needs to be refactored to smaller scope.
+*/
 
-class ContractForm extends Component {
-  constructor(props, context) {
+class BuyForm extends Component<{ contract: any, method: any, sendArgs: any, contracts: any[], valueLabel: any, labels: any[] }> {
+
+  contracts: any
+  utils: any
+  inputs: any
+  state: any
+
+  constructor(props: any, context: any) {
     super(props);
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -21,7 +30,7 @@ class ContractForm extends Component {
     const abi = this.contracts[this.props.contract].abi;
 
     this.inputs = [];
-    var initialState = {};
+    var initialState: any = {};
 
     // Iterate over abi for correct function.
     for (var i = 0; i < abi.length; i++) {
@@ -39,10 +48,10 @@ class ContractForm extends Component {
     this.state = initialState;
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: any) {
     event.preventDefault();
     let args = this.props.sendArgs;
-    const convertedInputs = this.inputs.map((input, index) => {
+    const convertedInputs = this.inputs.map((input: any, index: any) => {
       if (input.type === 'bytes32') {
         return this.utils.toHex(this.state[input.name])
       } else if (input.type === 'uint256') {
@@ -51,8 +60,11 @@ class ContractForm extends Component {
       return this.state[input.name];
     });
 
+    // todo: if foreclosed, price should default to zero.
     if (this.state.value) {
-      args.value = this.utils.toWei(this.state.value, 'ether');
+      console.log(this.props.contracts[this.props.contract]['price']['0x0'].value);
+      const artworkPrice = new this.utils.BN(this.props.contracts[this.props.contract]['price']['0x0'].value);
+      args.value = new this.utils.BN(this.utils.toWei(this.state.value, 'ether')).add(artworkPrice);
     }
     if (args) {
       return this.contracts[this.props.contract].methods[
@@ -65,11 +77,11 @@ class ContractForm extends Component {
     ].cacheSend(...convertedInputs);
   }
 
-  handleInputChange(event) {
+  handleInputChange(event: any) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  translateType(type) {
+  translateType(type: any) {
     switch (true) {
       case /^uint/.test(type):
         return "number";
@@ -83,10 +95,10 @@ class ContractForm extends Component {
   }
 
   render() {
+    const valueLabel = this.props.valueLabel;
     return (
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
-
-        {this.inputs.map((input, index) => {
+        {this.inputs.map((input: any, index: any) => {
           var inputType = this.translateType(input.type);
           var inputLabel = this.props.labels
             ? this.props.labels[index]
@@ -100,10 +112,25 @@ class ContractForm extends Component {
               value={this.state[input.name]}
               placeholder={inputLabel}
               onChange={this.handleInputChange}
-              startAdornment={<InputAdornment position="start">ETH</InputAdornment>} 
+              startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
             />
           );
         })}
+        {valueLabel &&
+          <Fragment>
+            <br />
+            <Input
+              key={valueLabel}
+              type='number'
+              name='value'
+              value={this.state[valueLabel]}
+              placeholder={valueLabel}
+              onChange={this.handleInputChange}
+              startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
+            <br />
+            <br />
+          </Fragment>
+        }
         <Button
           variant="contained"
           key="submit"
@@ -111,34 +138,21 @@ class ContractForm extends Component {
           type="button"
           onClick={this.handleSubmit}
         >
-          {this.props.buttonText}
+          Buy Artwork
         </Button>
-        <br />
-        <br />
       </form>
     );
   }
 }
 
-ContractForm.contextTypes = {
-  drizzle: PropTypes.object,
-};
-
-ContractForm.propTypes = {
-  contract: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
-  sendArgs: PropTypes.object,
-  labels: PropTypes.arrayOf(PropTypes.string),
-};
-
 /*
  * Export connected component.
  */
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     contracts: state.contracts,
-  };
-};
+  }
+}
 
-export default drizzleConnect(ContractForm, mapStateToProps);
+export default drizzleConnect(BuyForm, mapStateToProps);

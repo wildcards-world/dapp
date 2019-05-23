@@ -22,8 +22,11 @@ class App extends Component {
 
 /* unused in contract, but keeping for now */
 class Metadata extends Component {
+
+  data: any
+
   constructor() {
-    super();
+    super({}, {});
     this.data = {
       name: "Wild Cards",
       description: "The token of endangerd animals",
@@ -41,8 +44,8 @@ class AppRoutes extends Component {
   render() {
     return (
       <Router>
-        <Route path='/' exact component={App}/>
-        <Route path='/metadata' exact component={Metadata}/>
+        <Route path='/' exact component={App} />
+        <Route path='/metadata' exact component={Metadata} />
       </Router>
     )
   }

@@ -7,10 +7,10 @@ import artwork from "./TAIAOS4.png";
 import PriceSection from "./PriceSection";
 
 class ArtAndPriceSection extends Component {
-    render() {
-      return (
-        <Fragment>
-        <img src={artwork} style={{maxWidth: "100%", maxHeight: "100%"}} alt="A R T" />
+  render() {
+    return (
+      <Fragment>
+        <img src={artwork} style={{ maxWidth: "100%", maxHeight: "100%" }} alt="A R T" />
         <PriceSection />
         <p>
           The digital artwork above is always on sale.<br />
@@ -18,23 +18,16 @@ class ArtAndPriceSection extends Component {
           Anyone can buy it from the current patron at any time for the specified sale price. <br />
           Whilst held, a 5% fee (pa) is levied as patronage towards the artist. <br />
         </p>
-        </Fragment>
-      )
-    }
+      </Fragment>
+    )
+  }
 }
-
-ArtAndPriceSection.contextTypes = {
-  drizzle: PropTypes.object,
-};
-
-ArtAndPriceSection.propTypes = {
-};
 
 /*
  * Export connected component.
  */
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     contracts: state.contracts,
     drizzleStatus: state.drizzleStatus,

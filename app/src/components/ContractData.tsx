@@ -3,14 +3,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-class ContractData extends Component {
-  constructor(props, context) {
+class ContractData extends Component<{
+  contracts: any, methodArgs: any, method: any, contract: any, toUtf8: any
+  , toAscii: any
+  , toEth: any
+  , toDate: any
+  , hideIndicator: any
+}, { dataKey: any }> {
+  utils: any
+  contracts: any
+  constructor(props: any, context: any) {
     super(props);
 
     // Fetch initial value from chain and return cache key for reactive updates.
     var methodArgs = this.props.methodArgs ? this.props.methodArgs : [];
 
-    this.utils = context.drizzle.web3.utils;
+    this.utils = context.drizzle.web3.utilsi;
     this.contracts = context.drizzle.contracts;
     this.state = {
       dataKey: this.contracts[this.props.contract].methods[
@@ -21,7 +29,7 @@ class ContractData extends Component {
 
   // Will not fix legacy component
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: any) {
     const { methodArgs, contract, method } = this.props;
 
     const didContractChange = contract !== nextProps.contract;
@@ -84,7 +92,7 @@ class ContractData extends Component {
     }
 
     if (this.props.toDate) {
-      displayData = moment(parseInt(displayData)*1000).toString();
+      displayData = moment(parseInt(displayData) * 1000).toString();
     }
 
     // If return value is an array
@@ -104,10 +112,10 @@ class ContractData extends Component {
     // If retun value is an object
     if (typeof displayData === "object") {
       var i = 0;
-      const displayObjectProps = [];
+      const displayObjectProps: any[] = [];
 
       Object.keys(displayData).forEach(key => {
-        if (i != key) {
+        if (i !== parseInt(key)) {
           displayObjectProps.push(
             <li key={i}>
               <strong>{key}</strong>
@@ -133,26 +141,15 @@ class ContractData extends Component {
   }
 }
 
-ContractData.contextTypes = {
-  drizzle: PropTypes.object,
-};
-
-ContractData.propTypes = {
-  contracts: PropTypes.object.isRequired,
-  contract: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
-  methodArgs: PropTypes.array,
-  hideIndicator: PropTypes.bool,
-  toUtf8: PropTypes.bool,
-  toAscii: PropTypes.bool,
-  toEth: PropTypes.bool,
-};
+// ContractData.contextTypes = {
+//   drizzle: PropTypes.object,
+// };
 
 /*
  * Export connected component.
  */
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     contracts: state.contracts,
   };

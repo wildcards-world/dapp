@@ -1,7 +1,7 @@
 import BaseComponent from "./components/BaseComponent";
 import { drizzleConnect } from "drizzle-react";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     accounts: state.accounts,
     ERC721Full: state.contracts.ERC721Full,

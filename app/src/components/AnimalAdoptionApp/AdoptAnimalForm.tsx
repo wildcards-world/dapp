@@ -3,15 +3,26 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import { Card, Button, Modal, TextButton, Box, Flex, OutlineButton, Text, Heading, Icon } from 'rimble-ui'
 
 /*
 Edited from drizzle react components, ContractFrom.
 Overkill. Needs to be refactored to smaller scope.
 */
 
-class BuyForm extends Component {
-  constructor(props, context) {
+/*
+Update: Edited again from This Artwork is always on sale. For Hackathon. 
+Needs to be refactored to smaller smaller scope. Down the rabbit hole.
+ */
+
+class BuyForm extends Component<{ contract: any, contracts: any, method: any, sendArgs: any, valueLabel: any, labels: any }, {}> {
+  contracts: any
+  utils: any
+  inputs: any[]
+  state: any
+
+  constructor(props: any, context: any) {
     super(props);
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,7 +35,7 @@ class BuyForm extends Component {
     const abi = this.contracts[this.props.contract].abi;
 
     this.inputs = [];
-    var initialState = {};
+    let initialState: any = {};
 
     // Iterate over abi for correct function.
     for (var i = 0; i < abi.length; i++) {
@@ -42,7 +53,7 @@ class BuyForm extends Component {
     this.state = initialState;
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: any) {
     event.preventDefault();
     let args = this.props.sendArgs;
     const convertedInputs = this.inputs.map((input, index) => {
@@ -54,9 +65,11 @@ class BuyForm extends Component {
       return this.state[input.name];
     });
 
+    // todo: if foreclosed, price should default to zero.
     if (this.state.value) {
-      // const artworkPrice = new this.utils.BN(this.props.contracts[this.props.contract]['price']['0x0'].value);
-      args.value = new this.utils.BN(this.utils.toWei(this.state.value, 'ether'));
+      console.log(this.props.contracts[this.props.contract]['price']['0x0'].value);
+      const artworkPrice = new this.utils.BN(this.props.contracts[this.props.contract]['price']['0x0'].value);
+      args.value = new this.utils.BN(this.utils.toWei(this.state.value, 'ether')).add(artworkPrice);
     }
     if (args) {
       return this.contracts[this.props.contract].methods[
@@ -69,11 +82,11 @@ class BuyForm extends Component {
     ].cacheSend(...convertedInputs);
   }
 
-  handleInputChange(event) {
+  handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  translateType(type) {
+  translateType(type: any) {
     switch (true) {
       case /^uint/.test(type):
         return "number";
@@ -97,63 +110,64 @@ class BuyForm extends Component {
             : input.name;
           // check if input type is struct and if so loop out struct fields as well
           return (
-            <Input
-              key={input.name}
-              type={inputType}
-              name={input.name}
-              value={this.state[input.name]}
-              placeholder={inputLabel}
-              onChange={this.handleInputChange}
-              startAdornment={<InputAdornment position="start">ETH</InputAdornment>} 
-            />
+            <span>
+
+              <Input
+                style={{ width: '100%' }}
+                key={input.name}
+                type={inputType}
+                name={input.name}
+                value={this.state[input.name]}
+                placeholder={inputLabel}
+                onChange={this.handleInputChange}
+                startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
+              />
+            </span>
           );
         })}
         {valueLabel &&
           <Fragment>
-          <Input 
-          key={valueLabel} 
-          type='number' 
-          name='value' 
-          value={this.state[valueLabel]} 
-          placeholder={valueLabel} 
-          onChange={this.handleInputChange} 
-          startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
+            <br />
+            <span>
+
+              <Input
+                style={{ width: '100%' }}
+                key={valueLabel}
+                type='number'
+                name='value'
+                value={this.state[valueLabel]}
+                placeholder={valueLabel}
+                onChange={this.handleInputChange}
+                startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
+            </span>
+            <br />
+            <br />
           </Fragment>
-          
         }
-        <Button
-          variant="contained"
-          key="submit"
-          className="pure-button"
-          type="button"
-          onClick={this.handleSubmit}
-        >
-          Top Up Deposit
+        <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
+          <OutlineButton>Cancel</OutlineButton>
+          <Button
+            ml={3}
+            variant="contained"
+            key="submit"
+            className="pure-button"
+            type="button"
+            onClick={this.handleSubmit}
+            fullWidth
+          >
+            Adopt Rhino
         </Button>
-        <br />
-        <br />
+        </Flex>
       </form>
     );
   }
 }
 
-BuyForm.contextTypes = {
-  drizzle: PropTypes.object,
-};
-
-// todo: add value label
-BuyForm.propTypes = {
-  contract: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
-  sendArgs: PropTypes.object,
-  labels: PropTypes.arrayOf(PropTypes.string),
-};
-
 /*
  * Export connected component.
  */
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     contracts: state.contracts,
   };

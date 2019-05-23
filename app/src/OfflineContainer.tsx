@@ -6,18 +6,18 @@ import PropTypes from "prop-types";
  * Create component.
  */
 
-class OfflineContainer extends Component {
+class OfflineContainer extends Component<{ drizzleStatus: any, web3: any }> {
   render() {
     if (this.props.drizzleStatus.initialized) {
       return Children.only(this.props.children);
     }
-  
+
     if (this.props.web3.status === "") {
-    // (this.props.web3.status === "initialized" && Object.keys(this.props.accounts).length === 0)) {
+      // (this.props.web3.status === "initialized" && Object.keys(this.props.accounts).length === 0)) {
       console.log(this.props);
       return (
         <div className="section">
-        This application is offline. Please ensure you have an Ethereum/web3 enabled browser.
+          This application is offline. Please ensure you have an Ethereum/web3 enabled browser.
         </div>
       )
     }
@@ -35,24 +35,11 @@ class OfflineContainer extends Component {
   }
 }
 
-OfflineContainer.contextTypes = {
-  drizzle: PropTypes.object,
-};
-
-OfflineContainer.propTypes = {
-  children: PropTypes.node,
-  // accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  drizzleStatus: PropTypes.object.isRequired,
-  web3: PropTypes.object.isRequired,
-  loadingComp: PropTypes.node,
-  errorComp: PropTypes.node,
-};
-
 /*
  * Export connected component.
  */
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     accounts: state.accounts,
     drizzleStatus: state.drizzleStatus,

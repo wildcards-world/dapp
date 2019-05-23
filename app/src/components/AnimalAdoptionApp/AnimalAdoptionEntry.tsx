@@ -4,10 +4,10 @@ import AnimalCardContainer from './AnimalCardContainer'
 
 
 class AnimalAdoptionEntry extends Component {
-    render() {
-      return (        
-            <AnimalCardContainer/>
-      )
-    }
+  render() {
+    return (
+      <AnimalCardContainer />
+    )
+  }
 }
 export default AnimalAdoptionEntry;

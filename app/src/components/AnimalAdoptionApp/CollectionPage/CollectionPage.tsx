@@ -7,23 +7,26 @@ import ContractData from "./../../ContractData";
 import Rhino from '../../../img/rhino1.jpg'
 import Rhino2 from '../../../img/rhino2.jpg'
 
-class CollectionPage extends Component {
-    constructor(props) {
+class CollectionPage extends Component<{ clickHideCollection: any }, {}> {
+    constructor(props:any) {
         super(props);
         this.state = {
 
         }
     }
 
-    render() {
+    openModal(...args: any[]) {
+      console.warn('This hasn\'t been defined yet:', args)
+    }
 
+    render() {
         const containerViewPort = {
             backgroundColor: ' white',
             // backgroundImage: 'linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%)',
             // background: ;
             width: '100vw',
             height: '100vh'
-        }
+        } as React.CSSProperties;
         const noticeCardStyle = {
             boxShadow: '0px 10px 20px rgba(0,0,0,0.6)',
             height: '30vh',
@@ -33,7 +36,7 @@ class CollectionPage extends Component {
             position: 'absolute',
             top: '8vh',
             left: '2vw'
-        }
+        } as React.CSSProperties;
         const noticeCardStyle2 = {
             boxShadow: '0px 10px 20px rgba(0,0,0,0.6)',
             height: '30vh',
@@ -43,31 +46,31 @@ class CollectionPage extends Component {
             position: 'absolute',
             top: '40vh',
             left: '2vw'
-        }
+        } as React.CSSProperties;
         const extraTextStyle = {
             color: 'White'
             , borderRadius: '4px'
-        }
+        } as React.CSSProperties;
         const HeadingStyle = {
             fontWeight: 'bold'
             , borderRadius: '4px'
             , textAlign: 'center'
-        }
+        } as React.CSSProperties;
         const imageStyle = {
             height: '30vh',
             width: '100%',
             objectFit: 'cover'
-        }
+        }  as React.CSSProperties;
 
         const headerStyle = {
             backgroundColor: "#333333",
             borderBottom: '2px solid black',
             width: '100%',
             height: '8vh',
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             zIndex: 1000
-        }
+        } as React.CSSProperties;
 
         return (
             <div style={containerViewPort}>
@@ -75,9 +78,9 @@ class CollectionPage extends Component {
                     <Flex>
                         <Box p={1} width={1} color="white" onClick={this.props.clickHideCollection}>
                             <Heading.h3  >
-                                <center>
+                                <span>
                                     Collection
-                                </center>
+                                </span>
                             </Heading.h3 >
                         </Box>
                     </Flex>
@@ -159,15 +162,7 @@ class CollectionPage extends Component {
     }
 }
 
-CollectionPage.contextTypes = {
-    drizzle: PropTypes.object,
-};
-
-CollectionPage.propTypes = {
-    // Rhino: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
     return {
         contracts: state.contracts,
         drizzleStatus: state.drizzleStatus,

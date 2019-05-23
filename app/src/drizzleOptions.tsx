@@ -18,7 +18,13 @@ import Rhino10 from "./contracts/Rhino10.json";
 // todo: read env var for fallback
 const fallbackUrl = "wss://mainnet.infura.io/ws/v3/e811479f4c414e219e7673b6671c2aba";
 
-const options = {
+interface Options {
+  web3: any
+  contracts: any[]
+  syncAlways: boolean
+  polls: any
+}
+const options: Options = {
   web3: {
     block: false,
     fallback: {
@@ -37,7 +43,7 @@ const options = {
     Rhino8,
     Rhino9,
     Rhino10,
-    ArtSteward, 
+    ArtSteward,
     ERC721Full
   ],
   syncAlways: true,
