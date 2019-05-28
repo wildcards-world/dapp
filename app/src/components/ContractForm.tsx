@@ -12,6 +12,13 @@ class ContractForm extends Component<{ contract: any, method: any, buttonText: a
   utils: any
   inputs: any
   state: any = {}
+
+  static contextTypes = {
+    drizzle: PropTypes.object
+  }
+
+  context: any;
+
   constructor(props: any, context: any) {
     super(props);
 
