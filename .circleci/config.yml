@@ -7,9 +7,9 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - run:
-          name: Login to dockerhub
-          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      # - run:
+      #     name: Login to dockerhub
+      #     command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
           name: run all contract tests
           command: |

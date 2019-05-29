@@ -5,6 +5,7 @@ import ActionSection from "./ActionSection";
 import ArtistSection from "./ArtistSection";
 import BuyingArtSection from "./BuyingArtSection";
 import AboutArtSection from "./AboutArtSection";
+import Template from "./Template";
 // import AnimalAdoptionEntry from "./AnimalAdoptionApp/AnimalAdoptionEntry";
 
 // import cc from "cryptocompare";  //TODO
@@ -15,11 +16,12 @@ class BaseComponent extends Component {
     return (
       <div className="App">
         {/* <AnimalAdoptionEntry/> */}
-        <IntroSection />
+        {/* <IntroSection />
         <BuyingArtSection />
         <ActionSection />
         <AboutArtSection />
-        <ArtistSection />
+        <ArtistSection /> */}
+        <Template />
       </div>
     );
   }
