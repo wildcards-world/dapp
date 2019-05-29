@@ -11,9 +11,9 @@ jobs:
           name: Login to dockerhub
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
-          name: run all tests
+          name: run all contract tests
           command: |
-            echo "hello"
+            make test-contract
 
 workflows:
   version: 2

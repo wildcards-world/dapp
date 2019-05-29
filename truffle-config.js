@@ -1,13 +1,14 @@
 const path = require("path");
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const mnemonic = 'sustain seek diet attend ready neutral damage join food extra monkey usage'; // 12 word mnemonic 
-const mainnetProviderUrl = 'https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba'; 
+const mainnetProviderUrl = 'https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba';
 const rinkebyProviderUrl = 'https://rinkeby.infura.io/v3/e811479f4c414e219e7673b6671c2aba';
+const blockchainNodeHost = process.env.BLOCKCHAIN_NODE_HOST || 'localhost'
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
-  plugins: [ "truffle-security" ],
+  plugins: ["truffle-security"],
   contracts_build_directory: path.join(__dirname, "app/src/contracts"),
   networks: {
     // mainnet: {
@@ -25,7 +26,8 @@ module.exports = {
     //   skipDryRun: true,
     // },
     development: {
-      host: "127.0.0.1",     // Localhost (default: none)
+      host: blockchainNodeHost,     // Localhost (default: none)
+      test: (() => console.log({ blockchainNodeHost }))(),
       port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
       gasPrice: 1000000000, // 1 gwei
