@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "./static/css/main.08bbb6d6.chunk.css",
-    "main.js": "./static/js/main.334650e5.chunk.js",
-    "main.js.map": "./static/js/main.334650e5.chunk.js.map",
-    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
-    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
-    "static/js/2.603a4661.chunk.js": "./static/js/2.603a4661.chunk.js",
-    "static/js/2.603a4661.chunk.js.map": "./static/js/2.603a4661.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.1624d7d09b21ec6d69670ac09eb9c3af.js": "./precache-manifest.1624d7d09b21ec6d69670ac09eb9c3af.js",
-    "service-worker.js": "./service-worker.js",
-    "static/css/main.08bbb6d6.chunk.css.map": "./static/css/main.08bbb6d6.chunk.css.map",
-    "static/media/main.css": "./static/media/white-waves.f1fdb72a.svg",
-    "static/media/gorilla.png": "./static/media/gorilla.cd535e12.png",
-    "static/media/instagram.svg": "./static/media/instagram.85fcdfd5.svg",
-    "static/media/raising_hands.png": "./static/media/raising_hands.9d92bf94.png",
-    "static/media/twitter.svg": "./static/media/twitter.358d6cce.svg",
-    "static/media/wild-cards-small.png": "./static/media/wild-cards-small.a59c97f6.png"
+    "main.css": "/static/css/main.b2190778.chunk.css",
+    "main.js": "/static/js/main.6d37c522.chunk.js",
+    "main.js.map": "/static/js/main.6d37c522.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.ab169fa5.chunk.js": "/static/js/2.ab169fa5.chunk.js",
+    "static/js/2.ab169fa5.chunk.js.map": "/static/js/2.ab169fa5.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.fcaf21bf4cd7c218acf1de5dae949fa6.js": "/precache-manifest.fcaf21bf4cd7c218acf1de5dae949fa6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.b2190778.chunk.css.map": "/static/css/main.b2190778.chunk.css.map",
+    "static/media/main.css": "/static/media/white-waves.f1fdb72a.svg",
+    "static/media/gorilla.png": "/static/media/gorilla.cd535e12.png",
+    "static/media/instagram.svg": "/static/media/instagram.85fcdfd5.svg",
+    "static/media/raising_hands.png": "/static/media/raising_hands.9d92bf94.png",
+    "static/media/twitter.svg": "/static/media/twitter.358d6cce.svg",
+    "static/media/wild-cards-small.png": "/static/media/wild-cards-small.a59c97f6.png"
   }
 }
