@@ -13,7 +13,7 @@ jobs:
       - run:
           name: run all contract tests
           command: |
-            make test-contract
+            make test-contracts
 
 workflows:
   version: 2
