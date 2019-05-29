@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/dapp/static/css/main.40541991.chunk.css",
-    "main.js": "/dapp/static/js/main.e31b32a9.chunk.js",
-    "main.js.map": "/dapp/static/js/main.e31b32a9.chunk.js.map",
-    "runtime~main.js": "/dapp/static/js/runtime~main.4c9db2b7.js",
-    "runtime~main.js.map": "/dapp/static/js/runtime~main.4c9db2b7.js.map",
-    "static/js/2.603a4661.chunk.js": "/dapp/static/js/2.603a4661.chunk.js",
-    "static/js/2.603a4661.chunk.js.map": "/dapp/static/js/2.603a4661.chunk.js.map",
-    "index.html": "/dapp/index.html",
-    "precache-manifest.0ddc619bd800773230452039af89c367.js": "/dapp/precache-manifest.0ddc619bd800773230452039af89c367.js",
-    "service-worker.js": "/dapp/service-worker.js",
-    "static/css/main.40541991.chunk.css.map": "/dapp/static/css/main.40541991.chunk.css.map",
-    "static/media/main.css": "/dapp/static/media/white-waves.f1fdb72a.svg",
-    "static/media/gorilla.png": "/dapp/static/media/gorilla.cd535e12.png",
-    "static/media/instagram.svg": "/dapp/static/media/instagram.85fcdfd5.svg",
-    "static/media/raising_hands.png": "/dapp/static/media/raising_hands.9d92bf94.png",
-    "static/media/twitter.svg": "/dapp/static/media/twitter.358d6cce.svg",
-    "static/media/wild-cards-small.png": "/dapp/static/media/wild-cards-small.a59c97f6.png"
+    "main.css": "./static/css/main.08bbb6d6.chunk.css",
+    "main.js": "./static/js/main.334650e5.chunk.js",
+    "main.js.map": "./static/js/main.334650e5.chunk.js.map",
+    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
+    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
+    "static/js/2.603a4661.chunk.js": "./static/js/2.603a4661.chunk.js",
+    "static/js/2.603a4661.chunk.js.map": "./static/js/2.603a4661.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.1624d7d09b21ec6d69670ac09eb9c3af.js": "./precache-manifest.1624d7d09b21ec6d69670ac09eb9c3af.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.08bbb6d6.chunk.css.map": "./static/css/main.08bbb6d6.chunk.css.map",
+    "static/media/main.css": "./static/media/white-waves.f1fdb72a.svg",
+    "static/media/gorilla.png": "./static/media/gorilla.cd535e12.png",
+    "static/media/instagram.svg": "./static/media/instagram.85fcdfd5.svg",
+    "static/media/raising_hands.png": "./static/media/raising_hands.9d92bf94.png",
+    "static/media/twitter.svg": "./static/media/twitter.358d6cce.svg",
+    "static/media/wild-cards-small.png": "./static/media/wild-cards-small.a59c97f6.png"
   }
 }
