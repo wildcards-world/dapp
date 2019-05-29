@@ -11,8 +11,9 @@ import raisingHandsEmoji from '../img/emoji/raising_hands.png'
 import twitterIcon from '../img/icons/social/white/twitter.svg'
 import instagramIcon from '../img/icons/social/white/instagram.svg'
 
-
 import '../styles/main.css'
+import '../styles/custom.css'
+
 class Template extends Component {
   render() {
     return (

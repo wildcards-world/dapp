@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { DrizzleProvider } from "drizzle-react";
 
-import "./App.css";
-
 import drizzleOptions from "./drizzleOptions";
 import BaseContainer from "./BaseContainer";
 
