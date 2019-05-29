@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { DrizzleProvider } from "drizzle-react";
-import OfflineContainer from "./OfflineContainer"; // modified from drizzle-react-components
 
 import "./App.css";
 
@@ -12,9 +11,7 @@ class App extends Component {
   render() {
     return (
       <DrizzleProvider options={drizzleOptions}>
-        <OfflineContainer>
-          <BaseContainer />
-        </OfflineContainer>
+        <BaseContainer />
       </DrizzleProvider>
     );
   }
