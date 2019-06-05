@@ -8,11 +8,12 @@ import smirkingEmoji from '../img/emoji/smirking.png'
 import laughingEmoji from '../img/emoji/laughing.png'
 import coldSweat from '../img/emoji/cold_sweat.png'
 import raisingHandsEmoji from '../img/emoji/raising_hands.png'
-import twitterIcon from '../img/icons/social/white/twitter.svg'
-import instagramIcon from '../img/icons/social/white/instagram.svg'
-
+import twitterIcon from '../img/icons/twitter.svg'
+import instagramIcon from '../img/icons/instagram.svg'
 
 import '../styles/main.css'
+import '../styles/custom.css'
+
 class Template extends Component {
   render() {
     return (
@@ -307,7 +308,7 @@ class Template extends Component {
                   {/*
               <li class="social-buttons__item"><a class="social-buttons__link"
                 href="https://www.facebook.com/unicornplatform/" target="_blank"><img class="social-buttons__icon"
-                src="../img/icons/social/white/facebook.svg" /></a></li>
+                src="../img/icons/facebook.svg" /></a></li>
               */}
                   <li className="social-buttons__item">
                     <a className="social-buttons__link" href="https://twitter.com/wildcards_world" target="_blank"><img className="social-buttons__icon" src={twitterIcon} /></a>
