@@ -59,7 +59,7 @@ contract('Rhino owed', (accounts) => {
     const { logs } = await steward._collectPatronage();
 
     const deposit = await steward.deposit.call();
-    const artistFund = await steward.artistFund.call();
+    const organizationFund = await steward.organizationFund.call();
     const timeLastCollected = await steward.timeLastCollected.call();
     const previousBlockTime = await time.latest();
     const currentCollected =  await steward.currentCollected.call();
@@ -68,7 +68,7 @@ contract('Rhino owed', (accounts) => {
     const calcDeposit = ether('1').sub(owed.patronageDue);
     expectEvent.inLogs(logs, 'LogCollection', { collected: totalCollected });
     assert.equal(deposit.toString(), calcDeposit.toString());
-    assert.equal(artistFund.toString(), owed.patronageDue.toString());
+    assert.equal(organizationFund.toString(), owed.patronageDue.toString());
     assert.equal(timeLastCollected.toString(), previousBlockTime.toString());
     assert.equal(currentCollected.toString(), owed.patronageDue.toString());
     assert.equal(totalCollected.toString(), owed.patronageDue.toString());
@@ -85,19 +85,19 @@ contract('Rhino owed', (accounts) => {
     await steward._collectPatronage();
 
     const deposit = await steward.deposit.call();
-    const artistFund = await steward.artistFund.call();
+    const organizationFund = await steward.organizationFund.call();
     const timeLastCollected = await steward.timeLastCollected.call();
     const previousBlockTime = await time.latest();
     const currentCollected =  await steward.currentCollected.call();
     const totalCollected =  await steward.totalCollected.call();
 
     const calcDeposit = ether('1').sub(owed.patronageDue).sub(owed2.patronageDue);
-    const calcArtistFund = owed.patronageDue.add(owed2.patronageDue);
+    const calcorganizationFund = owed.patronageDue.add(owed2.patronageDue);
     const calcCurrentCollected = owed.patronageDue.add(owed2.patronageDue);
     const calcTotalCurrentCollected = owed.patronageDue.add(owed2.patronageDue);
 
     assert.equal(deposit.toString(), calcDeposit.toString());
-    assert.equal(artistFund.toString(), calcArtistFund.toString());
+    assert.equal(organizationFund.toString(), calcorganizationFund.toString());
     assert.equal(timeLastCollected.toString(), previousBlockTime.toString());
     assert.equal(currentCollected.toString(), calcCurrentCollected.toString());
     assert.equal(totalCollected.toString(), calcTotalCurrentCollected.toString());
@@ -114,14 +114,14 @@ contract('Rhino owed', (accounts) => {
     const { logs } = await steward._collectPatronage(); // will foreclose
 
     const deposit = await steward.deposit.call();
-    const artistFund = await steward.artistFund.call();
+    const organizationFund = await steward.organizationFund.call();
     const timeLastCollected = await steward.timeLastCollected.call();
     const previousBlockTime = await time.latest();
     const currentCollected =  await steward.currentCollected.call();
     const totalCollected =  await steward.totalCollected.call();
     const state = await steward.state.call();
 
-    const calcArtistFund = owed.patronageDue;
+    const calcorganizationFund = owed.patronageDue;
     const calcTotalCurrentCollected = owed.patronageDue;
 
     const currentOwner = await artwork.ownerOf.call(42);
@@ -132,7 +132,7 @@ contract('Rhino owed', (accounts) => {
     assert.equal(timeHeld.toString(), time.duration.minutes(10).toString());
     assert.equal(currentOwner, steward.address);
     assert.equal(deposit.toString(), '0');
-    assert.equal(artistFund.toString(), calcArtistFund.toString());
+    assert.equal(organizationFund.toString(), calcorganizationFund.toString());
     assert.equal(timeLastCollected.toString(), previousBlockTime.toString());
     assert.equal(currentCollected.toString(), '0');
     assert.equal(totalCollected.toString(), calcTotalCurrentCollected.toString());
@@ -175,14 +175,14 @@ contract('Rhino owed', (accounts) => {
     const { logs } = await steward.buy(ether('2'), { from: accounts[3], value: totalToBuy }); // will foreclose and then buy
 
     const deposit = await steward.deposit.call();
-    const artistFund = await steward.artistFund.call();
+    const organizationFund = await steward.organizationFund.call();
     const timeLastCollected = await steward.timeLastCollected.call();
     const previousBlockTime = await time.latest();
     const currentCollected =  await steward.currentCollected.call();
     const totalCollected =  await steward.totalCollected.call();
     const state = await steward.state.call();
 
-    const calcArtistFund = owed.patronageDue;
+    const calcorganizationFund = owed.patronageDue;
     const calcTotalCurrentCollected = owed.patronageDue;
 
     const currentOwner = await artwork.ownerOf.call(42);
@@ -195,14 +195,14 @@ contract('Rhino owed', (accounts) => {
     assert.equal(timeHeld.toString(), calcTH.toString());
     assert.equal(currentOwner, accounts[3]);
     assert.equal(deposit.toString(), totalToBuy.toString());
-    assert.equal(artistFund.toString(), calcArtistFund.toString());
+    assert.equal(organizationFund.toString(), calcorganizationFund.toString());
     assert.equal(timeLastCollected.toString(), previousBlockTime.toString());
     assert.equal(currentCollected.toString(), '0');
     assert.equal(totalCollected.toString(), calcTotalCurrentCollected.toString());
     assert.equal(state.toString(), '1'); // owned state
   });
 
-  it('steward: owned. collect patronage by artist after 10min.', async () => {
+  it('steward: owned. collect patronage by organization after 10min.', async () => {
     // 10min of patronage
     const totalToBuy = new BN('951293759512');
     await steward.buy(ether('1'), { from: accounts[2], value: totalToBuy });
@@ -212,13 +212,13 @@ contract('Rhino owed', (accounts) => {
 
     const balTrack = await balance.tracker(accounts[1]);
 
-    const txReceipt = await steward.withdrawArtistFunds({ from: accounts[1], gasPrice: '1000000000' }); // 1 gwei gas
+    const txReceipt = await steward.withdrawOrganizationFunds({ from: accounts[1], gasPrice: '1000000000' }); // 1 gwei gas
     const txCost = new BN(txReceipt.receipt.gasUsed).mul(new BN('1000000000'));
     const calcDiff = totalToBuy.sub(txCost);
 
-    const artistFund = await steward.artistFund.call();
+    const organizationFund = await steward.organizationFund.call();
 
-    assert.equal(artistFund.toString(), '0');
+    assert.equal(organizationFund.toString(), '0');
     const delta = await balTrack.delta();
     assert.equal(delta.toString(), calcDiff.toString());
   });
@@ -240,7 +240,7 @@ contract('Rhino owed', (accounts) => {
     const due = ether('1').mul(new BN('600')).mul(new BN('50000000000')).div(new BN('1000000000000')).div(new BN('31536000'));
 
     const deposit = await steward.deposit.call();
-    const artistFund = await steward.artistFund.call();
+    const organizationFund = await steward.organizationFund.call();
     const timeLastCollected = await steward.timeLastCollected.call();
     const previousBlockTime = await time.latest();
     const tlcCheck = preTLC.add((previousBlockTime.sub(preTLC)).mul(preDeposit).div(owed.patronageDue));
@@ -248,7 +248,7 @@ contract('Rhino owed', (accounts) => {
     const totalCollected =  await steward.totalCollected.call();
     const state = await steward.state.call();
 
-    const calcArtistFund = due;
+    const calcorganizationFund = due;
     const calcTotalCurrentCollected = due;
 
     const currentOwner = await artwork.ownerOf.call(42);
@@ -260,7 +260,7 @@ contract('Rhino owed', (accounts) => {
     assert.equal(steward.address, currentOwner);
     assert.equal(timeHeld.toString(), calcTH.toString());
     assert.equal(deposit.toString(), '0');
-    assert.equal(artistFund.toString(), calcArtistFund.toString());
+    assert.equal(organizationFund.toString(), calcorganizationFund.toString());
     assert.equal(timeLastCollected.toString(), tlcCheck.toString());
     assert.equal(currentCollected.toString(), '0');
     assert.equal(totalCollected.toString(), calcTotalCurrentCollected.toString());

@@ -6,10 +6,10 @@ contract Vitalik {
     
     /*
     This smart contract collects patronage from current owner through a Harberger tax model and 
-    takes stewardship of the artwork if the patron can't pay anymore.
+    takes stewardship of the asset token if the patron can't pay anymore.
 
     Harberger Tax (COST): 
-    - Artwork is always on sale.
+    - Asset is always on sale.
     - You have to have a price set.
     - Tax (Patronage) is paid to maintain ownership.
     - Steward maints control over ERC721.
@@ -17,14 +17,15 @@ contract Vitalik {
     using SafeMath for uint256;
     
     uint256 public price; //in wei
-    IERC721Full public art; // ERC721 NFT.
+    IERC721Full public assetToken; // ERC721 NFT.
     
     uint256 public totalCollected; // all patronage ever collected
     uint256 public currentCollected; // amount currently collected for patron  
     uint256 public timeLastCollected; // 
     uint256 public deposit;
-    address payable public artist;
-    uint256 public artistFund;
+
+    address payable public organization; // non-profit organization
+    uint256 public organizationFund;
     
     mapping (address => bool) public patrons;
     mapping (address => uint256) public timeHeld;
@@ -39,10 +40,10 @@ contract Vitalik {
     enum StewardState { Foreclosed, Owned }
     StewardState public state;
 
-    constructor(address payable _artist, address _artwork) public {
-        art = IERC721Full(_artwork);
-        art.setup();
-        artist = _artist;
+    constructor(address payable _organization, address _assetToken) public {
+        assetToken = IERC721Full(_assetToken);
+        assetToken.setup();
+        organization = _organization;
         state = StewardState.Foreclosed;
     } 
 
@@ -52,13 +53,22 @@ contract Vitalik {
     event LogCollection(uint256 indexed collected);
     
     modifier onlyPatron() {
-        require(msg.sender == art.ownerOf(42), "Not patron");
+        require(msg.sender == assetToken.ownerOf(42), "Not patron");
+        _;
+    }
+
+    modifier onlyReceivingOrganization() {
+        require(msg.sender == organization);
         _;
     }
 
     modifier collectPatronage() {
        _collectPatronage(); 
        _;
+    }
+
+    function changeReceivingOrganization(address _newReceivingOrganization) public onlyReceivingOrganization {
+        organization = _newReceivingOrganization;
     }
 
     /* public view functions */
@@ -124,7 +134,7 @@ contract Vitalik {
             
             deposit = deposit.sub(collection);
             totalCollected = totalCollected.add(collection);
-            artistFund = artistFund.add(collection);
+            organizationFund = organizationFund.add(collection);
             emit LogCollection(collection);
         }
     }
@@ -138,7 +148,7 @@ contract Vitalik {
     function buy(uint256 _newPrice) public payable collectPatronage {
         require(_newPrice > 0, "Price is zero");
         require(msg.value > price, "Not enough"); // >, coz need to have at least something for deposit
-        address currentOwner = art.ownerOf(42);
+        address currentOwner = assetToken.ownerOf(42);
 
         if (state == StewardState.Owned) {
             uint256 totalToPayBack = price;
@@ -155,7 +165,7 @@ contract Vitalik {
         }
         
         deposit = msg.value.sub(price);
-        transferArtworkTo(currentOwner, msg.sender, _newPrice);
+        transferAssetTokenTo(currentOwner, msg.sender, _newPrice);
         emit LogBuy(msg.sender, _newPrice);
     }
 
@@ -171,10 +181,10 @@ contract Vitalik {
         _withdrawDeposit(_wei);
     }
 
-    function withdrawArtistFunds() public {
-        require(msg.sender == artist, "Not artist");
-        artist.transfer(artistFund);
-        artistFund = 0;
+    function withdrawOrganizationFunds() public {
+        require(msg.sender == organization, "Not organization");
+        organization.transfer(organizationFund);
+        organizationFund = 0;
     }
 
     function exit() public onlyPatron collectPatronage {
@@ -196,20 +206,20 @@ contract Vitalik {
     }
 
     function _foreclose() internal {
-        // become steward of artwork (aka foreclose)
-        address currentOwner = art.ownerOf(42);
-        transferArtworkTo(currentOwner, address(this), 0);
+        // become steward of assetToken (aka foreclose)
+        address currentOwner = assetToken.ownerOf(42);
+        transferAssetTokenTo(currentOwner, address(this), 0);
         state = StewardState.Foreclosed;
         currentCollected = 0;
 
         emit LogForeclosure(currentOwner);
     }
 
-    function transferArtworkTo(address _currentOwner, address _newOwner, uint256 _newPrice) internal {
+    function transferAssetTokenTo(address _currentOwner, address _newOwner, uint256 _newPrice) internal {
         // note: it would also tabulate time held in stewardship by smart contract
         timeHeld[_currentOwner] = timeHeld[_currentOwner].add((timeLastCollected.sub(timeAcquired)));
         
-        art.transferFrom(_currentOwner, _newOwner, 42);
+        assetToken.transferFrom(_currentOwner, _newOwner, 42);
 
         price = _newPrice;
         timeAcquired = now;
