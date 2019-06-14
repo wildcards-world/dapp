@@ -76,6 +76,11 @@ class BuyModal extends Component<any, any> {
       const artworkPrice = new this.utils.BN(this.props.contracts.Vitalik['price']['0x0'].value);
       args.value = new this.utils.BN(this.utils.toWei(this.state.value, 'ether')).add(artworkPrice);
     }
+
+    this.setState({
+      isOpen: false
+    })
+
     if (args) {
       return this.contracts.Vitalik.methods[
         'buy'
@@ -138,9 +143,9 @@ class BuyModal extends Component<any, any> {
               onClick={this.closeModal}
             />
             <Box p={4} mb={3}>
-              <Heading.h3>Confirm ...</Heading.h3>
+              <Heading.h3>Purchase</Heading.h3>
               <Text>
-                Are you sure you want to ...?
+                Enter the desired values for the transaction.
               </Text>
               <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
                 {this.inputs.map((input: any, index: any) => {
@@ -176,20 +181,14 @@ class BuyModal extends Component<any, any> {
                     <br />
                   </Fragment>
                 }
-                <Button
-                  variant="contained"
-                  key="submit"
-                  className="pure-button"
-                  type="button"
-                  onClick={this.handleSubmit}
-                >
-                  Buy Artwork
-                </Button>
               </form>
             </Box>
             <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
-              <Button.Outline>Cancel</Button.Outline>
-              <Button ml={3}>Confirm</Button>
+              {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
+              <Button
+                ml={3}
+                onClick={this.handleSubmit}
+              >Buy Vitalik</Button>
             </Flex>
           </Card>
         </Modal>
