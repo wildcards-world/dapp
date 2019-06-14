@@ -9,7 +9,7 @@ class BaseComponent extends Component {
       <div className="App">
         <Template />
       </div>
-    );
+    )
   }
 }
 

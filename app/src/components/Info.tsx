@@ -2,7 +2,7 @@ import { drizzleConnect } from "drizzle-react";
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import BuyForm from "./BuyForm";
+import BuyForm from "./BuyModal";
 import ContractData from "./ContractData";
 
 class BuyArtworkSection extends Component {
