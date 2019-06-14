@@ -23,7 +23,7 @@ class Template extends Component {
           <nav className="nav-02">
             <div className="container container--large">
               <div className="nav-02__box">
-                <img src={smallIcon} height="80px" />
+                <img src={smallIcon} height="80px" className='main-logo'/>
                 {/* </a> */}
                 {/* </div> */}
                 <div className="nav-02__links js-menu">
@@ -38,13 +38,6 @@ class Template extends Component {
                       <a style={{ color: 'white', backgroundColor: '#6bad3e', padding: '1rem', textDecoration: 'none', boxShadow: '1px 2px 2px 1px #aaa', fontWeight: 'bold' }} href="#signup"><span>SUBSCRIBE</span></a>
                     </li>
                   </ul>
-                  <div className="nav-02__burger">
-                    <button className="burger burger--black js-open-menu" type="button">
-                      <div className="burger__box">
-                        <div className="burger__inner" />
-                      </div>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
