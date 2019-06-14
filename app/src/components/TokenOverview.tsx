@@ -90,7 +90,6 @@ class ActionSection extends Component<{ contracts: any }, {}>  {
  */
 
 const mapStateToProps = (state: any) => {
-  console.log(state.contracts)
   return {
     contracts: state.contracts,
   };

@@ -6,7 +6,6 @@ import moment from "moment"
 import ContractForm from "./ContractForm";
 import DepositWeiForm from "./DepositWeiForm";
 import ContractData from "./ContractData";
-import { any } from "prop-types";
 
 declare global {
   interface Window { ethereum: any; }
@@ -113,7 +112,6 @@ class ActionSection extends Component<{ contracts: any }, {}>  {
  */
 
 const mapStateToProps = (state: any) => {
-  console.log(state.contracts)
   return {
     contracts: state.contracts,
   };

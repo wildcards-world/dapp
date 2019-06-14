@@ -27,11 +27,7 @@ class BuyModal extends Component<any, any> {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.contracts = context.drizzle.contracts;
-    console.log(context)
-    console.log(context.drizzle)
-    console.log(context.drizzle.web3)
     this.utils = context.drizzle.web3.utils;
-    console.log(this.utils)
 
     // Get the contract ABI, if it is undefined return an empty array
     const abi = (!!this.contracts.Vitalik) ? this.contracts.Vitalik.abi : [];
@@ -72,7 +68,6 @@ class BuyModal extends Component<any, any> {
 
     // todo: if foreclosed, price should default to zero.
     if (this.state.value) {
-      console.log(this.props.contracts.Vitalik['price']['0x0'].value);
       const artworkPrice = new this.utils.BN(this.props.contracts.Vitalik['price']['0x0'].value);
       args.value = new this.utils.BN(this.utils.toWei(this.state.value, 'ether')).add(artworkPrice);
     }
