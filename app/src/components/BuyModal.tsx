@@ -5,6 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import React, { Component, Fragment } from "react";
 import { Button, Modal, Card, Box, Heading, Text, Flex } from 'rimble-ui'
 import web3ProvideSwitcher from "../web3ProvideSwitcher"
+import TokenOverview from "./TokenOverview"
 
 class BuyModal extends Component<any, any> {
   contracts: any
@@ -49,6 +50,7 @@ class BuyModal extends Component<any, any> {
     this.state = {
       ...initialState,
       isOpen: false,
+      connectedToInjectedWeb3: false,
     };
   }
 
@@ -111,10 +113,14 @@ class BuyModal extends Component<any, any> {
 
   openModal = async (e: any) => {
     e.preventDefault()
-    await web3ProvideSwitcher.switchToInjectedWeb3()
+    this.setState((state: any, props: any) => ({
+      isOpen: true,
+    }))
+
+    const connectedToInjectedWeb3 = await web3ProvideSwitcher.switchToInjectedWeb3()
 
     this.setState((state: any, props: any) => ({
-      isOpen: true
+      connectedToInjectedWeb3,
     }))
   }
 
@@ -137,47 +143,57 @@ class BuyModal extends Component<any, any> {
               mr={3}
               onClick={this.closeModal}
             />
-            <Box p={4} mb={3}>
-              <Heading.h3>Purchase</Heading.h3>
-              <Text>
-                Enter the desired values for the transaction.
-              </Text>
-              <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
-                {this.inputs.map((input: any, index: any) => {
-                  var inputType = this.translateType(input.type);
-                  var inputLabel = ["Your Initial Sale Price"]
-                    ? ["Your Initial Sale Price"][index]
-                    : input.name;
-                  // check if input type is struct and if so loop out struct fields as well
-                  return (
-                    <Input
-                      key={input.name}
-                      type={inputType}
-                      name={input.name}
-                      value={this.state[input.name]}
-                      placeholder={inputLabel}
-                      onChange={this.handleInputChange}
-                      startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
-                    />
-                  );
-                })}
-                {valueLabel &&
-                  <Fragment>
-                    <br />
-                    <Input
-                      key={valueLabel}
-                      type='number'
-                      name='value'
-                      value={this.state[valueLabel]}
-                      placeholder={valueLabel}
-                      onChange={this.handleInputChange}
-                      startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
-                    <br />
-                    <br />
-                  </Fragment>
-                }
-              </form>
-            </Box>
+            {this.state.connectedToInjectedWeb3 ?
+              <Box p={4} mb={3}>
+                <Heading.h3>Purchase</Heading.h3>
+                <Text>
+                  Enter the desired values for the transaction.
+                </Text>
+                <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+                  {this.inputs.map((input: any, index: any) => {
+                    var inputType = this.translateType(input.type);
+                    var inputLabel = ["Your Initial Sale Price"]
+                      ? ["Your Initial Sale Price"][index]
+                      : input.name;
+                    // check if input type is struct and if so loop out struct fields as well
+                    return (
+                      <Input
+                        key={input.name}
+                        type={inputType}
+                        name={input.name}
+                        value={this.state[input.name]}
+                        placeholder={inputLabel}
+                        onChange={this.handleInputChange}
+                        startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
+                      />
+                    );
+                  })}
+                  {valueLabel &&
+                    <Fragment>
+                      <br />
+                      <Input
+                        key={valueLabel}
+                        type='number'
+                        name='value'
+                        value={this.state[valueLabel]}
+                        placeholder={valueLabel}
+                        onChange={this.handleInputChange}
+                        startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
+                      <br />
+                      <br />
+                    </Fragment>
+                  }
+                </form>
+                <TokenOverview />
+              </Box>
+              :
+              <Box p={4} mb={3}>
+                <Heading.h3>NOTICE</Heading.h3>
+                <Text>
+                  Unable to connect to metamask or other provider to access your private keys.
+                </Text>
+              </Box>
+            }
             <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
               {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
               <Button
