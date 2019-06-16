@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import React, { Component, Fragment } from "react";
-import TokenOverview from "./TokenOverview"
-import OfflineContainer from "./Offline"
 import { Button, Modal, Card, Box, Heading, Text, Flex } from 'rimble-ui'
-import { any } from "prop-types";
+import web3ProvideSwitcher from "../web3ProvideSwitcher"
 
 class BuyModal extends Component<any, any> {
   contracts: any
@@ -111,8 +109,10 @@ class BuyModal extends Component<any, any> {
     }))
   }
 
-  openModal = (e: any) => {
+  openModal = async (e: any) => {
     e.preventDefault()
+    await web3ProvideSwitcher.switchToInjectedWeb3()
+
     this.setState((state: any, props: any) => ({
       isOpen: true
     }))
