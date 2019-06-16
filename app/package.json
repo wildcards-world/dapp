@@ -23,6 +23,7 @@
     "rimble-ui": "^0.9.1",
     "styled-components": "^4.2.0",
     "swiper": "^4.5.0",
+    "truffle-hdwallet-provider": "^1.0.10",
     "typescript": "^3.4.5"
   },
   "scripts": {
