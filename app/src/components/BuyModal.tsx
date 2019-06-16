@@ -122,7 +122,7 @@ class BuyModal extends Component<any, any> {
     const valueLabel = "Your Initial Deposit";
     return (
       <React.Fragment>
-        <Button onClick={this.openModal}>Open Modal</Button>
+        <Button onClick={this.openModal}>Buy</Button>
 
         <Modal isOpen={this.state.isOpen}>
           <Card width={'420px'} p={0}>
