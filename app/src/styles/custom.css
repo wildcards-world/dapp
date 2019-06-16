@@ -1,3 +1,40 @@
 hr {
   color: rgb(223, 226, 233);
 }
+
+.gorillas{
+  position:relative;
+  width: 34vw;
+  float:right;  
+  margin:auto;
+  display: block;
+}
+
+.gorilla-back{
+  position: absolute;
+  z-index: 3;
+  width: 20vw;
+  -webkit-filter: grayscale(90%);
+  filter: grayscale(90%);
+}
+
+.gorilla-left{
+  transform: translate(-10vw, 3vh);
+}
+
+.gorilla-right{
+  position: relative;
+  transform: translate(10vw, 1vh);
+}
+
+.gorilla-back:hover{
+  transition: 1s ease;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
+.gorilla-center-front{
+  position: absolute;
+  z-index: 5;
+  width: 20vw;
+}
