@@ -1,5 +1,6 @@
 import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
+import Dapp from "./Dapp"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
 import gorillaImg from "../img/wildcardsimages/gorilla.png"
@@ -61,9 +62,7 @@ class Template extends Component {
               <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
               <div>
                 <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
-                <h3 style={{ margin: 0, color: 'white', padding: '0.8rem 1.2rem', display: 'inline-block', backgroundColor: '#6bad3e' }}>
-                  COMING SOON
-                </h3>
+                <Dapp />
               </div>
             </div>
           </div>
