@@ -29,7 +29,6 @@ contract Vitalik {
     
     mapping (address => bool) public patrons;
     mapping (address => uint256) public timeHeld;
-    mapping (address => uint256) public paid; // NOTE: not used [accident]
 
     uint256 public timeAcquired;
     
@@ -58,7 +57,7 @@ contract Vitalik {
     }
 
     modifier onlyReceivingOrganization() {
-        require(msg.sender == organization);
+        require(msg.sender == organization, "Not organization");
         _;
     }
 
@@ -67,7 +66,7 @@ contract Vitalik {
        _;
     }
 
-    function changeReceivingOrganization(address _newReceivingOrganization) public onlyReceivingOrganization {
+    function changeReceivingOrganization(address payable _newReceivingOrganization) public onlyReceivingOrganization {
         organization = _newReceivingOrganization;
     }
 
