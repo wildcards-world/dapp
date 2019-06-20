@@ -5,7 +5,7 @@ const Vitalik = artifacts.require('./Vitalik.sol');
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
 
-contract('Rhino', (accounts) => {
+contract('Vitalik', (accounts) => {
 
   let artwork;
   let steward;
