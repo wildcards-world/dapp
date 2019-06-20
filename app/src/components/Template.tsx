@@ -70,7 +70,7 @@ class Template extends Component {
                   <div className='gorilla-back gorilla-left'>
                     <img className="header-23__img" src={gorillaImg2} />
                     <div style={{ transform: 'translate(-5vw, 0vh)' }} >
-                      <h2 style={{ margin: '0.2rem' }}>Brian Armstrong</h2>
+                      <h2 style={{ margin: '0.2rem' }}>Simon</h2>
                       <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
                         COMING SOON
                     </h3>
@@ -80,7 +80,7 @@ class Template extends Component {
                     <img className="header-23__img" src={gorillaImg1} />
                     <div>
                       <div className='gorilla-purchase-container'>
-                        <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
+                        <h2 style={{ margin: '0.2rem' }}>Vitalik</h2>
                         <h3 style={{ margin: 0, color: 'white', padding: '0.8rem 1.2rem', display: 'inline-block', backgroundColor: '#6bad3e' }}>
                           <strong>COMING SOON</strong> <br/>
                           <Countdown />
@@ -91,7 +91,7 @@ class Template extends Component {
                   <div className='gorilla-back gorilla-right'>
                     <img className="header-23__img " src={gorillaImg3} />
                     <div style={{ transform: 'translate(5vw, 0vh)' }}>
-                      <h2 style={{ margin: '0.2rem' }}>Changpeng Zhao </h2>
+                      <h2 style={{ margin: '0.2rem' }}>Andy</h2>
                       <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
                         COMING SOON
                     </h3>
