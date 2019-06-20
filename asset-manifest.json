@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.b952a494.chunk.css",
-    "main.js": "/static/js/main.5e15fa71.chunk.js",
-    "main.js.map": "/static/js/main.5e15fa71.chunk.js.map",
+    "main.js": "/static/js/main.52d07a59.chunk.js",
+    "main.js.map": "/static/js/main.52d07a59.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/js/2.46a68f0d.chunk.js": "/static/js/2.46a68f0d.chunk.js",
     "static/js/2.46a68f0d.chunk.js.map": "/static/js/2.46a68f0d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.cf9cbaf0301a53c24e6abc0b005f8035.js": "/precache-manifest.cf9cbaf0301a53c24e6abc0b005f8035.js",
+    "precache-manifest.efbdb3ebf2386dd6876aee13e8d6d87c.js": "/precache-manifest.efbdb3ebf2386dd6876aee13e8d6d87c.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.b952a494.chunk.css.map": "/static/css/main.b952a494.chunk.css.map",
     "static/media/main.css": "/static/media/white-waves.f1fdb72a.svg",
