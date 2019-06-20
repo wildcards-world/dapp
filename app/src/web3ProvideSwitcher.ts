@@ -24,6 +24,28 @@ const getInjectedWeb3 = async () => {
     throw new Error('Cannot find injected web3 or valid fallback.')
   }
 }
+const getInjectedWeb3NoLoad = () => {
+
+  if (window.ethereum) {
+    const { ethereum } = window
+    try {
+      return ethereum
+    } catch (error) {
+      // User denied account access...
+      console.log(error)
+    }
+  } else if (typeof (<any>window).web3 !== 'undefined') {
+    console.log('we have the window web3')
+    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+    // Use Mist/MetaMask's provider.
+    const { currentProvider } = new Web3((<any>window).web3.currentProvider)
+
+    return currentProvider
+  } else {
+    // Out of web3 options; throw.
+    throw new Error('Cannot find injected web3 or valid fallback.')
+  }
+}
 class Web3ProviderSwitcher {
 
   public static instance: Web3ProviderSwitcher
@@ -35,7 +57,7 @@ class Web3ProviderSwitcher {
     if (Web3ProviderSwitcher.instance) { return Web3ProviderSwitcher.instance }
     Web3ProviderSwitcher.instance = this
 
-    this.defaultWeb3 = new HDWalletProvider(process.env.REACT_APP_MNEMONIC, "http://localhost:8545")
+    this.defaultWeb3 = getInjectedWeb3NoLoad()
   }
 
   public async switchToInjectedWeb3() {
