@@ -1,5 +1,6 @@
 import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
+import Countdown from './Countdown';
 import Dapp from "./Dapp"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
@@ -20,6 +21,8 @@ import '../styles/custom.css'
 
 class Template extends Component {
   render() {
+    const currentDate = new Date();
+    const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
     return (
       <div>
         <header className="header-23 js-scroll-this-box">
@@ -27,7 +30,7 @@ class Template extends Component {
           <nav className="nav-02">
             <div className="container container--large">
               <div className="nav-02__box">
-                <img src={smallIcon} height="80px" className='main-logo'/>
+                <img src={smallIcon} height="80px" className='main-logo' />
                 {/* </a> */}
                 {/* </div> */}
                 <div className="nav-02__links js-menu">
@@ -62,44 +65,46 @@ class Template extends Component {
               </div>
             </div>
             <div className="header-23__right">
-
-<div className='gorillas'>
-                <div className='gorilla-back gorilla-left'>
-                  <img className="header-23__img" src={gorillaImg2} />
-                  <div style={{transform: 'translate(-5vw, 0vh)'}} >
-                    <h2 style={{ margin: '0.2rem' }}>Brian Armstrong</h2>
-                    <h3 style={{ margin: 0, color:  '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
-                      COMING SOON
+              <div className="gorilla-column">
+                <div className='gorillas'>
+                  <div className='gorilla-back gorilla-left'>
+                    <img className="header-23__img" src={gorillaImg2} />
+                    <div style={{ transform: 'translate(-5vw, 0vh)' }} >
+                      <h2 style={{ margin: '0.2rem' }}>Brian Armstrong</h2>
+                      <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
+                        COMING SOON
                     </h3>
+                    </div>
                   </div>
-                </div>
-                <div className='gorilla-center-front'>
-                  <img className="header-23__img" src={gorillaImg1} />
-                  <div>
-                    <div className='gorilla-purchase-container'>
-                      <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
-                      <h3 style={{ margin: 0, color: 'white', padding: '0.8rem 1.2rem', display: 'inline-block', backgroundColor: '#6bad3e' }}>
+                  <div className='gorilla-center-front'>
+                    <img className="header-23__img" src={gorillaImg1} />
+                    <div>
+                      <div className='gorilla-purchase-container'>
+                        <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
+                        <h3 style={{ margin: 0, color: 'white', padding: '0.8rem 1.2rem', display: 'inline-block', backgroundColor: '#6bad3e' }}>
+                          <strong>COMING SOON</strong> <br/>
+                          <Countdown />
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='gorilla-back gorilla-right'>
+                    <img className="header-23__img " src={gorillaImg3} />
+                    <div style={{ transform: 'translate(5vw, 0vh)' }}>
+                      <h2 style={{ margin: '0.2rem' }}>Changpeng Zhao </h2>
+                      <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
                         COMING SOON
                     </h3>
                     </div>
                   </div>
                 </div>
-                <div className='gorilla-back gorilla-right'>
-                  <img className="header-23__img " src={gorillaImg3} />
-                  <div style={{transform: 'translate(5vw, 0vh)'}}>
-                    <h2 style={{ margin: '0.2rem' }}>Changpeng Zhao </h2>
-                    <h3 style={{ margin: 0, color:  '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
-                      COMING SOON
-                    </h3>
-                  </div>
-                </div>
               </div>
 
-              <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
-              <div>
+              {/* <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} /> */}
+              {/* <div>
                 <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
                 <Dapp />
-              </div>
+              </div> */}
             </div>
           </div>
         </header>

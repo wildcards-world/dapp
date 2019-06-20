@@ -2,39 +2,63 @@ hr {
   color: rgb(223, 226, 233);
 }
 
-.gorillas{
-  position:relative;
-  width: 34vw;
-  float:right;  
-  margin:auto;
-  display: block;
+@media only screen and (max-width: 760px) {
+  .gorilla-back {
+    display:none;
+  }
+  .countdown-timer{
+    font-size: 0.8rem;    
+  }   
 }
 
-.gorilla-back{
-  position: absolute;
-  z-index: 3;
-  width: 20vw;
-  -webkit-filter: grayscale(90%);
-  filter: grayscale(90%);
+@media only screen and (min-width: 760px) {
+  .gorilla-column {
+    position: relative;
+    width: 50%;
+  }
+
+  .gorillas {
+    position: relative;
+    width: 30%;
+    float: right;
+    margin: auto;
+    display: block;
+  }
+
+  .gorilla-back {
+    position: absolute;
+    z-index: 3;
+    width: 20vw;
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+  }
+
+  .gorilla-left {
+    transform: translate(-10vw, 3vh);
+  }
+
+  .gorilla-right {
+    position: relative;
+    transform: translate(10vw, 1vh);
+  }
+
+  .gorilla-back:hover {
+    transition: 1s ease;
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+  }
+
+  .gorilla-center-front {
+    position: absolute;
+    z-index: 5;
+    width: 20vw;
+  }
+  .countdown-timer strong{
+    font-size: 1.4rem;
+    
+  }
+    
 }
 
-.gorilla-left{
-  transform: translate(-10vw, 3vh);
-}
 
-.gorilla-right{
-  position: relative;
-  transform: translate(10vw, 1vh);
-}
 
-.gorilla-back:hover{
-  transition: 1s ease;
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-}
-
-.gorilla-center-front{
-  position: absolute;
-  z-index: 5;
-  width: 20vw;
-}
