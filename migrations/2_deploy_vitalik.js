@@ -5,7 +5,7 @@ var Artwork = artifacts.require("./ERC721Full.sol");
 const artistAccount = '0x0000000000000000000000000000000000000000'; // need to fix
 
 module.exports = function (deployer, network, accounts) {
-  if (network === "rinkeby" || network === "rinkeby-fork" || network === "mainnet" || network === "mainnet-fork") {
+  if (network === 'goerly' || network === "rinkeby" || network === "rinkeby-fork" || network === "mainnet" || network === "mainnet-fork") {
     // deploy with mnemonic provider
     deployer.deploy(Artwork, "This Vitalik Is Always OnSale", "TVIAOS").then((deployedArtwork) => {
       console.log(deployedArtwork.address);
