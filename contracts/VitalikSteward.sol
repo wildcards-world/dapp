@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 import "./interfaces/IERC721Full.sol";
 import "./utils/SafeMath.sol";
 
-contract Vitalik {
+contract VitalikSteward {
     
     /*
     This smart contract collects patronage from current owner through a Harberger tax model and 

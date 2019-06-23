@@ -1,13 +1,13 @@
 const { BN, shouldFail, ether, expectEvent, balance, time } = require('openzeppelin-test-helpers');
 
 const Artwork = artifacts.require('./ERC721Full.sol');
-const ArtSteward = artifacts.require('./Vitalik.sol');
+const ArtSteward = artifacts.require('./VitalikSteward.sol');
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
 
 // todo: test over/underflows
 
-contract('Vitalik owed', (accounts) => {
+contract('VitalikSteward owed', (accounts) => {
 
   let artwork;
   let steward;

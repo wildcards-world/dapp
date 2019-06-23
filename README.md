@@ -19,7 +19,7 @@ This is a work-in-progress.
 - It uses Drizzle Box as base for front-end (using legacy react API).
 - Components from drizzle-react-components were forked.
 
-### Vitalik.sol
+### VitalikSteward.sol
 
 This smart contract is responsible for managing ownership over the gorillas as an example. It takes in a deposit and sets the price for the animal (by the owner). Over time, it collects patronage towards the charity and forecloses the animal in case the owner can't pay anymore.
 

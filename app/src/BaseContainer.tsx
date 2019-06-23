@@ -5,7 +5,7 @@ const mapStateToProps = (state: any) => {
   return {
     accounts: state.accounts,
     ERC721Full: state.contracts.ERC721Full,
-    Vitalik: state.contracts.Vitalik,
+    VitalikSteward: state.contracts.VitalikSteward,
     drizzleStatus: state.drizzleStatus,
   };
 };
