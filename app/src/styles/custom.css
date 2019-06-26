@@ -265,5 +265,6 @@ hr {
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
-  background-image: url("../img/wildcardsimages/wild-jungle-background.png");
+  background-image:linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("../img/wildcardsimages/wild-jungle-background.png");
+  /* opacity: 0.4; */
 }
