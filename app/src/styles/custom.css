@@ -4,11 +4,11 @@ hr {
 
 @media only screen and (max-width: 760px) {
   .gorilla-back {
-    display:none;
+    display: none;
   }
-  .countdown-timer{
-    font-size: 0.8rem;    
-  }   
+  .countdown-timer {
+    font-size: 0.8rem;
+  }
 }
 
 @media only screen and (min-width: 760px) {
@@ -53,12 +53,46 @@ hr {
     z-index: 5;
     width: 20vw;
   }
-  .countdown-timer strong{
+  .countdown-timer strong {
     font-size: 1.4rem;
-    
   }
-    
 }
 
+/* About Component Styles */
+.about-container {
+  width: 100%;
+  padding: 2rem 10rem;
+  background-color: #73c7d7ff;
+}
 
+.about-content {
+  font-size: 1.6rem;
+  color:#486269;
+  text-align: justify;
+}
 
+.about-content a {
+  color: #303030;
+  /* text-decoration:none; */
+}
+
+.about-content a:hover {
+  color: #24593A;
+  transition: .5 ease;
+}
+
+.about-highlights {
+  color: #303030;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 760px) {
+  .about-container {
+    padding: 2rem 2.4rem;
+  }
+  .about-content {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+/* About Component Styles End */

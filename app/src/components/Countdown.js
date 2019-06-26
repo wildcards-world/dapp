@@ -16,7 +16,7 @@ class Countdown extends Component {
   componentDidMount() {
     // update every second
     this.interval = setInterval(() => {
-      const date = this.calculateCountdown('2019-06-27T14:00:00');
+      const date = this.calculateCountdown('2019-06-27T19:00:00');
       date ? this.setState(date) : this.stop();
     }, 1000);
   }
