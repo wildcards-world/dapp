@@ -121,7 +121,12 @@ hr {
 }
 
 .problem-solution-content{
-  padding: 2rem;  
+  background-color: #fff;
+  /* height:80%; */
+  padding: 2% 2rem;  
+  margin-top:5%;
+  margin-bottom:5%;
+  box-shadow: 5px 15px 15px #24593A;
 }
 
 .problem-solution-content h3{
@@ -148,3 +153,10 @@ hr {
   }
 }
 /* Problem Solution Component Styles End */
+
+.vine-background{
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-image: url("../img/wildcardsimages/wild-jungle-background.png");
+}

@@ -5,7 +5,7 @@ import gorillaOnVine from '../img/wildcardsimages/gorilla-on-vine.png'
 class ProblemSolution extends Component {
     render() {
         return (
-            <div className='problem-solution-container'>
+            <div className='problem-solution-container vine-background'>
                 <div className='gorilla-on-vine'>
                     <img src={gorillaOnVine} width='100%' />
                 </div>

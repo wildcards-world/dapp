@@ -317,14 +317,14 @@ class Template extends Component {
         </div>
         {/* ===== END OF: Email form 03*/}
         {/* START OF: Text 01 =====*/}
-        <div className="text--01" id="about">
+        <div className="text--01 vine-background" id="about">
           <div className="container container--small">
             <div className="text--01__box" style={{ backgroundColor: '#6bad3e', borderRadius: 0 }}>
               <div className="text--01__emoji">
                 <img className="emoji   emoji--large" src={raisingHandsEmoji} alt="Emoji" />
               </div>
               <p className="text--01__content white-text">
-                Wild Cards is currently under active development.
+                Wildcards is currently under active development.
               </p>
               <div className="text--01__link_box">
                 <a className="pill-link  pill-link--black  pill-link--small " href="https://youtu.be/ibBAlrrwjp0?t=322" target="_blank"><span className="pill-link__text">Watch the original hackathon presentation</span><span className="pill-link__icon"><span className="icon"><svg viewBox="0 0 13 10" xmlns="http://www.w3.org/2000/svg">
