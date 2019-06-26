@@ -68,7 +68,7 @@ contract Vitalik {
     }
 
     function changeReceivingOrganization(address _newReceivingOrganization) public onlyReceivingOrganization {
-        organization = _newReceivingOrganization;
+        organization = address(uint160(_newReceivingOrganization));
     }
 
     /* public view functions */
