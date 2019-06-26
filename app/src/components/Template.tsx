@@ -1,8 +1,11 @@
 import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
 import Countdown from './Countdown';
+import CustomerBenefit from "./CustomerBenefit"
 import About from "./About"
 import ProblemSolution from "./ProblemSolution"
+import CoreConcepts from "./CoreConcepts"
+import HowItWorks from "./HowItWorks"
 import Dapp from "./Dapp"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
@@ -112,8 +115,10 @@ class Template extends Component {
         </header>
         {/* ===== END OF: Header 23*/}
 
+        <CustomerBenefit/>
+        <HowItWorks/>
         <About/>
-        <ProblemSolution/>
+        <CoreConcepts/>
 
         {/* START OF: Email form 03 =====*/}
         <div className="cta_form-03" style={{ backgroundColor: '#73c7d7' }} id="signup">
@@ -315,7 +320,8 @@ class Template extends Component {
             </div>
           </div>
         </div>
-        {/* ===== END OF: Email form 03*/}
+        {/* ===== END OF: Email form 03*/}      
+
         {/* START OF: Text 01 =====*/}
         <div className="text--01 vine-background" id="about">
           <div className="container container--small">
