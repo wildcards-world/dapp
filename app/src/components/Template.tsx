@@ -1,9 +1,7 @@
-import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
 import Dapp from "./Dapp"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
-import gorillaImg from "../img/wildcardsimages/gorilla.png"
 import topCornerBlue from "../img/icons/corner-top--blue.svg"
 import smirkingEmoji from '../img/emoji/smirking.png'
 import laughingEmoji from '../img/emoji/laughing.png'
@@ -24,7 +22,7 @@ class Template extends Component {
           <nav className="nav-02">
             <div className="container container--large">
               <div className="nav-02__box">
-                <img src={smallIcon} height="80px" className='main-logo'/>
+                <img src={smallIcon} height="80px" className='main-logo' />
                 {/* </a> */}
                 {/* </div> */}
                 <div className="nav-02__links js-menu">
@@ -58,13 +56,7 @@ class Template extends Component {
                 </h3>
               </div>
             </div>
-            <div className="header-23__right">
-              <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
-              <div>
-                <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
-                <Dapp />
-              </div>
-            </div>
+            <Dapp />
           </div>
         </header>
         {/* ===== END OF: Header 23*/}

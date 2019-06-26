@@ -3,8 +3,6 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import moment from "moment"
 
-import ContractForm from "./ContractForm";
-import DepositWeiForm from "./DepositWeiForm";
 import ContractData from "./ContractData";
 
 declare global {

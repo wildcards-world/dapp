@@ -2,15 +2,24 @@ import { drizzleConnect } from "drizzle-react";
 import PropTypes from "prop-types";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import React, { Component, Fragment } from "react";
-import { Button, Modal, Card, Box, Heading, Text, Flex, Loader, Input } from 'rimble-ui'
+import { Button, Modal, Card, Box, Heading, Text, Flex, Loader, Input, Radio } from 'rimble-ui'
 import web3ProvideSwitcher from "../web3ProvideSwitcher"
 import TokenOverview from "./TokenOverview"
 
+enum ModalState {
+  Deposit,
+  Price,
+  Closed,
+}
+
 interface state {
   contractFunctions: any,
-  isOpen: boolean,
+  modalState: ModalState,
   connectedToInjectedWeb3: boolean,
-  currentTxIndex: number
+  currentTxIndex: number,
+  depositState: boolean,
+  depositAvailable: any
+  balance: number
 }
 
 class BuyModal extends Component<any, any> {
@@ -18,6 +27,7 @@ class BuyModal extends Component<any, any> {
   utils: any
   inputs: any
   state: state
+  drizzle: any
 
   static contextTypes = {
     drizzle: PropTypes.object
@@ -33,6 +43,7 @@ class BuyModal extends Component<any, any> {
 
     this.contracts = context.drizzle.contracts;
     this.utils = context.drizzle.web3.utils;
+    this.drizzle = context.drizzle
 
     // Get the contract ABI, if it is undefined return an empty array
     const abi = (!!this.contracts.VitalikSteward) ? this.contracts.VitalikSteward.abi : [];
@@ -40,53 +51,31 @@ class BuyModal extends Component<any, any> {
     this.inputs = [];
     let contractFunctions: any = {};
 
-    // Iterate over abi for correct function.
-    for (let i = 0; i < abi.length; i++) {
-      if (abi[i].name === 'buy') {
-        this.inputs = abi[i].inputs;
-
-        for (let j = 0; j < this.inputs.length; j++) {
-          contractFunctions[this.inputs[j].name] = "";
-        }
-
-        break;
-      }
-    }
-
     this.state = {
       contractFunctions,
-      isOpen: false,
+      modalState: ModalState.Closed,
       connectedToInjectedWeb3: false,
-      currentTxIndex: -1
+      currentTxIndex: -1,
+      depositState: true,
+      depositAvailable: '',
+      balance: -1,
     };
   }
 
   handleSubmit(event: any) {
     event.preventDefault();
-    let args: any = {};
-    const convertedInputs = this.inputs.map((input: any, index: any) => {
-      if (input.type === 'bytes32') {
-        return this.utils.toHex(this.state.contractFunctions[input.name])
-      } else if (input.type === 'uint256') {
-        return this.utils.toWei(this.state.contractFunctions[input.name], 'ether'); // all number fields are ETH  fields.
-      }
-      return this.state.contractFunctions[input.name];
-    });
-
-    // todo: if foreclosed, price should default to zero.
-    if (this.state.contractFunctions.value) {
-      const artworkPrice = new this.utils.BN(this.props.contracts.VitalikSteward['price']['0x0'].value);
-      args.value = new this.utils.BN(this.utils.toWei(this.state.contractFunctions.value, 'ether')).add(artworkPrice);
+    let inputValue = this.utils.toWei(this.state.contractFunctions['newSettingValue'], 'ether'); // all number fields are ETH  fields.
+    let currentTxIndex: number
+    if (this.state.modalState === ModalState.Deposit) {
+      const contractFunction = this.state.depositState ? 'depositWei' : 'withdrawDeposit'
+      currentTxIndex = this.contracts.VitalikSteward.methods[
+        contractFunction
+      ].cacheSend({ value: inputValue })
+    } else {
+      currentTxIndex = this.contracts.VitalikSteward.methods[
+        'changePrice'
+      ].cacheSend(inputValue)
     }
-
-    const currentTxIndex = (args) ?
-      this.contracts.VitalikSteward.methods[
-        'buy'
-      ].cacheSend(...convertedInputs, args)
-      : this.contracts.VitalikSteward.methods[
-        'buy'
-      ].cacheSend(...convertedInputs)
-
     this.setState((state: any, props: any) => ({
       ...state,
       currentTxIndex
@@ -100,7 +89,29 @@ class BuyModal extends Component<any, any> {
     const didTransactionStackChange = transactionStack !== nextProps.transactionStack;
 
     if (didTransactionsChange || didTransactionStackChange) {
-      console.log({ transactions, transactionStack })
+      console.log({ transactions, transactionStack, balance: this.state.balance })
+    }
+
+    const depositKey = this.context.drizzle.contracts.VitalikSteward.methods.depositAbleToWithdraw.cacheCall()
+    const depositObj = nextProps.contracts['VitalikSteward']['depositAbleToWithdraw'][depositKey]
+
+
+    if (!!depositObj && !!depositObj.value) {
+      const depositAvailable = this.utils.fromWei(depositObj.value, 'ether')
+      if (this.state.depositAvailable !== depositAvailable) {
+        this.setState({
+          ...this.state,
+          depositAvailable
+        })
+      }
+    }
+    if (!!this.props.accounts && !!this.props.accounts[0]) {
+      this.drizzle.web3.eth.getBalance(this.props.accounts[0]).then((balance: number) => {
+        this.setState({
+          ...this.state,
+          balance
+        })
+      })
     }
   }
 
@@ -130,16 +141,22 @@ class BuyModal extends Component<any, any> {
     e.preventDefault()
     this.setState((state: any, props: any) => ({
       ...state,
-      isOpen: false,
+      modalState: ModalState.Closed,
       currentTxIndex: -1,
     }))
   }
 
-  openModal = async (e: any) => {
-    e.preventDefault()
+  setDepositWithdrawToggle = (depositState: boolean) => {
     this.setState((state: any, props: any) => ({
       ...state,
-      isOpen: true,
+      depositState,
+    }))
+  }
+
+  openModal = async (modalState: ModalState) => {
+    this.setState((state: any, props: any) => ({
+      ...state,
+      modalState,
       currentTxIndex: -1,
     }))
 
@@ -162,8 +179,6 @@ class BuyModal extends Component<any, any> {
       const tempTxHash = transactionStack[this.state.currentTxIndex]
       if (!!transactions[tempTxHash]) {
         txHash = transactionStack[this.state.currentTxIndex]
-        console.log('transactions[txHash].status')
-        console.log(transactions[txHash].status)
         switch (transactions[txHash].status) {
           case 'pending':
             transactionStatus = 'Transaction being processed by the Ethereum Network.'
@@ -177,11 +192,13 @@ class BuyModal extends Component<any, any> {
     }
 
     const transactionProcessing = currentTxIndex !== -1
+
     return (
       <React.Fragment>
-        <Button onClick={this.openModal}>Buy</Button>
+        <Button onClick={() => this.openModal(ModalState.Deposit)} > Update Price</Button>
+        <Button onClick={() => this.openModal(ModalState.Price)} > Add/Remove Deposit</Button>
 
-        <Modal isOpen={this.state.isOpen}>
+        <Modal isOpen={this.state.modalState === ModalState.Price}>
           <Card width={'420px'} p={0}>
             <Button.Text
               icononly
@@ -206,35 +223,86 @@ class BuyModal extends Component<any, any> {
                   </Fragment>
                   :
                   <Fragment>
-                    <Heading.h3>Purchase</Heading.h3>
+                    <Heading.h3>Price</Heading.h3>
                     <Text>
-                      Enter the desired values for the transaction.
+                      How much would you like to ge from selling this token?
                     </Text>
                     <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
                       <Input
-                        key='_newPrice'
+                        key='newSettingValue'
                         type='number'
-                        name='_newPrice'
-                        value={this.state.contractFunctions['_newPrice']}
-                        placeholder={"Your Initial Sale Price"}
+                        name='newSettingValue'
+                        value={this.state.contractFunctions['newSettingValue'] || 0}
+                        placeholder={`Price`}
                         onChange={this.handleInputChange}
                         style={{ width: '100%' }}
                         startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
                       />
-                      <Fragment>
-                        <br />
-                        <Input
-                          key={valueLabel}
-                          type='number'
-                          name='value'
-                          value={this.state.contractFunctions[valueLabel]}
-                          placeholder={valueLabel}
-                          onChange={this.handleInputChange}
-                          style={{ width: '100%' }}
-                          startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
-                        <br />
-                        <br />
-                      </Fragment>
+                      <br />
+                    </form>
+                    <TokenOverview />
+                  </Fragment>}
+              </Box>
+              :
+              <Box p={4} mb={3}>
+                <Heading.h3>NOTICE</Heading.h3>
+                <Text>
+                  Unable to connect to metamask, so unable to sign transactions.
+                </Text>
+              </Box>
+            }
+            {(!transactionProcessing) && <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
+              {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
+              <Button
+                ml={3}
+                onClick={this.handleSubmit}
+              >Buy Vitalik</Button>
+            </Flex>}
+          </Card>
+        </Modal>
+        <Modal isOpen={this.state.modalState === ModalState.Deposit}>
+          <Card width={'420px'} p={0}>
+            <Button.Text
+              icononly
+              icon={'Close'}
+              color={'moon-gray'}
+              position={'absolute'}
+              top={0}
+              right={0}
+              mt={3}
+              mr={3}
+              onClick={this.closeModal}
+            />
+            {this.state.connectedToInjectedWeb3 ?
+
+              <Box p={4} mb={3}>{
+                transactionProcessing ?
+                  <Fragment>
+                    <Heading.h3>Processing Transaction</Heading.h3>
+                    <p>{transactionStatus}</p>
+                    {!!txHash && <a href={'https://etherscan.io/tx/' + txHash} target="_blank">View transaction on Ethersan</a>}
+                    {!txComplete && <Loader color="red" size="80px" />}
+                  </Fragment>
+                  :
+                  <Fragment>
+                    <Heading.h3>Deposit</Heading.h3>
+                    <Text>
+                      How you want to change your deposit?
+                    </Text>
+                    <Radio checked={this.state.depositState} onChange={() => this.setDepositWithdrawToggle(true)} label="Deposit" my={2} />
+                    <Radio checked={!this.state.depositState} onChange={() => this.setDepositWithdrawToggle(false)} label="Withdrawl" my={2} />
+                    <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+                      <Input
+                        key='newSettingValue'
+                        type='number'
+                        name='newSettingValue'
+                        value={this.state.contractFunctions['newSettingValue'] || 0}
+                        placeholder={`Amount to ${this.state.depositState ? 'add' : 'remove'}`}
+                        onChange={this.handleInputChange}
+                        style={{ width: '100%' }}
+                        startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
+                      />
+                      <br />
                     </form>
                     <TokenOverview />
                   </Fragment>}
@@ -265,7 +333,8 @@ const mapStateToProps = (state: any) => {
   return {
     contracts: state.contracts,
     transactions: state.transactions,
-    transactionStack: state.transactionStack
+    transactionStack: state.transactionStack,
+    accounts: state.accounts
   }
 }
 
