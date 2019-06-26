@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.2a6041e7.chunk.css",
-    "main.js": "/static/js/main.506a7c35.chunk.js",
-    "main.js.map": "/static/js/main.506a7c35.chunk.js.map",
+    "main.css": "/static/css/main.81123ee3.chunk.css",
+    "main.js": "/static/js/main.455c351d.chunk.js",
+    "main.js.map": "/static/js/main.455c351d.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.87311324.chunk.js": "/static/js/2.87311324.chunk.js",
-    "static/js/2.87311324.chunk.js.map": "/static/js/2.87311324.chunk.js.map",
+    "static/js/2.d0a7acb0.chunk.js": "/static/js/2.d0a7acb0.chunk.js",
+    "static/js/2.d0a7acb0.chunk.js.map": "/static/js/2.d0a7acb0.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.fe9f0c8ce309a03e2640b19a4844ddc4.js": "/precache-manifest.fe9f0c8ce309a03e2640b19a4844ddc4.js",
+    "precache-manifest.3a2bf189dd1eb1c7a7940043be5e602e.js": "/precache-manifest.3a2bf189dd1eb1c7a7940043be5e602e.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.2a6041e7.chunk.css.map": "/static/css/main.2a6041e7.chunk.css.map",
+    "static/css/main.81123ee3.chunk.css.map": "/static/css/main.81123ee3.chunk.css.map",
     "static/media/main.css": "/static/media/white-waves.f1fdb72a.svg",
     "static/media/gorilla-on-vine.png": "/static/media/gorilla-on-vine.c448e535.png",
     "static/media/gorilla1.png": "/static/media/gorilla1.d41fa749.png",
     "static/media/gorilla2.png": "/static/media/gorilla2.d1afd4be.png",
     "static/media/gorilla3.png": "/static/media/gorilla3.4eb0db0d.png",
+    "static/media/hanging-gorilla-from-vine.png": "/static/media/hanging-gorilla-from-vine.28738cf6.png",
     "static/media/instagram.svg": "/static/media/instagram.85fcdfd5.svg",
     "static/media/raising_hands.png": "/static/media/raising_hands.9d92bf94.png",
     "static/media/twitter.svg": "/static/media/twitter.358d6cce.svg",
-    "static/media/wild-cards-small.png": "/static/media/wild-cards-small.a59c97f6.png"
+    "static/media/wild-cards-small.png": "/static/media/wild-cards-small.a59c97f6.png",
+    "static/media/custom.css": "/static/media/wild-jungle-background.ae5d91e2.png"
   }
 }
