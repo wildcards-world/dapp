@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import Countdown from './Countdown';
+import CustomerBenefit from "./CustomerBenefit"
+import About from "./About"
+import ProblemSolution from "./ProblemSolution"
+import CoreConcepts from "./CoreConcepts"
+import HowItWorks from "./HowItWorks"
 import Dapp from "./Dapp"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
@@ -15,6 +21,8 @@ import '../styles/custom.css'
 
 class Template extends Component {
   render() {
+    const currentDate = new Date();
+    const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
     return (
       <div>
         <header className="header-23 js-scroll-this-box">
@@ -57,9 +65,57 @@ class Template extends Component {
               </div>
             </div>
             <Dapp />
+            <div className="header-23__right">
+              <div className="gorilla-column">
+                <div className='gorillas'>
+                  <div className='gorilla-back gorilla-left'>
+                    <img className="header-23__img" src={gorillaImg2} />
+                    <div style={{ transform: 'translate(-5vw, 0vh)' }} >
+                      <h2 style={{ margin: '0.2rem' }}>Simon</h2>
+                      <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
+                        COMING SOON
+                    </h3>
+                    </div>
+                  </div>
+                  <div className='gorilla-center-front'>
+                    <img className="header-23__img" src={gorillaImg1} />
+                    <div>
+                      <div className='gorilla-purchase-container'>
+                        <h2 style={{ margin: '0.2rem' }}>Vitalik</h2>
+                        <h3 style={{ margin: 0, color: 'white', padding: '0.8rem 1.2rem', display: 'inline-block', backgroundColor: '#6bad3e' }}>
+                          <strong>COMING SOON</strong> <br/>
+                          <Countdown />
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='gorilla-back gorilla-right'>
+                    <img className="header-23__img " src={gorillaImg3} />
+                    <div style={{ transform: 'translate(5vw, 0vh)' }}>
+                      <h2 style={{ margin: '0.2rem' }}>Andy</h2>
+                      <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
+                        COMING SOON
+                    </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} /> */}
+              {/* <div>
+                <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
+                <Dapp />
+              </div> */}
+            </div>
           </div>
         </header>
         {/* ===== END OF: Header 23*/}
+
+        <CustomerBenefit/>
+        <HowItWorks/>
+        <About/>
+        <CoreConcepts/>
+
         {/* START OF: Email form 03 =====*/}
         <div className="cta_form-03" style={{ backgroundColor: '#73c7d7' }} id="signup">
           <div className="container container--mid">
@@ -260,16 +316,17 @@ class Template extends Component {
             </div>
           </div>
         </div>
-        {/* ===== END OF: Email form 03*/}
+        {/* ===== END OF: Email form 03*/}      
+
         {/* START OF: Text 01 =====*/}
-        <div className="text--01" id="about">
+        <div className="text--01 vine-background" id="about">
           <div className="container container--small">
             <div className="text--01__box" style={{ backgroundColor: '#6bad3e', borderRadius: 0 }}>
               <div className="text--01__emoji">
                 <img className="emoji   emoji--large" src={raisingHandsEmoji} alt="Emoji" />
               </div>
               <p className="text--01__content white-text">
-                Wild Cards is currently under active development.
+                Wildcards is currently under active development.
               </p>
               <div className="text--01__link_box">
                 <a className="pill-link  pill-link--black  pill-link--small " href="https://youtu.be/ibBAlrrwjp0?t=322" target="_blank"><span className="pill-link__text">Watch the original hackathon presentation</span><span className="pill-link__icon"><span className="icon"><svg viewBox="0 0 13 10" xmlns="http://www.w3.org/2000/svg">
