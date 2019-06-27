@@ -195,8 +195,9 @@ class BuyModal extends Component<any, any> {
 
     return (
       <React.Fragment>
-        <Button onClick={() => this.openModal(ModalState.Price)} > Update Price</Button>
-        <Button onClick={() => this.openModal(ModalState.Deposit)} > Add/Remove Deposit</Button>
+        <Button mainColor="#6bad3e" onClick={() => this.openModal(ModalState.Price)} > Update Price</Button>
+        &ensp;
+        <Button mainColor="#6bad3e" onClick={() => this.openModal(ModalState.Deposit)} > Add/Remove Deposit</Button>
 
         <Modal isOpen={this.state.modalState === ModalState.Price}>
           <Card width={'420px'} p={0}>
@@ -225,7 +226,7 @@ class BuyModal extends Component<any, any> {
                   <Fragment>
                     <Heading.h3>Price</Heading.h3>
                     <Text>
-                      How much would you like to ge from selling this token?
+                      How much would you like to receive from selling Vitalik?
                     </Text>
                     <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
                       <Input
@@ -254,9 +255,10 @@ class BuyModal extends Component<any, any> {
             {(!transactionProcessing) && <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
               {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
               <Button
+                mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
-              >Submit</Button>
+              >Buy Vitalik</Button>
             </Flex>}
           </Card>
         </Modal>
@@ -318,9 +320,10 @@ class BuyModal extends Component<any, any> {
             {(!transactionProcessing) && <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
               {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
               <Button
+                mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
-              >Submit</Button>
+              >Buy Vitalik</Button>
             </Flex>}
           </Card>
         </Modal>

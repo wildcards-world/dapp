@@ -179,7 +179,7 @@ class BuyModal extends Component<any, any> {
     const transactionProcessing = currentTxIndex !== -1
     return (
       <React.Fragment>
-        <Button onClick={this.openModal}>Buy</Button>
+        <Button mainColor="#6bad3e" onClick={this.openModal}>Buy</Button>
 
         <Modal isOpen={this.state.isOpen}>
           <Card width={'420px'} p={0}>
@@ -250,6 +250,7 @@ class BuyModal extends Component<any, any> {
             {(!transactionProcessing) && <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
               {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
               <Button
+                 mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
               >Buy Vitalik</Button>
