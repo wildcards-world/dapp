@@ -2518,7 +2518,7 @@ button.button {
 
 .nav-02 {
   position: absolute;
-  z-index: 200;
+  /* z-index: 200; */
   top: 0;
   right: 0;
   left: 0;
@@ -3585,7 +3585,7 @@ button.button {
 .header-25__left,
 .header-58__left {
   position: relative;
-  z-index: 20;
+  /* z-index: 20; */
   width: 550px;
   max-width: 550px;
   padding-top: 70px;
