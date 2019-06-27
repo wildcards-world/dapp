@@ -32,8 +32,8 @@ contract VitalikSteward {
 
     uint256 public timeAcquired;
     
-    // 5% patronage
-    uint256 patronageNumerator = 50000000000;
+    // 30% patronage
+    uint256 patronageNumerator = 300000000000;
     uint256 patronageDenominator = 1000000000000;
 
     enum StewardState { Foreclosed, Owned }
