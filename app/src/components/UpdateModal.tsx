@@ -195,8 +195,8 @@ class BuyModal extends Component<any, any> {
 
     return (
       <React.Fragment>
-        <Button onClick={() => this.openModal(ModalState.Deposit)} > Update Price</Button>
-        <Button onClick={() => this.openModal(ModalState.Price)} > Add/Remove Deposit</Button>
+        <Button onClick={() => this.openModal(ModalState.Price)} > Update Price</Button>
+        <Button onClick={() => this.openModal(ModalState.Deposit)} > Add/Remove Deposit</Button>
 
         <Modal isOpen={this.state.modalState === ModalState.Price}>
           <Card width={'420px'} p={0}>
@@ -256,7 +256,7 @@ class BuyModal extends Component<any, any> {
               <Button
                 ml={3}
                 onClick={this.handleSubmit}
-              >Buy Vitalik</Button>
+              >Submit</Button>
             </Flex>}
           </Card>
         </Modal>
@@ -320,7 +320,7 @@ class BuyModal extends Component<any, any> {
               <Button
                 ml={3}
                 onClick={this.handleSubmit}
-              >Buy Vitalik</Button>
+              >Submit</Button>
             </Flex>}
           </Card>
         </Modal>

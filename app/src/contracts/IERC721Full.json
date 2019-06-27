@@ -396,14 +396,14 @@
     "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
     "exportedSymbols": {
       "IERC721Full": [
-        1939
+        1959
       ]
     },
-    "id": 1940,
+    "id": 1960,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1929,
+        "id": 1949,
         "literals": [
           "solidity",
           "^",
@@ -416,10 +416,10 @@
       {
         "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./IERC721.sol",
-        "id": 1930,
+        "id": 1950,
         "nodeType": "ImportDirective",
-        "scope": 1940,
-        "sourceUnit": 1901,
+        "scope": 1960,
+        "sourceUnit": 1921,
         "src": "25:23:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -427,10 +427,10 @@
       {
         "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
         "file": "./IERC721Enumerable.sol",
-        "id": 1931,
+        "id": 1951,
         "nodeType": "ImportDirective",
-        "scope": 1940,
-        "sourceUnit": 1928,
+        "scope": 1960,
+        "sourceUnit": 1948,
         "src": "49:33:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -438,10 +438,10 @@
       {
         "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721Metadata.sol",
         "file": "./IERC721Metadata.sol",
-        "id": 1932,
+        "id": 1952,
         "nodeType": "ImportDirective",
-        "scope": 1940,
-        "sourceUnit": 1963,
+        "scope": 1960,
+        "sourceUnit": 1983,
         "src": "83:31:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -452,17 +452,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1933,
+              "id": 1953,
               "name": "IERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1900,
+              "referencedDeclaration": 1920,
               "src": "298:7:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721_$1900",
+                "typeIdentifier": "t_contract$_IERC721_$1920",
                 "typeString": "contract IERC721"
               }
             },
-            "id": 1934,
+            "id": 1954,
             "nodeType": "InheritanceSpecifier",
             "src": "298:7:10"
           },
@@ -470,17 +470,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1935,
+              "id": 1955,
               "name": "IERC721Enumerable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1927,
+              "referencedDeclaration": 1947,
               "src": "307:17:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Enumerable_$1927",
+                "typeIdentifier": "t_contract$_IERC721Enumerable_$1947",
                 "typeString": "contract IERC721Enumerable"
               }
             },
-            "id": 1936,
+            "id": 1956,
             "nodeType": "InheritanceSpecifier",
             "src": "307:17:10"
           },
@@ -488,42 +488,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1937,
+              "id": 1957,
               "name": "IERC721Metadata",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1962,
+              "referencedDeclaration": 1982,
               "src": "326:15:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Metadata_$1962",
+                "typeIdentifier": "t_contract$_IERC721Metadata_$1982",
                 "typeString": "contract IERC721Metadata"
               }
             },
-            "id": 1938,
+            "id": 1958,
             "nodeType": "InheritanceSpecifier",
             "src": "326:15:10"
           }
         ],
         "contractDependencies": [
-          1794,
-          1900,
-          1927,
-          1962
+          1814,
+          1920,
+          1947,
+          1982
         ],
         "contractKind": "contract",
         "documentation": "@title ERC-721 Non-Fungible Token Standard, full implementation interface\n@dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
         "fullyImplemented": false,
-        "id": 1939,
+        "id": 1959,
         "linearizedBaseContracts": [
-          1939,
-          1962,
-          1927,
-          1900,
-          1794
+          1959,
+          1982,
+          1947,
+          1920,
+          1814
         ],
         "name": "IERC721Full",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1940,
+        "scope": 1960,
         "src": "274:124:10"
       }
     ],
@@ -533,14 +533,14 @@
     "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721Full.sol",
     "exportedSymbols": {
       "IERC721Full": [
-        1939
+        1959
       ]
     },
-    "id": 1940,
+    "id": 1960,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1929,
+        "id": 1949,
         "literals": [
           "solidity",
           "^",
@@ -553,10 +553,10 @@
       {
         "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721.sol",
         "file": "./IERC721.sol",
-        "id": 1930,
+        "id": 1950,
         "nodeType": "ImportDirective",
-        "scope": 1940,
-        "sourceUnit": 1901,
+        "scope": 1960,
+        "sourceUnit": 1921,
         "src": "25:23:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -564,10 +564,10 @@
       {
         "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721Enumerable.sol",
         "file": "./IERC721Enumerable.sol",
-        "id": 1931,
+        "id": 1951,
         "nodeType": "ImportDirective",
-        "scope": 1940,
-        "sourceUnit": 1928,
+        "scope": 1960,
+        "sourceUnit": 1948,
         "src": "49:33:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -575,10 +575,10 @@
       {
         "absolutePath": "/home/jasoons/Documents/Code/Wildcards-backend/contracts/interfaces/IERC721Metadata.sol",
         "file": "./IERC721Metadata.sol",
-        "id": 1932,
+        "id": 1952,
         "nodeType": "ImportDirective",
-        "scope": 1940,
-        "sourceUnit": 1963,
+        "scope": 1960,
+        "sourceUnit": 1983,
         "src": "83:31:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -589,17 +589,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1933,
+              "id": 1953,
               "name": "IERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1900,
+              "referencedDeclaration": 1920,
               "src": "298:7:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721_$1900",
+                "typeIdentifier": "t_contract$_IERC721_$1920",
                 "typeString": "contract IERC721"
               }
             },
-            "id": 1934,
+            "id": 1954,
             "nodeType": "InheritanceSpecifier",
             "src": "298:7:10"
           },
@@ -607,17 +607,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1935,
+              "id": 1955,
               "name": "IERC721Enumerable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1927,
+              "referencedDeclaration": 1947,
               "src": "307:17:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Enumerable_$1927",
+                "typeIdentifier": "t_contract$_IERC721Enumerable_$1947",
                 "typeString": "contract IERC721Enumerable"
               }
             },
-            "id": 1936,
+            "id": 1956,
             "nodeType": "InheritanceSpecifier",
             "src": "307:17:10"
           },
@@ -625,42 +625,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1937,
+              "id": 1957,
               "name": "IERC721Metadata",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1962,
+              "referencedDeclaration": 1982,
               "src": "326:15:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721Metadata_$1962",
+                "typeIdentifier": "t_contract$_IERC721Metadata_$1982",
                 "typeString": "contract IERC721Metadata"
               }
             },
-            "id": 1938,
+            "id": 1958,
             "nodeType": "InheritanceSpecifier",
             "src": "326:15:10"
           }
         ],
         "contractDependencies": [
-          1794,
-          1900,
-          1927,
-          1962
+          1814,
+          1920,
+          1947,
+          1982
         ],
         "contractKind": "contract",
         "documentation": "@title ERC-721 Non-Fungible Token Standard, full implementation interface\n@dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
         "fullyImplemented": false,
-        "id": 1939,
+        "id": 1959,
         "linearizedBaseContracts": [
-          1939,
-          1962,
-          1927,
-          1900,
-          1794
+          1959,
+          1982,
+          1947,
+          1920,
+          1814
         ],
         "name": "IERC721Full",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1940,
+        "scope": 1960,
         "src": "274:124:10"
       }
     ],
@@ -672,7 +672,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-06-20T06:14:28.849Z",
+  "updatedAt": "2019-06-27T15:39:22.821Z",
   "devdoc": {
     "details": "See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md",
     "methods": {
