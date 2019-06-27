@@ -81,6 +81,7 @@ class Dapp extends Component<any, any> {
                       <div className='gorilla-purchase-container'>
                         <h2 style={{ margin: '0.2rem' }}>Vitalik</h2>
                         <BuyModal />
+                        <TokenOverview />
                       </div>
                     </div>
                   </div>
@@ -93,9 +94,9 @@ class Dapp extends Component<any, any> {
                     </h3>
                     </div>
                   </div>
+            
                 </div>
               </div>
-              <TokenOverview />
             </div>
           }
         </OfflineContainer>
