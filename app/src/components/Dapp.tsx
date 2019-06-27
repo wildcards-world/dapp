@@ -3,7 +3,9 @@ import TokenOverview from "./TokenOverview"
 import OfflineContainer from "./Offline"
 import BuyModal from './BuyModal'
 import UpdateModal from './UpdateModal'
-import gorillaImg from "../img/wildcardsimages/gorilla.png"
+import gorillaImg1 from "../img/wildcardsimages/gorilla1.png"
+import gorillaImg2 from "../img/wildcardsimages/gorilla2.png"
+import gorillaImg3 from "../img/wildcardsimages/gorilla3.png"
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from "prop-types";
 
@@ -51,7 +53,7 @@ class Dapp extends Component<any, any> {
         <OfflineContainer>
           {(tokenOwner === accounts[0]) ?
             < div className="header-23__right">
-              <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
+              <img className="header-23__img" src={gorillaImg1} style={{ minWidth: '30vw' }} />
               <div>
                 <h2 style={{ margin: '0.2rem' }}>Your Gorilla Vitalik</h2>
                 <Fragment>
@@ -62,14 +64,38 @@ class Dapp extends Component<any, any> {
             </div>
             :
             <div className="header-23__right">
-              <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
-              <div>
-                <h2 style={{ margin: '0.2rem' }}>Vitalik</h2>
-                <Fragment>
-                  <BuyModal />
-                  <TokenOverview />
-                </Fragment>
+              <div className="gorilla-column">
+                <div className='gorillas'>
+                  <div className='gorilla-back gorilla-left'>
+                    <img className="header-23__img" src={gorillaImg2} />
+                    <div style={{ transform: 'translate(-5vw, 0vh)' }} >
+                      <h2 style={{ margin: '0.2rem' }}>Simon</h2>
+                      <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
+                        COMING SOON
+                    </h3>
+                    </div>
+                  </div>
+                  <div className='gorilla-center-front'>
+                    <img className="header-23__img" src={gorillaImg1} />
+                    <div>
+                      <div className='gorilla-purchase-container'>
+                        <h2 style={{ margin: '0.2rem' }}>Vitalik</h2>
+                        <BuyModal />
+                      </div>
+                    </div>
+                  </div>
+                  <div className='gorilla-back gorilla-right'>
+                    <img className="header-23__img " src={gorillaImg3} />
+                    <div style={{ transform: 'translate(5vw, 0vh)' }}>
+                      <h2 style={{ margin: '0.2rem' }}>Andy</h2>
+                      <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
+                        COMING SOON
+                    </h3>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <TokenOverview />
             </div>
           }
         </OfflineContainer>
