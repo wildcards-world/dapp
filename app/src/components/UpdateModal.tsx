@@ -5,6 +5,7 @@ import React, { Component, Fragment } from "react";
 import { Button, Modal, Card, Box, Heading, Text, Flex, Loader, Input, Radio } from 'rimble-ui'
 import web3ProvideSwitcher from "../web3ProvideSwitcher"
 import TokenOverview from "./TokenOverview"
+import moment from 'moment'
 
 enum ModalState {
   Deposit,
@@ -20,6 +21,7 @@ interface state {
   depositState: boolean,
   depositAvailable: any
   balance: number
+  foreclosureTime: string
 }
 
 class BuyModal extends Component<any, any> {
@@ -59,6 +61,7 @@ class BuyModal extends Component<any, any> {
       depositState: true,
       depositAvailable: '',
       balance: -1,
+      foreclosureTime: 'LOADING'
     };
   }
 
@@ -95,6 +98,20 @@ class BuyModal extends Component<any, any> {
     const depositKey = this.context.drizzle.contracts.VitalikSteward.methods.depositAbleToWithdraw.cacheCall()
     const depositObj = nextProps.contracts['VitalikSteward']['depositAbleToWithdraw'][depositKey]
 
+
+    if (!!depositObj && !!depositObj.value) {
+      const depositAvailable = this.utils.fromWei(depositObj.value, 'ether')
+      if (this.state.depositAvailable !== depositAvailable) {
+        this.setState({
+          ...this.state,
+          depositAvailable
+        })
+      }
+    }
+    this.contracts.ArtSteward.methods.foreclosureTime().call().then((time: string) => {
+      const foreclosureTime = moment(parseInt(time) * 1000).toString();
+      this.setState({ foreclosureTime });
+    })
 
     if (!!depositObj && !!depositObj.value) {
       const depositAvailable = this.utils.fromWei(depositObj.value, 'ether')
@@ -258,7 +275,7 @@ class BuyModal extends Component<any, any> {
                 mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
-              >Buy Vitalik</Button>
+              >Update</Button>
             </Flex>}
           </Card>
         </Modal>
@@ -289,7 +306,7 @@ class BuyModal extends Component<any, any> {
                   <Fragment>
                     <Heading.h3>Deposit</Heading.h3>
                     <Text>
-                      How you want to change your deposit?
+                      How do you want to change your deposit?
                     </Text>
                     <Radio checked={this.state.depositState} onChange={() => this.setDepositWithdrawToggle(true)} label="Deposit" my={2} />
                     <Radio checked={!this.state.depositState} onChange={() => this.setDepositWithdrawToggle(false)} label="Withdrawl" my={2} />
@@ -323,7 +340,7 @@ class BuyModal extends Component<any, any> {
                 mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
-              >Buy Vitalik</Button>
+              >{this.state.depositState ? 'Add' : 'Withdraw'}</Button>
             </Flex>}
           </Card>
         </Modal>

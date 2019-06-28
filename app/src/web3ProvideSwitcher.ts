@@ -22,8 +22,8 @@ const getInjectedWeb3 = async (): Promise<{ provider: any, providerInjected: boo
   }
   try {
     // Web3 in drizzle seems to have a bug with websockts, using http-provider so long
-    var provider = new Web3.providers.HttpProvider(
-      'https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba'
+    var provider = new Web3.providers.WebsocketProvider(
+      "wss://mainnet.infura.io/ws/v3/e811479f4c414e219e7673b6671c2aba"
     )
     return { provider, providerInjected: false }
   } catch (error) {
@@ -51,8 +51,8 @@ const getInjectedWeb3NoLoad = (): { provider: any, providerInjected: boolean } =
   }
   try {
     // Web3 in drizzle seems to have a bug with websockts, using http-provider so long
-    const provider = new Web3.providers.HttpProvider(
-      'https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba'
+    const provider = new Web3.providers.WebsocketProvider(
+      "wss://mainnet.infura.io/ws/v3/e811479f4c414e219e7673b6671c2aba"
     )
     return { provider, providerInjected: false }
   } catch (error) {
@@ -76,6 +76,7 @@ class Web3ProviderSwitcher {
     this.providerInjected = providerInjected
     this.defaultWeb3 = provider
   }
+
 
   public async switchToInjectedWeb3() {
     try {
