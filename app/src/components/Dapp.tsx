@@ -8,6 +8,7 @@ import gorillaImg2 from "../img/wildcardsimages/gorilla2.png"
 import gorillaImg3 from "../img/wildcardsimages/gorilla3.png"
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from "prop-types";
+import web3ProvideSwitcher from "../web3ProvideSwitcher"
 
 class Dapp extends Component<any, any> {
 
@@ -47,6 +48,7 @@ class Dapp extends Component<any, any> {
   render() {
     const { tokenOwner } = this.state
     const { accounts } = this.props
+    const showDapp = web3ProvideSwitcher.providerInjected
 
     return (
       <Fragment>
@@ -80,7 +82,14 @@ class Dapp extends Component<any, any> {
                     <div>
                       <div className='gorilla-purchase-container'>
                         <h2 style={{ margin: '0.2rem' }}>Vitalik</h2>
-                        <BuyModal />
+                        {showDapp ?
+                          <BuyModal />
+                          :
+                          <h3 style={{ margin: 0, color: '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
+                            Install <a href='https://metamask.io'>Metamask</a> to BUY Vitalik.
+                            {/* TODO: test if this is moblie and recommend a web3 app for android/iphone (eg trust-wallet)*/}
+                          </h3>
+                        }
                         <TokenOverview />
                       </div>
                     </div>
@@ -94,7 +103,7 @@ class Dapp extends Component<any, any> {
                     </h3>
                     </div>
                   </div>
-            
+
                 </div>
               </div>
             </div>

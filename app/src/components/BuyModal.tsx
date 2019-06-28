@@ -162,8 +162,6 @@ class BuyModal extends Component<any, any> {
       const tempTxHash = transactionStack[this.state.currentTxIndex]
       if (!!transactions[tempTxHash]) {
         txHash = transactionStack[this.state.currentTxIndex]
-        console.log('transactions[txHash].status')
-        console.log(transactions[txHash].status)
         switch (transactions[txHash].status) {
           case 'pending':
             transactionStatus = 'Transaction being processed by the Ethereum Network.'
@@ -250,7 +248,7 @@ class BuyModal extends Component<any, any> {
             {(!transactionProcessing) && <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
               {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
               <Button
-                 mainColor="#6bad3e"
+                mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
               >Buy Vitalik</Button>
