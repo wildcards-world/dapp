@@ -21,7 +21,6 @@ interface state {
   depositState: boolean,
   depositAvailable: any
   balance: number
-  foreclosureTime: string
 }
 
 class BuyModal extends Component<any, any> {
@@ -31,6 +30,7 @@ class BuyModal extends Component<any, any> {
   state: state
   drizzle: any
 
+  // Note, context is used to get the full drizzle object. This is slightly hacky, we should be able to do this with the drizzleConnect component only.
   static contextTypes = {
     drizzle: PropTypes.object
   }
@@ -61,7 +61,6 @@ class BuyModal extends Component<any, any> {
       depositState: true,
       depositAvailable: '',
       balance: -1,
-      foreclosureTime: 'LOADING'
     };
   }
 
@@ -96,7 +95,7 @@ class BuyModal extends Component<any, any> {
     }
 
     const depositKey = this.context.drizzle.contracts.VitalikSteward.methods.depositAbleToWithdraw.cacheCall()
-    const depositObj = nextProps.contracts['VitalikSteward']['depositAbleToWithdraw'][depositKey]
+    const depositObj = nextProps.contracts.VitalikSteward.depositAbleToWithdraw[depositKey]
 
 
     if (!!depositObj && !!depositObj.value) {
@@ -108,10 +107,6 @@ class BuyModal extends Component<any, any> {
         })
       }
     }
-    this.contracts.ArtSteward.methods.foreclosureTime().call().then((time: string) => {
-      const foreclosureTime = moment(parseInt(time) * 1000).toString();
-      this.setState({ foreclosureTime });
-    })
 
     if (!!depositObj && !!depositObj.value) {
       const depositAvailable = this.utils.fromWei(depositObj.value, 'ether')
@@ -354,7 +349,7 @@ const mapStateToProps = (state: any) => {
     contracts: state.contracts,
     transactions: state.transactions,
     transactionStack: state.transactionStack,
-    accounts: state.accounts
+    accounts: state.accounts,
   }
 }
 

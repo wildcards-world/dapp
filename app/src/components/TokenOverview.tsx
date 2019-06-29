@@ -2,8 +2,9 @@ import { drizzleConnect } from "drizzle-react";
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import moment from "moment"
-
+import {Tooltip} from 'rimble-ui'
 import ContractData from "./ContractData";
+import Countdown from "./Countdown"
 
 declare global {
   interface Window { ethereum: any; }
@@ -30,7 +31,7 @@ class ActionSection extends Component<{ contracts: any }, {}>  {
       totalCollectedKey: context.drizzle.contracts.VitalikSteward.methods.totalCollected.cacheCall(),
       patronageOwed: -1,
       combinedCollected: -1,
-      foreclosureTime: "N/A"
+      foreclosureTime: "N/A",
     };
   }
 
@@ -68,16 +69,29 @@ class ActionSection extends Component<{ contracts: any }, {}>  {
       && this.state.patronageOwedKey in nextProps.contracts['VitalikSteward']['patronageOwed']
       && this.state.totalCollectedKey in this.props.contracts['VitalikSteward']['totalCollected']
       && this.state.totalCollectedKey in nextProps.contracts['VitalikSteward']['totalCollected']) {
-      if (!this.getPatronageOwed(this.props).eq(this.getPatronageOwed(nextProps)) || this.state.combinedCollected === -1) {
+        if (!this.getPatronageOwed(this.props).eq(this.getPatronageOwed(nextProps)) || this.state.combinedCollected === -1) {
         this.updateCombineCollected(nextProps);
       }
     }
+    console.log('componentWillRecieveProps was called', this.state)
   }
 
   render() {
+
+    const tooltipContent = () => <div className="section">
+            <p>The deposit for Vitalik will run out on {this.state.foreclosureTime}</p>
+            <p>Time until deposit runs out: <Countdown foreclosureTime={this.state.foreclosureTime} /></p>
+          </div>
+        
     return (
       <div className="section">
-        <p>Current Price: <ContractData contract="VitalikSteward" method="price" toEth /> ETH.<br />Total Raised: {(this.state.combinedCollected < 0) ? 'LOADING' : this.state.combinedCollected} ETH.</p>
+        <Tooltip message={tooltipContent()}>
+        <p>
+          Current Price: <ContractData contract="VitalikSteward" method="price" toEth /> ETH.
+          <br />
+          Total Raised: {(this.state.combinedCollected < 0) ? 'LOADING' : this.state.combinedCollected} ETH. 
+        </p>
+    </Tooltip>
       </div>
     )
   }
