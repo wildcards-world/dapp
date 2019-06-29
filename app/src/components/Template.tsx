@@ -1,9 +1,13 @@
-import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
+import Countdown from './Countdown';
+import CustomerBenefit from "./CustomerBenefit"
+import About from "./About"
+import ProblemSolution from "./ProblemSolution"
+import CoreConcepts from "./CoreConcepts"
+import HowItWorks from "./HowItWorks"
 import Dapp from "./Dapp"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
-import gorillaImg from "../img/wildcardsimages/gorilla.png"
 import topCornerBlue from "../img/icons/corner-top--blue.svg"
 import smirkingEmoji from '../img/emoji/smirking.png'
 import laughingEmoji from '../img/emoji/laughing.png'
@@ -17,6 +21,8 @@ import '../styles/custom.css'
 
 class Template extends Component {
   render() {
+    const currentDate = new Date();
+    const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
     return (
       <div>
         <header className="header-23 js-scroll-this-box">
@@ -24,7 +30,7 @@ class Template extends Component {
           <nav className="nav-02">
             <div className="container container--large">
               <div className="nav-02__box">
-                <img src={smallIcon} height="80px" className='main-logo'/>
+                <img src={smallIcon} height="80px" className='main-logo' />
                 {/* </a> */}
                 {/* </div> */}
                 <div className="nav-02__links js-menu">
@@ -58,16 +64,16 @@ class Template extends Component {
                 </h3>
               </div>
             </div>
-            <div className="header-23__right">
-              <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
-              <div>
-                <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
-                <Dapp />
-              </div>
-            </div>
+            <Dapp />
           </div>
         </header>
         {/* ===== END OF: Header 23*/}
+
+        <CustomerBenefit />
+        <HowItWorks />
+        <About />
+        <CoreConcepts />
+
         {/* START OF: Email form 03 =====*/}
         <div className="cta_form-03" style={{ backgroundColor: '#73c7d7' }} id="signup">
           <div className="container container--mid">
@@ -269,15 +275,16 @@ class Template extends Component {
           </div>
         </div>
         {/* ===== END OF: Email form 03*/}
+
         {/* START OF: Text 01 =====*/}
-        <div className="text--01" id="about">
+        <div className="text--01 vine-background" id="about">
           <div className="container container--small">
             <div className="text--01__box" style={{ backgroundColor: '#6bad3e', borderRadius: 0 }}>
               <div className="text--01__emoji">
                 <img className="emoji   emoji--large" src={raisingHandsEmoji} alt="Emoji" />
               </div>
               <p className="text--01__content white-text">
-                Wild Cards is currently under active development.
+                Wildcards is currently under active development.
               </p>
               <div className="text--01__link_box">
                 <a className="pill-link  pill-link--black  pill-link--small " href="https://youtu.be/ibBAlrrwjp0?t=322" target="_blank"><span className="pill-link__text">Watch the original hackathon presentation</span><span className="pill-link__icon"><span className="icon"><svg viewBox="0 0 13 10" xmlns="http://www.w3.org/2000/svg">
