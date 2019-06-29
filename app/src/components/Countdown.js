@@ -16,7 +16,7 @@ class Countdown extends Component {
   componentDidMount() {
     // update every second
     this.interval = setInterval(() => {
-      const date = this.calculateCountdown('2019-06-27T19:00:00');
+      const date = this.calculateCountdown(this.props.foreclosureTime);
       date ? this.setState(date) : this.stop();
     }, 1000);
   }
@@ -79,9 +79,9 @@ class Countdown extends Component {
 
     return (
       <div className="countdown-timer">
-            <strong>{this.addLeadingZeros(countDown.days)}</strong>&nbsp;
+        <strong>{this.addLeadingZeros(countDown.days)}</strong>&nbsp;
             {/* <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>&nbsp; */}
-            <span>:</span>&nbsp;
+        <span>:</span>&nbsp;
             <strong>{this.addLeadingZeros(countDown.hours)}</strong>&nbsp;
             <span>:</span>&nbsp;
             <strong>{this.addLeadingZeros(countDown.min)}</strong>&nbsp;
