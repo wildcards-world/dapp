@@ -98,10 +98,6 @@ class BuyModal extends Component<any, any> {
 
     const didTransactionsChange = transactions !== nextProps.transactions;
     const didTransactionStackChange = transactionStack !== nextProps.transactionStack;
-
-    if (didTransactionsChange || didTransactionStackChange) {
-      console.log({ transactions, transactionStack })
-    }
   }
 
   handleInputChange(event: any) {

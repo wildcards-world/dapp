@@ -90,10 +90,6 @@ class BuyModal extends Component<any, any> {
     const didTransactionsChange = transactions !== nextProps.transactions;
     const didTransactionStackChange = transactionStack !== nextProps.transactionStack;
 
-    if (didTransactionsChange || didTransactionStackChange) {
-      console.log({ transactions, transactionStack, balance: this.state.balance })
-    }
-
     const depositKey = this.context.drizzle.contracts.VitalikSteward.methods.depositAbleToWithdraw.cacheCall()
     const depositObj = nextProps.contracts.VitalikSteward.depositAbleToWithdraw[depositKey]
 
