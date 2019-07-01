@@ -6,6 +6,7 @@ import ProblemSolution from "./ProblemSolution"
 import CoreConcepts from "./CoreConcepts"
 import HowItWorks from "./HowItWorks"
 import Dapp from "./Dapp"
+import { Button } from "rimble-ui"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
 import topCornerBlue from "../img/icons/corner-top--blue.svg"
@@ -25,48 +26,34 @@ class Template extends Component {
     const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
     return (
       <div>
-        <header className="header-23 js-scroll-this-box">
-          {/* START OF: Nav 2 =====*/}
-          <nav className="nav-02">
-            <div className="container container--large">
-              <div className="nav-02__box">
-                <img src={smallIcon} height="80px" className='main-logo' />
-                {/* </a> */}
-                {/* </div> */}
-                <div className="nav-02__links js-menu">
-                  <ul className="nav-02__list">
-                    {/*
-              <li class="nav-02__item"><a class="button   button--black-outline  button--empty "
-                  href="#about"><span>About</span></a>
-              </li>
-*/}
-                    <li className="nav-02__item">
-                      <span style={{ color: '#888', padding: '1rem', fontWeight: 'bold' }}><a href="https://ventureburn.com/2019/05/ethcapetown-blockchain-winning-applications/" style={{ textDecoration: 'none', color: '#303030' }}>BACKGROUND</a></span>
-                      <a style={{ color: 'white', backgroundColor: '#6bad3e', padding: '1rem', textDecoration: 'none', boxShadow: '1px 2px 2px 1px #aaa', fontWeight: 'bold' }} href="#signup"><span>SUBSCRIBE</span></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+        <header className="header-23">
+          <nav className="nav-02 container container--large">
+            <div className="nav-02__box">
+              <img src={smallIcon} height="80px" className='main-logo' />
+              <ul className="nav-02__list nav-02__links">
+                <li className="nav-02__item">
+                  <span style={{ color: '#888', padding: '1rem', fontWeight: 'bold' }}><a href="https://ventureburn.com/2019/05/ethcapetown-blockchain-winning-applications/" style={{ textDecoration: 'none', color: '#303030' }}>BACKGROUND</a></span>
+                  <a style={{ color: 'white', backgroundColor: '#6bad3e', padding: '1rem', textDecoration: 'none', boxShadow: '1px 2px 2px 1px #aaa', fontWeight: 'bold' }} href="#signup"><span>SUBSCRIBE</span></a>
+                </li>
+              </ul>
             </div>
           </nav>
-          {/* ===== END OF: Nav 2*/}
-          <div className="container container--large header-23__container">
-            <div className="header-23__left">
-              <div className="header-23__left_content">
-                <h1 className="heading heading--accent header-23__heading">
-                  Ethereum based<br />
-                  <span style={{ color: '#6bad3e' }}>conservation</span> tokens
-                </h1>
-                {/* <p class="header-23__text">Ethereum based conservation tokens.</p> */}
-                <hr />
-                <h3 className="header-23__text" style={{ fontSize: '1.8rem', fontWeight: 200 }}>
-                  Let your digital assets make a valuable contribution to the world.
-                </h3>
-              </div>
-            </div>
-            <Dapp />
-          </div>
         </header>
+        <div className="container container--large header-23__container">
+          <div className="header-23__left">
+            <div className="header-23__left_content">
+              <h1 className="heading heading--accent header-23__heading">
+                Ethereum based<br />
+                <span style={{ color: '#6bad3e' }}>conservation</span> tokens
+                </h1>
+              <hr />
+              <h3 className="header-23__text" style={{ fontSize: '1.8rem', fontWeight: 200 }}>
+                Let your digital assets make a valuable contribution to the world.
+                </h3>
+            </div>
+          </div>
+          <Dapp />
+        </div>
         {/* ===== END OF: Header 23*/}
 
         <CustomerBenefit />
