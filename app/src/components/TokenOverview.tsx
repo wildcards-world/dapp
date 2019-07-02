@@ -5,21 +5,7 @@ import moment from "moment"
 import { Tooltip } from 'rimble-ui'
 import ContractData from "./ContractData";
 import Countdown from "./Countdown"
-
-import axios from 'axios';
-
-export const getUSDValue = async (ETH: string) => {
-  // fetch exchange rate.
-  // calculate USD price.
-  // https://api.kraken.com/0/public/Ticker?pair=ETHUSD).result.XETHZUSD.c.0
-  const ETHUSD = await axios.get('https://api.kraken.com/0/public/Ticker?pair=ETHUSD');
-  // todo: return -1 if URI request failed
-  if (ETHUSD.hasOwnProperty('data')) {
-    return parseFloat(ETH) * parseFloat(ETHUSD.data.result.XETHZUSD.c[0]);
-  } else {
-    return -1;
-  }
-}
+import { useUsdPrice } from "./USDPriceContext"
 
 declare global {
   interface Window { ethereum: any; }
@@ -76,22 +62,10 @@ const calculateCountdown = (endDate: string) => {
 // Functional component for sake of reactHooks...
 const DisplayComponent: React.FunctionComponent<DisplayProps> = ({ combinedCollected, vitalikPriceEth: vitalikPriceEth, foreclosureTime }) => {
 
-  const [priceUsd, setPriceUsd] = useState(-1);
-  const [combinedCollectedUsd, setCombinedCollectedUsd] = useState(-1);
   const [countDown, setCountdown] = useState(nullTime);
-
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      if (vitalikPriceEth !== "-1" && combinedCollected !== "-1") {
-        const newPriceUsd = await getUSDValue(vitalikPriceEth)
-        const newCombinedCollectedUsd = await getUSDValue(combinedCollected.toString())
-
-        setPriceUsd(newPriceUsd)
-        setCombinedCollectedUsd(newCombinedCollectedUsd)
-      }
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [vitalikPriceEth, combinedCollected]);
+  const usdPrice = useUsdPrice()
+  const priceOfGorillaInUsd = parseFloat(vitalikPriceEth) * usdPrice
+  const combinedCollectedUsd = parseFloat(combinedCollected) * usdPrice
 
   useEffect(() => {
     const date = calculateCountdown(foreclosureTime);
@@ -121,9 +95,9 @@ const DisplayComponent: React.FunctionComponent<DisplayProps> = ({ combinedColle
     <div className="section">
       <Tooltip message={tooltipContent()}>
         <p>
-          Current Price: <ContractData contract="VitalikSteward" method="price" toEth /> ETH.{priceUsd > 0 && ` (${priceUsd.toFixed(2)} USD)`}
+          Current Price: <ContractData contract="VitalikSteward" method="price" toEth /> ETH.{priceOfGorillaInUsd > 0 && ` (~ ${priceOfGorillaInUsd.toFixed(2)} USD)`}
           <br />
-          Total Raised: {(parseInt(combinedCollected) < 0) ? 'LOADING' : combinedCollected} ETH.{combinedCollectedUsd > 0 && ` (${combinedCollectedUsd.toFixed(2)} USD)`}
+          Total Raised: {(parseFloat(combinedCollected) < 0) ? 'LOADING' : parseFloat(combinedCollected).toFixed(7/*7 digits is enough to see the price changing when asset is reasonably priced*/)} ETH.{combinedCollectedUsd > 0 && ` (~ ${combinedCollectedUsd.toFixed(2)} USD)`}
         </p>
       </Tooltip>
     </div>
