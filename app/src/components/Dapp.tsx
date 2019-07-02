@@ -9,6 +9,7 @@ import gorillaImg3 from "../img/wildcardsimages/gorilla3.png"
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from "prop-types";
 import web3ProvideSwitcher from "../web3ProvideSwitcher"
+import { UsdPriceProvider } from "./USDPriceContext"
 
 class Dapp extends Component<any, any> {
 
@@ -130,11 +131,11 @@ class DappWrapper extends Component<any, any> {
 
   render() {
     return (
-      <Fragment>
+      <UsdPriceProvider>
         <OfflineContainer>
           <DappConnected />
         </OfflineContainer>
-      </Fragment >
+      </UsdPriceProvider >
     )
   }
 }
