@@ -1,8 +1,9 @@
 const path = require("path");
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const mnemonic = 'sustain seek diet attend ready neutral damage join food extra monkey usage'; // 12 word mnemonic 
+const mnemonic = 'dumb gown nose volume total father license lady empower snow body tag'; // 12 word mnemonic 
 const mainnetProviderUrl = 'https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba';
 const rinkebyProviderUrl = 'https://rinkeby.infura.io/v3/e811479f4c414e219e7673b6671c2aba';
+const goerlyProviderUrl = 'https://goerli.infura.io/v3/a349f12fe9ac4fdb995f44e04648f7c5';
 const blockchainNodeHost = process.env.BLOCKCHAIN_NODE_HOST || 'localhost'
 
 module.exports = {
@@ -25,6 +26,13 @@ module.exports = {
     //   gasPrice: 10000000000, // 10 gwei
     //   skipDryRun: true,
     // },
+    goerly: {
+      network_id: 5,
+      provider: new HDWalletProvider(mnemonic, goerlyProviderUrl, 0),
+      gas: 4700000,
+      gasPrice: 10000000000, // 10 gwei
+      skipDryRun: true,
+    },
     development: {
       host: blockchainNodeHost,     // Localhost (default: none)
       test: (() => console.log({ blockchainNodeHost }))(),

@@ -1,4 +1,4 @@
-import Vitalik from "./contracts/Vitalik.json"
+import VitalikSteward from "./contracts/VitalikSteward.json"
 import ERC721Full from "./contracts/ERC721Full.json"
 import web3ProvideSwitcher from "./web3ProvideSwitcher"
 
@@ -31,7 +31,7 @@ const options: Options = {
     },
   },
   contracts: [
-    Vitalik,
+    VitalikSteward,
     ERC721Full
   ],
   syncAlways: true,

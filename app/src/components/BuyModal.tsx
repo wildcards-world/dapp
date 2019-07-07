@@ -1,17 +1,23 @@
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from "prop-types";
-import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import React, { Component, Fragment } from "react";
-import { Button, Modal, Card, Box, Heading, Text, Flex } from 'rimble-ui'
+import { Button, Modal, Card, Box, Heading, Text, Flex, Loader, Input } from 'rimble-ui'
 import web3ProvideSwitcher from "../web3ProvideSwitcher"
 import TokenOverview from "./TokenOverview"
+
+interface state {
+  contractFunctions: any,
+  isOpen: boolean,
+  connectedToInjectedWeb3: boolean,
+  currentTxIndex: number
+}
 
 class BuyModal extends Component<any, any> {
   contracts: any
   utils: any
   inputs: any
-  state: any
+  state: state
 
   static contextTypes = {
     drizzle: PropTypes.object
@@ -29,18 +35,18 @@ class BuyModal extends Component<any, any> {
     this.utils = context.drizzle.web3.utils;
 
     // Get the contract ABI, if it is undefined return an empty array
-    const abi = (!!this.contracts.Vitalik) ? this.contracts.Vitalik.abi : [];
+    const abi = (!!this.contracts.VitalikSteward) ? this.contracts.VitalikSteward.abi : [];
 
     this.inputs = [];
-    var initialState: any = {};
+    let contractFunctions: any = {};
 
     // Iterate over abi for correct function.
-    for (var i = 0; i < abi.length; i++) {
+    for (let i = 0; i < abi.length; i++) {
       if (abi[i].name === 'buy') {
         this.inputs = abi[i].inputs;
 
-        for (var j = 0; j < this.inputs.length; j++) {
-          initialState[this.inputs[j].name] = "";
+        for (let j = 0; j < this.inputs.length; j++) {
+          contractFunctions[this.inputs[j].name] = "";
         }
 
         break;
@@ -48,9 +54,10 @@ class BuyModal extends Component<any, any> {
     }
 
     this.state = {
-      ...initialState,
+      contractFunctions,
       isOpen: false,
       connectedToInjectedWeb3: false,
+      currentTxIndex: -1
     };
   }
 
@@ -59,36 +66,47 @@ class BuyModal extends Component<any, any> {
     let args: any = {};
     const convertedInputs = this.inputs.map((input: any, index: any) => {
       if (input.type === 'bytes32') {
-        return this.utils.toHex(this.state[input.name])
+        return this.utils.toHex(this.state.contractFunctions[input.name])
       } else if (input.type === 'uint256') {
-        return this.utils.toWei(this.state[input.name], 'ether'); // all number fields are ETH  fields.
+        return this.utils.toWei(this.state.contractFunctions[input.name], 'ether'); // all number fields are ETH  fields.
       }
-      return this.state[input.name];
+      return this.state.contractFunctions[input.name];
     });
 
     // todo: if foreclosed, price should default to zero.
-    if (this.state.value) {
-      const artworkPrice = new this.utils.BN(this.props.contracts.Vitalik['price']['0x0'].value);
-      args.value = new this.utils.BN(this.utils.toWei(this.state.value, 'ether')).add(artworkPrice);
+    if (this.state.contractFunctions.value) {
+      const artworkPrice = new this.utils.BN(this.props.contracts.VitalikSteward['price']['0x0'].value);
+      args.value = new this.utils.BN(this.utils.toWei(this.state.contractFunctions.value, 'ether')).add(artworkPrice);
     }
 
-    this.setState({
-      isOpen: false
-    })
-
-    if (args) {
-      return this.contracts.Vitalik.methods[
+    const currentTxIndex = (args) ?
+      this.contracts.VitalikSteward.methods[
         'buy'
-      ].cacheSend(...convertedInputs, args);
-    }
+      ].cacheSend(...convertedInputs, args)
+      : this.contracts.VitalikSteward.methods[
+        'buy'
+      ].cacheSend(...convertedInputs)
 
-    return this.contracts.Vitalik.methods[
-      'buy'
-    ].cacheSend(...convertedInputs);
+    this.setState((state: any, props: any) => ({
+      ...state,
+      currentTxIndex
+    }))
+  }
+
+  componentWillReceiveProps(nextProps: any) {
+    const { transactions, transactionStack } = this.props;
+
+    const didTransactionsChange = transactions !== nextProps.transactions;
+    const didTransactionStackChange = transactionStack !== nextProps.transactionStack;
   }
 
   handleInputChange(event: any) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      ...this.state,
+      contractFunctions: {
+        ...this.state.contractFunctions, [event.target.name]: event.target.value
+      }
+    })
   }
 
   translateType(type: any) {
@@ -107,28 +125,55 @@ class BuyModal extends Component<any, any> {
   closeModal = (e: any) => {
     e.preventDefault()
     this.setState((state: any, props: any) => ({
-      isOpen: false
+      ...state,
+      isOpen: false,
+      currentTxIndex: -1,
     }))
   }
 
   openModal = async (e: any) => {
     e.preventDefault()
     this.setState((state: any, props: any) => ({
+      ...state,
       isOpen: true,
+      currentTxIndex: -1,
     }))
 
     const connectedToInjectedWeb3 = await web3ProvideSwitcher.switchToInjectedWeb3()
 
     this.setState((state: any, props: any) => ({
+      ...state,
       connectedToInjectedWeb3,
     }))
   }
 
   render() {
     const valueLabel = "Your Initial Deposit";
+    const { transactions, transactionStack } = this.props
+    const { currentTxIndex } = this.state
+    let transactionStatus = 'Submitting transaction to the Ethereum Network.'
+    let txHash = ''
+    let txComplete = false
+    if (!!transactionStack[this.state.currentTxIndex]) {
+      const tempTxHash = transactionStack[this.state.currentTxIndex]
+      if (!!transactions[tempTxHash]) {
+        txHash = transactionStack[this.state.currentTxIndex]
+        switch (transactions[txHash].status) {
+          case 'pending':
+            transactionStatus = 'Transaction being processed by the Ethereum Network.'
+            break
+          case 'success':
+            txComplete = true
+            transactionStatus = 'Transaction is complete.'
+            break
+        }
+      }
+    }
+
+    const transactionProcessing = currentTxIndex !== -1
     return (
       <React.Fragment>
-        <Button onClick={this.openModal}>Buy</Button>
+        <Button mainColor="#6bad3e" onClick={this.openModal}>Buy</Button>
 
         <Modal isOpen={this.state.isOpen}>
           <Card width={'420px'} p={0}>
@@ -144,63 +189,66 @@ class BuyModal extends Component<any, any> {
               onClick={this.closeModal}
             />
             {this.state.connectedToInjectedWeb3 ?
-              <Box p={4} mb={3}>
-                <Heading.h3>Purchase</Heading.h3>
-                <Text>
-                  Enter the desired values for the transaction.
-                </Text>
-                <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
-                  {this.inputs.map((input: any, index: any) => {
-                    var inputType = this.translateType(input.type);
-                    var inputLabel = ["Your Initial Sale Price"]
-                      ? ["Your Initial Sale Price"][index]
-                      : input.name;
-                    // check if input type is struct and if so loop out struct fields as well
-                    return (
+
+              <Box p={4} mb={3}>{
+                transactionProcessing ?
+                  <Fragment>
+                    <Heading.h3>Processing Transaction</Heading.h3>
+                    <p>{transactionStatus}</p>
+                    {!!txHash && <a href={'https://etherscan.io/tx/' + txHash} target="_blank">View transaction on Ethersan</a>}
+                    {!txComplete && <Loader color="red" size="80px" />}
+                  </Fragment>
+                  :
+                  <Fragment>
+                    <Heading.h3>Purchase</Heading.h3>
+                    <Text>
+                      Enter the desired values for the transaction.
+                    </Text>
+                    <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
                       <Input
-                        key={input.name}
-                        type={inputType}
-                        name={input.name}
-                        value={this.state[input.name]}
-                        placeholder={inputLabel}
+                        key='_newPrice'
+                        type='number'
+                        name='_newPrice'
+                        value={this.state.contractFunctions['_newPrice']}
+                        placeholder={"Your Initial Sale Price"}
                         onChange={this.handleInputChange}
+                        style={{ width: '100%' }}
                         startAdornment={<InputAdornment position="start">ETH</InputAdornment>}
                       />
-                    );
-                  })}
-                  {valueLabel &&
-                    <Fragment>
-                      <br />
-                      <Input
-                        key={valueLabel}
-                        type='number'
-                        name='value'
-                        value={this.state[valueLabel]}
-                        placeholder={valueLabel}
-                        onChange={this.handleInputChange}
-                        startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
-                      <br />
-                      <br />
-                    </Fragment>
-                  }
-                </form>
-                <TokenOverview />
+                      <Fragment>
+                        <br />
+                        <Input
+                          key={valueLabel}
+                          type='number'
+                          name='value'
+                          value={this.state.contractFunctions[valueLabel]}
+                          placeholder={valueLabel}
+                          onChange={this.handleInputChange}
+                          style={{ width: '100%' }}
+                          startAdornment={<InputAdornment position="start">ETH</InputAdornment>} />
+                        <br />
+                        <br />
+                      </Fragment>
+                    </form>
+                    <TokenOverview />
+                  </Fragment>}
               </Box>
               :
               <Box p={4} mb={3}>
                 <Heading.h3>NOTICE</Heading.h3>
                 <Text>
-                  Unable to connect to metamask or other provider to access your private keys.
+                  Unable to connect to metamask, so unable to sign transactions.
                 </Text>
               </Box>
             }
-            <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
+            {(!transactionProcessing) && <Flex px={4} py={3} borderTop={1} borderColor={'#E8E8E8'} justifyContent={'flex-end'}>
               {/* <Button.Outline>Cancel</Button.Outline> In the future this could be for resetting the values or something*/}
               <Button
+                mainColor="#6bad3e"
                 ml={3}
                 onClick={this.handleSubmit}
               >Buy Vitalik</Button>
-            </Flex>
+            </Flex>}
           </Card>
         </Modal>
       </React.Fragment>
@@ -211,6 +259,8 @@ class BuyModal extends Component<any, any> {
 const mapStateToProps = (state: any) => {
   return {
     contracts: state.contracts,
+    transactions: state.transactions,
+    transactionStack: state.transactionStack
   }
 }
 

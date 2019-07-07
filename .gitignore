@@ -2,4 +2,3 @@ node_modules
 build
 .DS_Store
 .idea/workspace.xml
-app/src/contracts/

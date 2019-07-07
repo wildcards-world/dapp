@@ -1,12 +1,14 @@
-import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
+import Countdown from './Countdown';
+import CustomerBenefit from "./CustomerBenefit"
+import About from "./About"
+import ProblemSolution from "./ProblemSolution"
+import CoreConcepts from "./CoreConcepts"
+import HowItWorks from "./HowItWorks"
 import Dapp from "./Dapp"
+import { Button } from "rimble-ui"
 
 import smallIcon from "../img/logos/wild-cards-small.png"
-import gorillaImg from "../img/wildcardsimages/gorilla.png"
-import gorillaImg1 from "../img/wildcardsimages/gorilla1.png"
-import gorillaImg2 from "../img/wildcardsimages/gorilla2.png"
-import gorillaImg3 from "../img/wildcardsimages/gorilla3.png"
 import topCornerBlue from "../img/icons/corner-top--blue.svg"
 import smirkingEmoji from '../img/emoji/smirking.png'
 import laughingEmoji from '../img/emoji/laughing.png'
@@ -20,90 +22,45 @@ import '../styles/custom.css'
 
 class Template extends Component {
   render() {
+    const currentDate = new Date();
+    const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
     return (
       <div>
-        <header className="header-23 js-scroll-this-box">
-          {/* START OF: Nav 2 =====*/}
-          <nav className="nav-02">
-            <div className="container container--large">
-              <div className="nav-02__box">
-                <img src={smallIcon} height="80px" className='main-logo'/>
-                {/* </a> */}
-                {/* </div> */}
-                <div className="nav-02__links js-menu">
-                  <ul className="nav-02__list">
-                    {/*
-              <li class="nav-02__item"><a class="button   button--black-outline  button--empty "
-                  href="#about"><span>About</span></a>
-              </li>
-*/}
-                    <li className="nav-02__item">
-                      <span style={{ color: '#888', padding: '1rem', fontWeight: 'bold' }}><a href="https://ventureburn.com/2019/05/ethcapetown-blockchain-winning-applications/" style={{ textDecoration: 'none', color: '#303030' }}>BACKGROUND</a></span>
-                      <a style={{ color: 'white', backgroundColor: '#6bad3e', padding: '1rem', textDecoration: 'none', boxShadow: '1px 2px 2px 1px #aaa', fontWeight: 'bold' }} href="#signup"><span>SUBSCRIBE</span></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+        <header className="header-23">
+          <nav className="nav-02 container container--large">
+            <div className="nav-02__box">
+              <img src={smallIcon} height="80px" className='main-logo' />
+              <ul className="nav-02__list nav-02__links">
+                <li className="nav-02__item">
+                  <span style={{ color: '#888', padding: '1rem', fontWeight: 'bold' }}><a href="https://ventureburn.com/2019/05/ethcapetown-blockchain-winning-applications/" style={{ textDecoration: 'none', color: '#303030' }}>BACKGROUND</a></span>
+                  <a style={{ color: 'white', backgroundColor: '#6bad3e', padding: '1rem', textDecoration: 'none', boxShadow: '1px 2px 2px 1px #aaa', fontWeight: 'bold' }} href="#signup"><span>SUBSCRIBE</span></a>
+                </li>
+              </ul>
             </div>
           </nav>
-          {/* ===== END OF: Nav 2*/}
-          <div className="container container--large header-23__container">
-            <div className="header-23__left">
-              <div className="header-23__left_content">
-                <h1 className="heading heading--accent header-23__heading">
-                  Ethereum based<br />
-                  <span style={{ color: '#6bad3e' }}>conservation</span> tokens
+        </header>
+        <div className="container container--large header-23__container">
+          <div className="header-23__left">
+            <div className="header-23__left_content">
+              <h1 className="heading heading--accent header-23__heading">
+                Ethereum based<br />
+                <span style={{ color: '#6bad3e' }}>conservation</span> tokens
                 </h1>
-                {/* <p class="header-23__text">Ethereum based conservation tokens.</p> */}
-                <hr />
-                <h3 className="header-23__text" style={{ fontSize: '1.8rem', fontWeight: 200 }}>
-                  Let your digital assets make a valuable contribution to the world.
+              <hr />
+              <h3 className="header-23__text" style={{ fontSize: '1.8rem', fontWeight: 200 }}>
+                Let your digital assets make a valuable contribution to the world.
                 </h3>
-              </div>
-            </div>
-            <div className="header-23__right">
-
-<div className='gorillas'>
-                <div className='gorilla-back gorilla-left'>
-                  <img className="header-23__img" src={gorillaImg2} />
-                  <div style={{transform: 'translate(-5vw, 0vh)'}} >
-                    <h2 style={{ margin: '0.2rem' }}>Brian Armstrong</h2>
-                    <h3 style={{ margin: 0, color:  '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
-                      COMING SOON
-                    </h3>
-                  </div>
-                </div>
-                <div className='gorilla-center-front'>
-                  <img className="header-23__img" src={gorillaImg1} />
-                  <div>
-                    <div className='gorilla-purchase-container'>
-                      <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
-                      <h3 style={{ margin: 0, color: 'white', padding: '0.8rem 1.2rem', display: 'inline-block', backgroundColor: '#6bad3e' }}>
-                        COMING SOON
-                    </h3>
-                    </div>
-                  </div>
-                </div>
-                <div className='gorilla-back gorilla-right'>
-                  <img className="header-23__img " src={gorillaImg3} />
-                  <div style={{transform: 'translate(5vw, 0vh)'}}>
-                    <h2 style={{ margin: '0.2rem' }}>Changpeng Zhao </h2>
-                    <h3 style={{ margin: 0, color:  '#6bad3e', padding: '0.8rem 1.2rem', display: 'inline-block' }}>
-                      COMING SOON
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              <img className="header-23__img" src={gorillaImg} style={{ minWidth: '30vw' }} />
-              <div>
-                <h2 style={{ margin: '0.2rem' }}>Vitalik Buterin</h2>
-                <Dapp />
-              </div>
             </div>
           </div>
-        </header>
+          <Dapp />
+        </div>
         {/* ===== END OF: Header 23*/}
+
+        <CustomerBenefit />
+        <HowItWorks />
+        <About />
+        <CoreConcepts />
+
         {/* START OF: Email form 03 =====*/}
         <div className="cta_form-03" style={{ backgroundColor: '#73c7d7' }} id="signup">
           <div className="container container--mid">
@@ -305,15 +262,16 @@ class Template extends Component {
           </div>
         </div>
         {/* ===== END OF: Email form 03*/}
+
         {/* START OF: Text 01 =====*/}
-        <div className="text--01" id="about">
+        <div className="text--01 vine-background" id="about">
           <div className="container container--small">
             <div className="text--01__box" style={{ backgroundColor: '#6bad3e', borderRadius: 0 }}>
               <div className="text--01__emoji">
                 <img className="emoji   emoji--large" src={raisingHandsEmoji} alt="Emoji" />
               </div>
               <p className="text--01__content white-text">
-                Wild Cards is currently under active development.
+                Wildcards is currently under active development.
               </p>
               <div className="text--01__link_box">
                 <a className="pill-link  pill-link--black  pill-link--small " href="https://youtu.be/ibBAlrrwjp0?t=322" target="_blank"><span className="pill-link__text">Watch the original hackathon presentation</span><span className="pill-link__icon"><span className="icon"><svg viewBox="0 0 13 10" xmlns="http://www.w3.org/2000/svg">
