@@ -98,7 +98,7 @@ textarea:focus {
   outline: none;
 }
 
-.container {
+.container-template {
   margin-right: auto;
   margin-left: auto;
   padding: 0 15px;

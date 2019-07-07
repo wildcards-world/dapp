@@ -78,3 +78,7 @@ https://github.com/simondlr/thisartworkisalwaysonsale
 
 Code License:
 MIT
+
+### [Gorilla Runner](wildcards.world/game)
+
+Game bootstrapped from [Dino](https://github.com/lawvs/Dino)
