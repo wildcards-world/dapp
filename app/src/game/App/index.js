@@ -6,6 +6,7 @@ import OfflineContainer from "../../components/Offline"
 import web3ProvideSwitcher from "../../web3ProvideSwitcher"
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from "prop-types";
+import BuyModal from "../../components/BuyModal"
 
 const verifyMessageNonce = async (userAddress, nonce, signature, web3) => {
   const idString = (new web3.utils.BN(nonce)).toString(16)
@@ -59,32 +60,41 @@ class App extends Component {
   }
 
   async componentWillReceiveProps(nextProps) {
-    if (this.state.tokenOwnerAddress !== '')
-      return
+    // No need for this check! Actually cool for it to auto update by itself!
+    // if (this.state.tokenOwnerAddress !== '')
+    //   return
 
-    const tokenOwnerKey = this.context.drizzle.contracts.ERC721Full.methods.ownerOf.cacheCall(42)
-    const tokenOwnerObj = nextProps.contracts['ERC721Full']['ownerOf'][tokenOwnerKey]
+    // if (!this.context.drizzle.contracts.ERC721Full || !this.context.drizzle.contracts.ERC721Full.initialized)
+    //   return
 
-    if (!!tokenOwnerObj && !!tokenOwnerObj.value && this.state.tokenOwner !== tokenOwnerObj.value) {
-      this.setState({
-        ...this.state,
-        tokenOwnerAddress: tokenOwnerObj.value
-      })
+    try {
 
-      const account = nextProps.accounts[0]
-      if (account.toUpperCase() === tokenOwnerObj.value.toUpperCase()) {
-        const web3 = this.context.drizzle.web3
-        const nonce = 6 // make this a random number or something (using the latest block hash or something would work well
+      const tokenOwnerKey = this.context.drizzle.contracts.ERC721Full.methods.ownerOf.cacheCall(42)
+      const tokenOwnerObj = nextProps.contracts['ERC721Full']['ownerOf'][tokenOwnerKey]
 
-        const { signature, hash } = await computeNonceSignature(nonce, account, web3)
+      if (!!tokenOwnerObj && !!tokenOwnerObj.value && this.state.tokenOwnerAddress.toUpperCase() !== tokenOwnerObj.value.toUpperCase()) {
+        this.setState((state) => ({
+          ...state,
+          tokenOwnerAddress: tokenOwnerObj.value
+        }), async (state) => {
+          console.log(state)
+          const account = nextProps.accounts[0]
+          if (account.toUpperCase() === tokenOwnerObj.value.toUpperCase()) {
+            const web3 = this.context.drizzle.web3
+            const nonce = 6 // make this a random number or something (using the latest block hash or something would work well
 
-        const isWhoTheySayTheyAre = await verifyMessageNonce(account, nonce, signature, web3)
-        this.setState({
-          ...this.state,
-          isWhoTheySayTheyAre
+            const { signature, hash } = await computeNonceSignature(nonce, account, web3)
+
+            const isWhoTheySayTheyAre = await verifyMessageNonce(account, nonce, signature, web3)
+            this.setState({
+              ...this.state,
+              isWhoTheySayTheyAre
+            })
+          }
         })
       }
-
+    } catch (e) {
+      // Do nothing this is a hack....
     }
   }
 
@@ -109,7 +119,6 @@ class App extends Component {
         connectedToInjectedWeb3,
       }))
     )
-
   }
 
   render() {
@@ -130,7 +139,10 @@ class App extends Component {
                   <p>Your browser is telling us that you own the Vitalik Gorilla but extra verification is needed.</p>
                   <p>Please sign the message as proof.</p>
                 </div>
-                : <p>In order to play the game you need to be the owner of Vitalik the Gorilla</p>
+                : <div>
+                  <p>In order to play the game you need to be the owner of Vitalik the Gorilla</p>
+                  <BuyModal />
+                </div>
             }
           </div>
         </OfflineContainer>
