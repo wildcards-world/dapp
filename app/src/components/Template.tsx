@@ -290,7 +290,7 @@ class Template extends Component {
             <div className="footer-02__wrapper">
               <div className="footer-02__text">
                 ©
-                &nbsp;<a className="footer-02__link" href="javascript:void(0);">Wild Cards</a>. All rights reserved.
+                &nbsp;<a className="footer-02__link" href="https://wildcards.world">Wild Cards</a> - All rights reserved &ensp; <a className="footer-02__link" href="/privacy_policy.html">Privacy Policy</a> &ensp; <a className="footer-02__link" href="/terms_and_conditions.html">Terms and Conditions</a>
               </div>
               <div className="social-buttons">
                 <ul className="social-buttons__list">
