@@ -14,8 +14,11 @@ import smirkingEmoji from '../img/emoji/smirking.png'
 import laughingEmoji from '../img/emoji/laughing.png'
 import coldSweat from '../img/emoji/cold_sweat.png'
 import raisingHandsEmoji from '../img/emoji/raising_hands.png'
+import facebookIcon from '../img/icons/facebook.svg'
 import twitterIcon from '../img/icons/twitter.svg'
 import instagramIcon from '../img/icons/instagram.svg'
+
+import { SocialIcon } from 'react-social-icons'
 
 import '../styles/main.css'
 import '../styles/custom.css'
@@ -291,16 +294,11 @@ class Template extends Component {
               </div>
               <div className="social-buttons">
                 <ul className="social-buttons__list">
-                  {/*
-              <li class="social-buttons__item"><a class="social-buttons__link"
-                href="https://www.facebook.com/unicornplatform/" target="_blank"><img class="social-buttons__icon"
-                src="../img/icons/facebook.svg" /></a></li>
-              */}
                   <li className="social-buttons__item">
-                    <a className="social-buttons__link" href="https://twitter.com/wildcards_world" target="_blank"><img className="social-buttons__icon" src={twitterIcon} /></a>
+                    <SocialIcon url="https://twitter.com/wildcards_world" bgColor="transparent" fgColor="#aaa" style={{ height: 36, width: 36 }} /> 
                   </li>
                   <li className="social-buttons__item">
-                    <a className="social-buttons__link" href="http://instagram.com/wildcards_world" target="_blank"><img className="social-buttons__icon" src={instagramIcon} /></a>
+                    <SocialIcon url="https://www.facebook.com/wildcardscrypto" bgColor="transparent" fgColor="#aaa" style={{ height: 36, width: 36 }} />
                   </li>
                 </ul>
               </div>

@@ -20,6 +20,7 @@
     "react-dom": "^16.7.0",
     "react-id-swiper": "^2.1.2",
     "react-scripts": "^3.0.1",
+    "react-social-icons": "^4.1.0",
     "rimble-ui": "^0.9.1",
     "styled-components": "^4.2.0",
     "swiper": "^4.5.0",
