@@ -19,6 +19,7 @@
     "react-date-countdown-timer": "^1.0.3",
     "react-dom": "^16.7.0",
     "react-id-swiper": "^2.1.2",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "react-social-icons": "^4.1.0",
     "rimble-ui": "^0.9.1",

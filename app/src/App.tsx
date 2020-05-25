@@ -3,47 +3,21 @@ import { DrizzleProvider } from "drizzle-react";
 
 import drizzleOptions from "./drizzleOptions";
 import BaseContainer from "./BaseContainer";
+import { HashRouter as Router, Route, Link } from "react-router-dom"
+import Game from "./game/App"
 
 class App extends Component {
   render() {
     return (
       <DrizzleProvider options={drizzleOptions}>
-        <BaseContainer />
-      </DrizzleProvider>
+        <Router basename={window.location.pathname.includes("dapp") ? '/dapp' : ''}>
+          <Route path='/' exact component={BaseContainer} />
+          <Route path='/game' exact component={Game} />
+        </Router>
+      </DrizzleProvider >
+
     );
   }
 }
-
-/* unused in contract, but keeping for now */
-// class Metadata extends Component {
-
-//   data: any
-
-//   constructor() {
-//     super({}, {});
-//     this.data = {
-//       name: "Wild Cards",
-//       description: "The token of endangerd animals",
-//       image: "https://static.thenounproject.com/png/6866-200.png"
-//     };
-//   }
-//   render() {
-//     return (
-//       <div>{JSON.stringify(this.data)}</div>
-//     )
-//   }
-// }
-
-// class AppRoutes extends Component {
-//   render() {
-//     return (
-//       <App />
-//       // <Router>
-//       //   <Route path='/' exact component={App} />
-//       //   <Route path='/metadata' exact component={Metadata} />
-//       // </Router>
-//     )
-//   }
-// }
 
 export default App;

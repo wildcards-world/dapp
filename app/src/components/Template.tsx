@@ -30,19 +30,19 @@ class Template extends Component {
     return (
       <div>
         <header className="header-23">
-          <nav className="nav-02 container container--large">
+          <nav className="nav-02 container-template container--large">
             <div className="nav-02__box">
               <img src={smallIcon} height="80px" className='main-logo' />
               <ul className="nav-02__list nav-02__links">
                 <li className="nav-02__item">
-                  <span style={{ color: '#888', padding: '1rem', fontWeight: 'bold' }}><a href="https://ventureburn.com/2019/05/ethcapetown-blockchain-winning-applications/" style={{ textDecoration: 'none', color: '#303030' }}>BACKGROUND</a></span>
+                  <span style={{ color: '#888', padding: '1rem', fontWeight: 'bold' }}><a href="https://ventureburn.com/2019/05/ethcapetown-blockchain-winning-applications/" target='_blank' style={{ textDecoration: 'none', color: '#303030' }}>BACKGROUND</a></span>
                   <a style={{ color: 'white', backgroundColor: '#6bad3e', padding: '1rem', textDecoration: 'none', boxShadow: '1px 2px 2px 1px #aaa', fontWeight: 'bold' }} href="#signup"><span>SUBSCRIBE</span></a>
                 </li>
               </ul>
             </div>
           </nav>
         </header>
-        <div className="container container--large header-23__container">
+        <div className="container-template container--large header-23__container">
           <div className="header-23__left">
             <div className="header-23__left_content">
               <h1 className="heading heading--accent header-23__heading">
@@ -66,7 +66,7 @@ class Template extends Component {
 
         {/* START OF: Email form 03 =====*/}
         <div className="cta_form-03" style={{ backgroundColor: '#73c7d7' }} id="signup">
-          <div className="container container--mid">
+          <div className="container-template container--mid">
             <div className="cta_form-03__wrapper">
               <div className="cta_form-03__heading_box">
                 <h2 className="cta_form-03__heading">Want to stay in the loop?</h2>
@@ -268,7 +268,7 @@ class Template extends Component {
 
         {/* START OF: Text 01 =====*/}
         <div className="text--01 vine-background" id="about">
-          <div className="container container--small">
+          <div className="container-template container--small">
             <div className="text--01__box" style={{ backgroundColor: '#6bad3e', borderRadius: 0 }}>
               <div className="text--01__emoji">
                 <img className="emoji   emoji--large" src={raisingHandsEmoji} alt="Emoji" />
@@ -286,7 +286,7 @@ class Template extends Component {
         {/* ===== END OF: Text 01*/}
         {/* START OF: Footer 02 =====*/}
         <div className="footer-02">
-          <div className="container">
+          <div className="container-template">
             <div className="footer-02__wrapper">
               <div className="footer-02__text">
                 ©
